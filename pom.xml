@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.soundtouch4j</groupId>
+	<artifactId>soundtouch-api</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Soundtouch API Java Client</name>
+	<description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's Soundtouch</description>
+	<url>https://github.com/geri-m/soundtouch4j</url>
+
+	<licenses>
+		<license>
+			<name>The MIT License (MIT)</name>
+			<url>http://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>geri-m</id>
+			<name>Gerald Madlmayr</name>
+			<email>gerald.madlmayr@gmx.at</email>
+		</developer>
+	</developers>
+
+	<properties>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
+        <google.http.client.version>1.25.0</google.http.client.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<scm>
+		<url>git@github.com:geri-m/soundtouch4j.git</url>
+		<connection>scm:git:git@github.com:geri-m/soundtouch4j.git</connection>
+		<developerConnection>scm:git:git@github.com:geri-m/soundtouch4j.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<build>
+		<defaultGoal>package</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.9.5</version>
+				<configuration>
+					<tag>${project.artifactId}-${project.version}</tag>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${java.source.version}</source>
+					<target>${java.target.version}</target>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<configuration>
+							<excludes>
+								<exclude>**/module-info.java</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- Google's HTTP CLient -->
+		<dependency>
+			<groupId>com.google.http-client</groupId>
+			<artifactId>google-http-client</artifactId>
+			<version>${google.http.client.version}</version>
+		</dependency>
+
+		<!-- XML Support is still Beta, but works fine for our usecases -->
+		<dependency>
+			<groupId>com.google.http-client</groupId>
+			<artifactId>google-http-client-xml</artifactId>
+			<version>${google.http.client.version}</version>
+		</dependency>
+
+	</dependencies>
+</project>
