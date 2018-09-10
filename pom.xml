@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.soundtouch4j</groupId>
+  <artifactId>soundtouch4j-api</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>Soundtouch API Java Client</name>
+  <description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's Soundtouch</description>
+  <url>https://github.com/geri-m/soundtouch4j</url>
+
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>geri-m</id>
+      <name>Gerald Madlmayr</name>
+      <email>gerald.madlmayr@gmx.at</email>
+    </developer>
+  </developers>
+
+  <properties>
+    <java.source.version>1.8</java.source.version>
+    <java.target.version>1.8</java.target.version>
+    <google.http.client.version>1.25.0</google.http.client.version>
+    <junit.version>4.12</junit.version>
+    <log4j2.version>2.7</log4j2.version>
+    <ssdp.version>2.2.0</ssdp.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <scm>
+    <url>git@github.com:geri-m/soundtouch4j-api.git</url>
+    <connection>scm:git:git@github.com:geri-m/soundtouch4j-api.git</connection>
+    <developerConnection>scm:git:git@github.com:geri-m/soundtouch4j-api.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <dependencies>
+    <!-- Google's HTTP CLient -->
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client</artifactId>
+      <version>${google.http.client.version}</version>
+    </dependency>
+
+    <!-- XML Support is still Beta, but works fine for our usecases -->
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client-xml</artifactId>
+      <version>${google.http.client.version}</version>
+    </dependency>
+
+    <!-- Binding for Log4J -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.resourcepool</groupId>
+      <artifactId>ssdp-client</artifactId>
+      <version>${ssdp.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <defaultGoal>package</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <goals>deploy</goals>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-scm-plugin</artifactId>
+        <version>1.9.5</version>
+        <configuration>
+          <tag>${project.artifactId}-${project.version}</tag>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>${java.source.version}</source>
+          <target>${java.target.version}</target>
+        </configuration>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <configuration>
+              <excludes>
+                <exclude>**/module-info.java</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
