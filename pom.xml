@@ -32,7 +32,8 @@
     <java.target.version>1.8</java.target.version>
     <google.http.client.version>1.25.0</google.http.client.version>
     <junit.version>4.12</junit.version>
-    <log4j.version>2.7</log4j.version>
+    <log4j2.version>2.7</log4j2.version>
+    <ssdp.version>2.2.0</ssdp.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -63,19 +64,25 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
-      <version>${log4j.version>}</version>
+      <version>${log4j2.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>${log4j.version>}</version>
+      <version>${log4j2.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
-      <version>${log4j.version>}</version>
+      <version>${log4j2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.resourcepool</groupId>
+      <artifactId>ssdp-client</artifactId>
+      <version>${ssdp.version}</version>
     </dependency>
 
     <dependency>
