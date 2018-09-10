@@ -12,3 +12,9 @@ This is a helpful example for the XML Usage of the Lib.
 https://github.com/google/google-http-java-client/blob/dev/google-http-client-xml/src/test/java/com/google/api/client/xml/XmlTest.java
 https://stackoverflow.com/questions/14751115/sending-post-request-using-com-google-api-client-http-httprequest-object-in-goog
 ```
+
+### XML Parsing
+
+There is an Issue with with XPP on Android and on J2SE, so there is a Hack in SoundTouchApiClient.java
+
+https://stackoverflow.com/questions/52264672/different-serializing-of-xml-on-android-and-j2se-using-google-http-lib-and-xpp
