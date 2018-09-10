@@ -19,7 +19,14 @@ public class SsdpScanner {
     // static methods only
   }
 
-  public static List<SsdpService> synchronousBlockingDeviceScaner(final int timeToScanInMilliseconds) {
+  /**
+   * Blocking Call to scan for Services meeting the Requirements of the BOSE Soundtouch. The Speaker needs to be on the same networks as our computer.
+   *
+   * @param timeToScanInMilliseconds Duration in Milliseconds to scan for a device. Within a home network with a single router, 2 - 5 seconds provided sound results.
+   * @return List of {@code SsdpService} that will be returned by the search.
+   */
+
+  public static synchronized List<SsdpService> synchronousBlockingDeviceScanner(final int timeToScanInMilliseconds) {
     final SsdpClient client = SsdpClient.create();
     final List<SsdpService> servicesFound = new ArrayList<>();
 
