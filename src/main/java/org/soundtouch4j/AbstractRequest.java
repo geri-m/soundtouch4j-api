@@ -1,4 +1,7 @@
 package org.soundtouch4j;
 
-public abstract class AbstractRequest {
+public interface AbstractRequest {
+
+
+
 }
