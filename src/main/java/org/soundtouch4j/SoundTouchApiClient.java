@@ -26,7 +26,7 @@ public class SoundTouchApiClient {
     this.basePath = basePath;
   }
 
-  public <T> T post(final String path, final String xmlElementName, final AbstractRequest request, final Class<T> dataclass) throws IOException {
+  public <T> T post(final String path, final String xmlElementName, final Request request, final Class<T> dataclass) throws IOException {
     final GenericUrl url = new GenericUrl(basePath.toString() + "/" + path);
     final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(DICTIONARY, xmlElementName, request);
 
@@ -38,6 +38,14 @@ public class SoundTouchApiClient {
         .replace("xmlns=\"\"", ""));
 
     return factory.buildPostRequest(url, content)
+        .setParser(new XmlObjectParser(DICTIONARY))
+        .execute()
+        .parseAs(dataclass);
+  }
+
+  public <T> T get(final String path, final Class<T> dataclass) throws IOException {
+    final GenericUrl url = new GenericUrl(basePath.toString() + "/" + path);
+    return factory.buildGetRequest(url)
         .setParser(new XmlObjectParser(DICTIONARY))
         .execute()
         .parseAs(dataclass);
