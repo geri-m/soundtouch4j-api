@@ -21,6 +21,17 @@ public enum KeyPressValueEnum {
   REMOVE_FAVORITE,
   THUMBS_UP,
   THUMBS_DOWN,
-  BOOKMARK
+  BOOKMARK,
+
+  // PRESS or RELEASE
+  PRESET_1,
+  PRESET_2,
+  PRESET_3,
+  PRESET_4,
+  PRESET_5,
+  PRESET_6,
+
+  // PRESS and RELEASE
+  POWER
 
 }

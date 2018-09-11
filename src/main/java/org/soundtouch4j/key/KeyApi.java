@@ -14,13 +14,18 @@ public class KeyApi extends AbstractApi {
   }
 
 
+  /**
+   * Method to turn on/off the Sound Touch
+   *
+   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed.
+   */
+
   public void pressPowerButton() throws SoundTouchApiException {
-    // TODO: Define how we want to see the Business Logic
     try {
       soundTouchApi.getSoundTouchApiClient()
-          .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressAndReleaseEnum.POWER.name(), KeyStateEnum.PRESS.getValue()), KeyResponse.class);
+          .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.PRESS), KeyResponse.class);
       soundTouchApi.getSoundTouchApiClient()
-          .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressAndReleaseEnum.POWER.name(), KeyStateEnum.RELEASE.getValue()), KeyResponse.class);
+          .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.RELEASE), KeyResponse.class);
     } catch (final IOException e) {
       throw new SoundTouchApiException(e);
     }

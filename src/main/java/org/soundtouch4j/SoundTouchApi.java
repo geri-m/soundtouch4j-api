@@ -5,7 +5,7 @@ import org.soundtouch4j.key.KeyApi;
 
 public class SoundTouchApi {
 
-
+  // Single One Instance of the API that does the call to the Box. We want to have this single object to avoid parallel calls.
   private final SoundTouchApiClient soundTouchApiClient;
   private KeyApi keyApi;
 

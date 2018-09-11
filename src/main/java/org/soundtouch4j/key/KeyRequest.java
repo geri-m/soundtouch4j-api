@@ -7,7 +7,7 @@ import com.google.api.client.util.Key;
  * Request Object for the '/key' HTTP-POST Request. Requires the Key as well as the Key State
  */
 
-public class KeyRequest extends AbstractRequest {
+public class KeyRequest implements AbstractRequest {
 
   public static final String ELEMENT_NAME = "key";
 
@@ -20,10 +20,10 @@ public class KeyRequest extends AbstractRequest {
   private String keyState;
 
 
-  public KeyRequest(final String key, final String keyState) {
+  public KeyRequest(final KeyPressValueEnum key, final KeyStateEnum keyState) {
     super();
-    this.keyState = keyState;
-    this.key = key;
+    this.keyState = keyState.getValue();
+    this.key = key.name();
   }
 
 }
