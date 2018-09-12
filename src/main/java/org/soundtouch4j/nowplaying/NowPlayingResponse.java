@@ -1,6 +1,7 @@
 package org.soundtouch4j.nowplaying;
 
 
+import org.soundtouch4j.Response;
 import com.google.api.client.util.Key;
 
 /**
@@ -37,18 +38,133 @@ import com.google.api.client.util.Key;
  * </nowPlaying>
  * }
  * </pre>
+ *
+ * <p>
+ *   Playing Blutoothe
+ * </p>
+ * <pre>
+ * {@code
+ * <?xml version="1.0" encoding="UTF-8" ?>
+ * <nowPlaying deviceID="C8DF84AE0B6E" source="BLUETOOTH" sourceAccount="">
+ *     <ContentItem source="BLUETOOTH" location="" sourceAccount="" isPresetable="false">
+ *         <itemName></itemName>
+ *     </ContentItem>
+ *     <track></track>
+ *     <artist></artist>
+ *     <album></album>
+ *     <stationName></stationName>
+ *     <art artImageStatus="SHOW_DEFAULT_IMAGE" />
+ *     <playStatus>INVALID_PLAY_STATUS</playStatus>
+ *     <connectionStatusInfo status="CONNECTING" deviceName="Geralds MacBook Pro" />
+ * </nowPlaying>
+ * }
+ * </pre>
  */
 
-public class NowPlayingResponse {
+public class NowPlayingResponse implements Response {
+
+  @Key("@source")
+  private SourceEnum source;
+
+  @Key("@deviceID")
+  private String deviceID;
 
   @Key("ContentItem")
-  private NowPlayingContentItem contentItem;
+  private ContentItem contentItem;
+
+  @Key
+  private String track;
+
+  @Key
+  private String artist;
+
+  @Key
+  private String album;
+
+  @Key
+  private String genre;
+
+  @Key
+  private String rating;
+
+  @Key
+  private String stationName;
+
+  @Key
+  private Art art;
+
+  @Key
+  private Art time;
+
+  @Key
+  private boolean skipEnabled;
+
+  @Key
+  private boolean skipPreviousEnabled;
+
+  @Key
+  private boolean favoriteEnabled;
+
+  @Key
+  private boolean isFavorite;
+
+  @Key
+  private boolean rateEnabled;
+
+  @Key
+  private PlayStatusEnum playStatus;
+
+  @Key
+  private String description;
+
+  @Key
+  private String stationLocation;
+
+  @Key
+  private ConnectionStatusInfo connectionStatusInfo;
 
   NowPlayingResponse() {
 
   }
 
-  public NowPlayingContentItem getContentItem() {
+  public ContentItem getContentItem() {
     return contentItem;
+  }
+
+  public String getTrack() {
+    return track;
+  }
+
+  public String getArtist() {
+    return artist;
+  }
+
+  public String getAlbum() {
+    return album;
+  }
+
+  public String getStationName() {
+    return stationName;
+  }
+
+  public Art getArt() {
+    return art;
+  }
+
+  public PlayStatusEnum getPlayStatus() {
+    return playStatus;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public String getStationLocation() {
+    return stationLocation;
+  }
+
+  @Override
+  public String toString() {
+    return "NowPlayingResponse{" + "source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + skipEnabled + ", skipPreviousEnabled=" + skipPreviousEnabled + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isFavorite + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", description='" + description + '\'' + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
   }
 }

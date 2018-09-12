@@ -41,7 +41,7 @@ public class BasicTest {
     final SoundTouchApi soundTouchApi = new SoundTouchApi(boseEndpoint);
     try {
       soundTouchApi.getKeyApi()
-          .pressPowerButton();
+          .power();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to press the Power Button: {}", e.getMessage());
       Assert.fail();

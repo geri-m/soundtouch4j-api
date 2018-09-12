@@ -6,7 +6,7 @@ import com.google.api.client.util.Key;
  * Content Item of the NowPlaying Response.
  */
 
-public class NowPlayingContentItem {
+public class ContentItem {
 
   @Key("@source")
   private SourceEnum source;
@@ -26,7 +26,7 @@ public class NowPlayingContentItem {
   @Key
   private String containerArt;
 
-  public NowPlayingContentItem() {
+  public ContentItem() {
 
   }
 
@@ -52,5 +52,10 @@ public class NowPlayingContentItem {
 
   public String getContainerArt() {
     return containerArt;
+  }
+
+  @Override
+  public String toString() {
+    return "ContentItem{" + "source=" + source + ", isPresetable=" + isPresetable + ", location='" + location + '\'' + ", sourceAccount='" + sourceAccount + '\'' + ", itemName" + "='" + itemName + '\'' + ", containerArt='" + containerArt + '\'' + '}';
   }
 }

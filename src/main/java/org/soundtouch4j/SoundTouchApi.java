@@ -3,6 +3,7 @@ package org.soundtouch4j;
 import java.net.URL;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
+import org.soundtouch4j.nowplaying.NowPlayingApi;
 
 public class SoundTouchApi {
 
@@ -10,6 +11,7 @@ public class SoundTouchApi {
   private final SoundTouchApiClient soundTouchApiClient;
   private KeyApi keyApi;
   private InfoApi infoApi;
+  private NowPlayingApi nowPlayingApi;
 
   // TODO: We require the option to choose ANDROID or J2SE
   public SoundTouchApi(final URL endpoint) {
@@ -35,9 +37,9 @@ public class SoundTouchApi {
 
 
   /**
-   * Gets the KeyApi instance owned by this SoundTouchApi instance. The KeyApi is used to perform all key press/release/event related API calls.
+   * Gets the InfoApi instance owned by this SoundTouchApi instance. The InfoApi is used fetch the information form the BOSE Speaker.
    *
-   * @return the KeyApi instance owned by this SoundTouchApi instance
+   * @return the InfoApi instance owned by this SoundTouchApi instance
    */
   public InfoApi getInfoApi() {
 
@@ -51,6 +53,23 @@ public class SoundTouchApi {
     return (infoApi);
   }
 
+
+  /**
+   * Gets the KeyApi instance owned by this SoundTouchApi instance. The KeyApi is used to perform all key press/release/event related API calls.
+   *
+   * @return the KeyApi instance owned by this SoundTouchApi instance
+   */
+  public NowPlayingApi getNowPlayingApi() {
+
+    if (nowPlayingApi == null) {
+      synchronized (this) {
+        if (nowPlayingApi == null) {
+          nowPlayingApi = new NowPlayingApi(this);
+        }
+      }
+    }
+    return (nowPlayingApi);
+  }
 
   public SoundTouchApiClient getSoundTouchApiClient() {
     return soundTouchApiClient;
