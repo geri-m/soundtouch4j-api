@@ -20,9 +20,7 @@ public class InfoApiTest {
 
     final URL boseEndpoint;
     try {
-      // boseEndpoint = new URL("http://"+ services.get(0).getRemoteIp().getHostAddress() + ":8090");
-      boseEndpoint = new URL("http://soundtouch-20.fritz.box:8090");
-      LOGGER.info("Using urL: {}", boseEndpoint.toString());
+      boseEndpoint = new URL(Const.URL);
     } catch (final MalformedURLException e) {
       // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
       Assert.fail();

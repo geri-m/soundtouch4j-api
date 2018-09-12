@@ -1,5 +1,7 @@
 package org.soundtouch4j.info;
 
+import java.util.List;
+import java.util.Map;
 import org.soundtouch4j.Response;
 import com.google.api.client.util.Key;
 
@@ -47,6 +49,8 @@ import com.google.api.client.util.Key;
 
 public class InfoResponse implements Response {
 
+  private final String COMPONENT = "component";
+
   @Key("@deviceID")
   private String deviceID;
 
@@ -57,7 +61,8 @@ public class InfoResponse implements Response {
   private String type;
 
   @Key
-  private Component[] components;
+  private Map<String, List<Component>> components;
+
 
   @Key
   private NetworkInfo networkInfo;
@@ -78,9 +83,11 @@ public class InfoResponse implements Response {
     return type;
   }
 
-  public Component[] getComponents() {
-    return components;
+
+  public List<Component> getComponents() {
+    return components.get(COMPONENT);
   }
+
 
   public NetworkInfo getNetworkInfo() {
     return networkInfo;
