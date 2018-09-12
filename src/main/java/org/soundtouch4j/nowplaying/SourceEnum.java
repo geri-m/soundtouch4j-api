@@ -11,6 +11,6 @@ public enum SourceEnum {
   // There are more Values to come. There are basically two states. Standby and "playing"
 
   @Value INTERNET_RADIO,
-
+  @Value BLUETOOTH,
   @Value STANDBY
 }

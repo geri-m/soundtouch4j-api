@@ -1,6 +1,7 @@
 package org.soundtouch4j.nowplaying;
 
 
+import org.soundtouch4j.Response;
 import com.google.api.client.util.Key;
 
 /**
@@ -37,18 +38,178 @@ import com.google.api.client.util.Key;
  * </nowPlaying>
  * }
  * </pre>
+ *
+ * <p>
+ *   Playing Blutoothe
+ * </p>
+ * <pre>
+ * {@code
+ * <?xml version="1.0" encoding="UTF-8" ?>
+ * <nowPlaying deviceID="C8DF84AE0B6E" source="BLUETOOTH" sourceAccount="">
+ *     <ContentItem source="BLUETOOTH" location="" sourceAccount="" isPresetable="false">
+ *         <itemName></itemName>
+ *     </ContentItem>
+ *     <track></track>
+ *     <artist></artist>
+ *     <album></album>
+ *     <stationName></stationName>
+ *     <art artImageStatus="SHOW_DEFAULT_IMAGE" />
+ *     <playStatus>INVALID_PLAY_STATUS</playStatus>
+ *     <connectionStatusInfo status="CONNECTING" deviceName="Geralds MacBook Pro" />
+ * </nowPlaying>
+ * }
+ * </pre>
  */
 
-public class NowPlayingResponse {
+public class NowPlayingResponse implements Response {
+
+  @Key("@source")
+  private SourceEnum source;
+
+  @Key("@deviceID")
+  private String deviceID;
 
   @Key("ContentItem")
-  private NowPlayingContentItem contentItem;
+  private ContentItem contentItem;
 
-  NowPlayingResponse() {
+  @Key
+  private String track;
+
+  @Key
+  private String artist;
+
+  @Key
+  private String album;
+
+  @Key
+  private String genre;
+
+  @Key
+  private String rating;
+
+  @Key
+  private String stationName;
+
+  @Key
+  private Art art;
+
+  @Key
+  private Time time;
+
+  @Key
+  private String skipEnabled;
+
+  @Key
+  private String skipPreviousEnabled;
+
+  @Key
+  private String favoriteEnabled;
+
+  @Key
+  private String isFavorite;
+
+  @Key
+  private String rateEnabled;
+
+  @Key
+  private String playStatus;
+
+  @Key
+  private String description;
+
+  @Key
+  private String stationLocation;
+
+  @Key
+  private ConnectionStatusInfo connectionStatusInfo;
+
+  public NowPlayingResponse() {
 
   }
 
-  public NowPlayingContentItem getContentItem() {
+  public ContentItem getContentItem() {
     return contentItem;
+  }
+
+  public String getTrack() {
+    return track;
+  }
+
+  public String getArtist() {
+    return artist;
+  }
+
+  public String getAlbum() {
+    return album;
+  }
+
+  public String getStationName() {
+    return stationName;
+  }
+
+  public Art getArt() {
+    return art;
+  }
+
+  public String getPlayStatus() {
+    return playStatus;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public String getStationLocation() {
+    return stationLocation;
+  }
+
+  public SourceEnum getSource() {
+    return source;
+  }
+
+  public String getDeviceID() {
+    return deviceID;
+  }
+
+  public String getGenre() {
+    return genre;
+  }
+
+  public String getRating() {
+    return rating;
+  }
+
+  public Time getTime() {
+    return time;
+  }
+
+  public boolean isSkipEnabled() {
+    return skipEnabled != null;
+  }
+
+  public boolean isSkipPreviousEnabled() {
+    return skipPreviousEnabled != null;
+  }
+
+  public boolean isFavoriteEnabled() {
+    return favoriteEnabled != null;
+  }
+
+  public boolean isIsFavorite() {
+    return isFavorite != null;
+  }
+
+  public boolean isRateEnabled() {
+    return rateEnabled != null;
+  }
+
+  public ConnectionStatusInfo getConnectionStatusInfo() {
+    return connectionStatusInfo;
+  }
+
+
+  @Override
+  public String toString() {
+    return "NowPlayingResponse{" + "source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + isSkipEnabled() + ", skipPreviousEnabled=" + isSkipPreviousEnabled() + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isIsFavorite() + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", description='" + description + '\'' + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
   }
 }

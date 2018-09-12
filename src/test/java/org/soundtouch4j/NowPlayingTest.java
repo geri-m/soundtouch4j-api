@@ -6,16 +6,16 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.soundtouch4j.info.InfoResponse;
+import org.soundtouch4j.nowplaying.NowPlayingResponse;
 
-public class InfoApiTest {
+public class NowPlayingTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(InfoApiTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(NowPlayingTest.class);
 
 
   @Test
-  public void test01_fetchInfoFromSpeaker() {
-    LOGGER.info("test01_fetchInfoFromSpeaker started");
+  public void test01_nowPlaying() {
+    LOGGER.info("test01_nowPlaying started");
 
 
     final URL boseEndpoint;
@@ -29,16 +29,16 @@ public class InfoApiTest {
 
     final SoundTouchApi soundTouchApi = new SoundTouchApi(boseEndpoint);
     try {
-      final InfoResponse response = soundTouchApi.getInfoApi()
-          .getInfo();
-      LOGGER.info("Info: '{}'", response);
+      final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
+          .nowPlaying();
+      LOGGER.info("Now Playiner: '{}'", response);
     } catch (final SoundTouchApiException e) {
-      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+      LOGGER.error("Unable to get information on 'now Playing: {}", e.getMessage());
       Assert.fail();
       return;
     }
 
-    LOGGER.info("test01_fetchInfoFromSpeaker passed");
+    LOGGER.info("test01_nowPlaying passed");
   }
 
 }
