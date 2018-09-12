@@ -33,7 +33,7 @@ public class InfoApiTest {
           .getInfo();
       LOGGER.info("Info: '{}'", response);
     } catch (final SoundTouchApiException e) {
-      LOGGER.error("Unable to press the Power Button: {}", e.getMessage());
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
       return;
     }

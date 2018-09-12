@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.soundtouch4j.info.InfoResponse;
+import org.soundtouch4j.nowplaying.NowPlayingResponse;
 
 public class NowPlayingTest {
 
@@ -29,11 +29,11 @@ public class NowPlayingTest {
 
     final SoundTouchApi soundTouchApi = new SoundTouchApi(boseEndpoint);
     try {
-      final InfoResponse response = soundTouchApi.getInfoApi()
-          .getInfo();
-      LOGGER.info("Info: '{}'", response);
+      final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
+          .nowPlaying();
+      LOGGER.info("Now Playiner: '{}'", response);
     } catch (final SoundTouchApiException e) {
-      LOGGER.error("Unable to press the Power Button: {}", e.getMessage());
+      LOGGER.error("Unable to get information on 'now Playing: {}", e.getMessage());
       Assert.fail();
       return;
     }

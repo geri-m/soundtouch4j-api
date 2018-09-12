@@ -21,4 +21,9 @@ public class Art {
   public ArtImageStatusEnum getArtImageStatus() {
     return artImageStatus;
   }
+
+  @Override
+  public String toString() {
+    return "Art{" + "value=" + value + ", artImageStatus=" + artImageStatus + '}';
+  }
 }

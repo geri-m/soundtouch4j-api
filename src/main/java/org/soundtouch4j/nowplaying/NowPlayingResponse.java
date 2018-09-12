@@ -94,25 +94,25 @@ public class NowPlayingResponse implements Response {
   private Art art;
 
   @Key
-  private Art time;
+  private Time time;
 
   @Key
-  private boolean skipEnabled;
+  private String skipEnabled;
 
   @Key
-  private boolean skipPreviousEnabled;
+  private String skipPreviousEnabled;
 
   @Key
-  private boolean favoriteEnabled;
+  private String favoriteEnabled;
 
   @Key
-  private boolean isFavorite;
+  private String isFavorite;
 
   @Key
-  private boolean rateEnabled;
+  private String rateEnabled;
 
   @Key
-  private PlayStatusEnum playStatus;
+  private String playStatus;
 
   @Key
   private String description;
@@ -123,7 +123,7 @@ public class NowPlayingResponse implements Response {
   @Key
   private ConnectionStatusInfo connectionStatusInfo;
 
-  NowPlayingResponse() {
+  public NowPlayingResponse() {
 
   }
 
@@ -151,7 +151,7 @@ public class NowPlayingResponse implements Response {
     return art;
   }
 
-  public PlayStatusEnum getPlayStatus() {
+  public String getPlayStatus() {
     return playStatus;
   }
 
@@ -163,8 +163,53 @@ public class NowPlayingResponse implements Response {
     return stationLocation;
   }
 
+  public SourceEnum getSource() {
+    return source;
+  }
+
+  public String getDeviceID() {
+    return deviceID;
+  }
+
+  public String getGenre() {
+    return genre;
+  }
+
+  public String getRating() {
+    return rating;
+  }
+
+  public Time getTime() {
+    return time;
+  }
+
+  public boolean isSkipEnabled() {
+    return skipEnabled != null;
+  }
+
+  public boolean isSkipPreviousEnabled() {
+    return skipPreviousEnabled != null;
+  }
+
+  public boolean isFavoriteEnabled() {
+    return favoriteEnabled != null;
+  }
+
+  public boolean isIsFavorite() {
+    return isFavorite != null;
+  }
+
+  public boolean isRateEnabled() {
+    return rateEnabled != null;
+  }
+
+  public ConnectionStatusInfo getConnectionStatusInfo() {
+    return connectionStatusInfo;
+  }
+
+
   @Override
   public String toString() {
-    return "NowPlayingResponse{" + "source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + skipEnabled + ", skipPreviousEnabled=" + skipPreviousEnabled + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isFavorite + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", description='" + description + '\'' + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
+    return "NowPlayingResponse{" + "source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + isSkipEnabled() + ", skipPreviousEnabled=" + isSkipPreviousEnabled() + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isIsFavorite() + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", description='" + description + '\'' + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
   }
 }
