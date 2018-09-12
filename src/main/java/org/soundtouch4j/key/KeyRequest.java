@@ -1,13 +1,13 @@
 package org.soundtouch4j.key;
 
-import org.soundtouch4j.AbstractRequest;
+import org.soundtouch4j.Request;
 import com.google.api.client.util.Key;
 
 /**
  * Request Object for the '/key' HTTP-POST Request. Requires the Key as well as the Key State
  */
 
-public class KeyRequest implements AbstractRequest {
+public class KeyRequest implements Request {
 
   public static final String ELEMENT_NAME = "key";
 
