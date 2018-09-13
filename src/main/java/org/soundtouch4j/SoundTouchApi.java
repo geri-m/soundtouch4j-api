@@ -19,11 +19,11 @@ public class SoundTouchApi implements SoundTouch {
    *
    * @param endpoint  This is a {@link URL} of the endpoint you want to connect to. You can use the {@code SsdpScanner} to Scan for your Speaker and retrieve the IP-Address of it.
    * @param transport Here you have to specify the implementation of Transport. Having this parameter gives us platform independence and better testability
-   *                  <ul>
-   *                  <li>J2SE {@code NetHttpTransport}</li>
-   *                  <li>Mocking {@code MockHttpTransport}</li>
-   *                  <li>Android {@code AndroidHttp.newCompatibleTransport()}</li>
-   *                  </ul>>
+  <ul>
+  <li>J2SE {@link com.google.api.client.http.javanet.NetHttpTransport}</li>
+  <li>Mocking {@link com.google.api.client.testing.http.MockHttpTransport}</li>
+  <li>Android {@code AndroidHttp.newCompatibleTransport()}</li>
+  </ul>
    */
   public SoundTouchApi(final URL endpoint, final HttpTransport transport) {
     soundTouchApiClient = new SoundTouchApiClient(endpoint, transport);

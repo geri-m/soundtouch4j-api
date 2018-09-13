@@ -8,7 +8,7 @@ public class ConnectionStatusInfo {
   private String status;
 
   @Key("@deviceName")
-  private boolean deviceName;
+  private String deviceName;
 
   public ConnectionStatusInfo() {
 
@@ -18,7 +18,7 @@ public class ConnectionStatusInfo {
     return status;
   }
 
-  public boolean isDeviceName() {
+  public String getDeviceName() {
     return deviceName;
   }
 

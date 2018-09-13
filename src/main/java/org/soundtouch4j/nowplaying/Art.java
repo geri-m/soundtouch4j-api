@@ -4,7 +4,7 @@ import com.google.api.client.util.Key;
 
 public class Art {
 
-  @Key("@text()")
+  @Key("text()")
   private String art;
 
   @Key("@artImageStatus")
