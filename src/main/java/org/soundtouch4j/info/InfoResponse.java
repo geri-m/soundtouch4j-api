@@ -9,7 +9,7 @@ import com.google.api.client.util.Key;
  * Response from the '/info' GET Call
  *
  * So far, the response is
- * * <pre>
+ * <pre>
  * {@code
  * <?xml version="1.0" encoding="UTF-8" ?>
  * <info deviceID="C8DF84AE0B6E">

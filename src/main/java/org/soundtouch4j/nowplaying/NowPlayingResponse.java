@@ -7,7 +7,8 @@ import com.google.api.client.util.Key;
 /**
  * Response Element form /nowPlaying. There are two States: STANDBY and "playing". For now, we only process the 'contentItem' Element.
  * <p>
- * Standby ======
+ * XML Response from Speaker in Standby
+ * </p>
  * <pre>
  * {@code
  * <?xml version="1.0" encoding="UTF-8" ?>
@@ -17,8 +18,8 @@ import com.google.api.client.util.Key;
  * }
  * </pre>
  * <p>
- * Playing (eg. INTERNET_RADIO)
- * <p>
+ * XML Response from Speaker Playing (eg. INTERNET_RADIO)
+ * </p>
  * <pre>
  * {@code
  * <?xml version="1.0" encoding="UTF-8" ?>
@@ -40,7 +41,7 @@ import com.google.api.client.util.Key;
  * </pre>
  *
  * <p>
- *   Playing Blutoothe
+ * XML Response from Speaker streaming Bluetooth
  * </p>
  * <pre>
  * {@code

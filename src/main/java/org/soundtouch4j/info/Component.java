@@ -4,6 +4,8 @@ package org.soundtouch4j.info;
 import com.google.api.client.util.Key;
 
 /**
+ * <pre>
+ * {@code
  * <component>
  * <componentCategory>SCM</componentCategory>
  * <softwareVersion>19.0.5.42017.2794643 epdbuild.trunk.cepeswbld02.2018-04-25T18:23:30</softwareVersion>
@@ -13,6 +15,8 @@ import com.google.api.client.util.Key;
  * <componentCategory>PackagedProduct</componentCategory>
  * <serialNumber>069428P81639976AE</serialNumber>
  * </component>
+ * }
+ * </pre>
  */
 
 public class Component {
