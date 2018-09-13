@@ -4,7 +4,7 @@ import com.google.api.client.util.Key;
 
 public class Time {
 
-  @Key("@text()")
+  @Key("text()")
   private int value;
 
   @Key("@total")

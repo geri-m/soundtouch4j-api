@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.xml.XmlHttpContent;
 import com.google.api.client.xml.XmlNamespaceDictionary;
 import com.google.api.client.xml.XmlObjectParser;
@@ -23,14 +25,16 @@ public class SoundTouchApiClient {
   private static final String XMSNS_STRING_TO_REPLACE = "xmlns=\"\"";
   // We don't have a namespace for our Application and/or the objects. Soundtouch doesn't like it.
   private static final XmlNamespaceDictionary DICTIONARY = new XmlNamespaceDictionary().set(EMPTY_STRING, EMPTY_STRING);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SoundTouchApiClient.class);
 
-  private final HttpRequestFactory factory = new NetHttpTransport().createRequestFactory();
+  private final HttpRequestFactory factory;
 
   private final URL basePath;
 
-  public SoundTouchApiClient(final URL basePath) {
+  public SoundTouchApiClient(final URL basePath, final HttpTransport transport) {
     // TODO: Make Sure we have "/" in the end of the URL.
     this.basePath = basePath;
+    this.factory = transport.createRequestFactory();
   }
 
   public <T> T post(final String path, final String xmlElementName, final Request request, final Class<T> dataclass) throws IOException {

@@ -20,11 +20,11 @@ public class KeyApi extends AbstractApi {
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed.
    */
 
-  public void power() throws SoundTouchApiException {
+  public KeyResponse power() throws SoundTouchApiException {
     try {
       soundTouchApi.getSoundTouchApiClient()
           .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.PRESS), KeyResponse.class);
-      soundTouchApi.getSoundTouchApiClient()
+      return soundTouchApi.getSoundTouchApiClient()
           .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.RELEASE), KeyResponse.class);
     } catch (final IOException e) {
       throw new SoundTouchApiException(e);

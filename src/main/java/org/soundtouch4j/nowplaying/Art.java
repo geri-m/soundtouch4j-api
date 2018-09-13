@@ -1,12 +1,11 @@
 package org.soundtouch4j.nowplaying;
 
-import java.net.URL;
 import com.google.api.client.util.Key;
 
 public class Art {
 
-  @Key("@text()")
-  private URL value;
+  @Key("text()")
+  private String art;
 
   @Key("@artImageStatus")
   private ArtImageStatusEnum artImageStatus;
@@ -14,8 +13,8 @@ public class Art {
   public Art() {
   }
 
-  public URL getValue() {
-    return value;
+  public String getValue() {
+    return art;
   }
 
   public ArtImageStatusEnum getArtImageStatus() {
@@ -24,6 +23,6 @@ public class Art {
 
   @Override
   public String toString() {
-    return "Art{" + "value=" + value + ", artImageStatus=" + artImageStatus + '}';
+    return "Art{" + "value=" + art + ", artImageStatus=" + artImageStatus + '}';
   }
 }
