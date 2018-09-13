@@ -3,7 +3,6 @@ package org.soundtouch4j.info;
 import com.google.api.client.util.Key;
 
 /**
- *
  * <pre>
  * {@code
  * <networkInfo type="SCM">

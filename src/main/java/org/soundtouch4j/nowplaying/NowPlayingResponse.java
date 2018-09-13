@@ -112,6 +112,7 @@ public class NowPlayingResponse implements Response {
   @Key
   private String rateEnabled;
 
+  // TODO: Work with ENUM Type here
   @Key
   private String playStatus;
 

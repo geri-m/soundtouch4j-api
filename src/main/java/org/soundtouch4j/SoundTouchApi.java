@@ -6,15 +6,13 @@ import org.soundtouch4j.key.KeyApi;
 import org.soundtouch4j.nowplaying.NowPlayingApi;
 import com.google.api.client.http.HttpTransport;
 
-public class SoundTouchApi {
+public class SoundTouchApi implements SoundTouch {
 
   // Single One Instance of the API that does the call to the Box. We want to have this single object to avoid parallel calls.
   private final SoundTouchApiClient soundTouchApiClient;
   private KeyApi keyApi;
   private InfoApi infoApi;
   private NowPlayingApi nowPlayingApi;
-
-  // TODO: We require the option to choose ANDROID or J2SE
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.

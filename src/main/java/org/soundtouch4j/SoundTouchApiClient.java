@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequestFactory;
@@ -23,6 +25,7 @@ public class SoundTouchApiClient {
   private static final String XMSNS_STRING_TO_REPLACE = "xmlns=\"\"";
   // We don't have a namespace for our Application and/or the objects. Soundtouch doesn't like it.
   private static final XmlNamespaceDictionary DICTIONARY = new XmlNamespaceDictionary().set(EMPTY_STRING, EMPTY_STRING);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SoundTouchApiClient.class);
 
   private final HttpRequestFactory factory;
 
