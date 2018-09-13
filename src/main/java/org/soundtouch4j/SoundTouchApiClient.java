@@ -9,7 +9,7 @@ import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.xml.XmlHttpContent;
 import com.google.api.client.xml.XmlNamespaceDictionary;
 import com.google.api.client.xml.XmlObjectParser;
@@ -24,13 +24,14 @@ public class SoundTouchApiClient {
   // We don't have a namespace for our Application and/or the objects. Soundtouch doesn't like it.
   private static final XmlNamespaceDictionary DICTIONARY = new XmlNamespaceDictionary().set(EMPTY_STRING, EMPTY_STRING);
 
-  private final HttpRequestFactory factory = new NetHttpTransport().createRequestFactory();
+  private final HttpRequestFactory factory;
 
   private final URL basePath;
 
-  public SoundTouchApiClient(final URL basePath) {
+  public SoundTouchApiClient(final URL basePath, final HttpTransport transport) {
     // TODO: Make Sure we have "/" in the end of the URL.
     this.basePath = basePath;
+    this.factory = transport.createRequestFactory();
   }
 
   public <T> T post(final String path, final String xmlElementName, final Request request, final Class<T> dataclass) throws IOException {

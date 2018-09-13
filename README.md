@@ -18,3 +18,10 @@ https://stackoverflow.com/questions/14751115/sending-post-request-using-com-goog
 There is an Issue with with XPP on Android and on J2SE, so there is a Hack in SoundTouchApiClient.java
 
 https://stackoverflow.com/questions/52264672/different-serializing-of-xml-on-android-and-j2se-using-google-http-lib-and-xpp
+
+### Testing HTTP Client
+
+The Google HTTP Client comes with a simple mock, that allows us to test all the request in a nice fashion.
+
+- https://github.com/googleapis/google-http-java-client/blob/dev/google-http-client/src/test/java/com/google/api/client/http/HttpResponseTest.java
+- https://github.com/googleapis/google-http-java-client/blob/dev/google-http-client/src/test/java/com/google/api/client/http/HttpRequestTest.java

@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.google.api.client.http.javanet.NetHttpTransport;
 
 public class BasicTest {
 
@@ -38,7 +39,7 @@ public class BasicTest {
       return;
     }
 
-    final SoundTouchApi soundTouchApi = new SoundTouchApi(boseEndpoint);
+    final SoundTouchApi soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
     try {
       soundTouchApi.getKeyApi()
           .power();

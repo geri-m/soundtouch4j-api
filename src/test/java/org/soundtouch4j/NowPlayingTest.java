@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.nowplaying.NowPlayingResponse;
+import com.google.api.client.http.javanet.NetHttpTransport;
 
 public class NowPlayingTest {
 
@@ -27,7 +28,7 @@ public class NowPlayingTest {
       return;
     }
 
-    final SoundTouchApi soundTouchApi = new SoundTouchApi(boseEndpoint);
+    final SoundTouchApi soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
     try {
       final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
           .nowPlaying();

@@ -4,6 +4,7 @@ import java.net.URL;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
 import org.soundtouch4j.nowplaying.NowPlayingApi;
+import com.google.api.client.http.HttpTransport;
 
 public class SoundTouchApi {
 
@@ -14,8 +15,20 @@ public class SoundTouchApi {
   private NowPlayingApi nowPlayingApi;
 
   // TODO: We require the option to choose ANDROID or J2SE
-  public SoundTouchApi(final URL endpoint) {
-    soundTouchApiClient = new SoundTouchApiClient(endpoint);
+
+  /**
+   * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
+   *
+   * @param endpoint  This is a {@link URL} of the endpoint you want to connect to. You can use the {@code SsdpScanner} to Scan for your Speaker and retrieve the IP-Address of it.
+   * @param transport Here you have to specify the implementation of Transport. Having this parameter gives us platform independence and better testability
+   *                  <ul>
+   *                  <li>J2SE {@code NetHttpTransport}</li>
+   *                  <li>Mocking {@code MockHttpTransport}</li>
+   *                  <li>Android {@code AndroidHttp.newCompatibleTransport()}</li>
+   *                  </ul>>
+   */
+  public SoundTouchApi(final URL endpoint, final HttpTransport transport) {
+    soundTouchApiClient = new SoundTouchApiClient(endpoint, transport);
   }
 
   /**
