@@ -16,6 +16,7 @@ public class NowPlayingApi extends AbstractApi {
   /**
    * Method to turn on/off the Sound Touch
    *
+   * @return NowPlayingResponse Element that was received from the speaker
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed.
    */
 

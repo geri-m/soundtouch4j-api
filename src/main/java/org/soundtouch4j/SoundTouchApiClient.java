@@ -4,9 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
+import java.nio.charset.Charset;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequestFactory;
+import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.http.xml.XmlHttpContent;
 import com.google.api.client.xml.XmlNamespaceDictionary;
@@ -14,8 +16,13 @@ import com.google.api.client.xml.XmlObjectParser;
 
 public class SoundTouchApiClient {
 
+
+  private static final String CHAR_SET_UTF8 = "UTF-8";
+  private static final String TEXT_XML_CONTENT_TYPE = "text/xml";
+  private static final String EMPTY_STRING = "";
+  private static final String XMSNS_STRING_TO_REPLACE = "xmlns=\"\"";
   // We don't have a namespace for our Application and/or the objects. Soundtouch doesn't like it.
-  private static final XmlNamespaceDictionary DICTIONARY = new XmlNamespaceDictionary().set("", "");
+  private static final XmlNamespaceDictionary DICTIONARY = new XmlNamespaceDictionary().set(EMPTY_STRING, EMPTY_STRING);
 
   private final HttpRequestFactory factory = new NetHttpTransport().createRequestFactory();
 
@@ -34,20 +41,25 @@ public class SoundTouchApiClient {
     // see also https://stackoverflow.com/questions/52264672/different-serializing-of-xml-on-android-and-j2se-using-google-http-lib-and-xpp
     final OutputStream os = new ByteArrayOutputStream();
     xmlContentForPostCall.writeTo(os);
-    final ByteArrayContent content = ByteArrayContent.fromString("text/xml", os.toString()
-        .replace("xmlns=\"\"", ""));
+    final ByteArrayContent content = ByteArrayContent.fromString(TEXT_XML_CONTENT_TYPE, os.toString()
+        .replace(XMSNS_STRING_TO_REPLACE, EMPTY_STRING));
 
-    return factory.buildPostRequest(url, content)
+    final HttpResponse response = factory.buildPostRequest(url, content)
         .setParser(new XmlObjectParser(DICTIONARY))
-        .execute()
-        .parseAs(dataclass);
+        .execute();
+    response.getMediaType()
+        .setCharsetParameter(Charset.forName(CHAR_SET_UTF8));
+    return response.parseAs(dataclass);
+
   }
 
   public <T> T get(final String path, final Class<T> dataclass) throws IOException {
     final GenericUrl url = new GenericUrl(basePath.toString() + "/" + path);
-    return factory.buildGetRequest(url)
+    final HttpResponse response = factory.buildGetRequest(url)
         .setParser(new XmlObjectParser(DICTIONARY))
-        .execute()
-        .parseAs(dataclass);
+        .execute();
+    response.getMediaType()
+        .setCharsetParameter(Charset.forName(CHAR_SET_UTF8));
+    return response.parseAs(dataclass);
   }
 }
