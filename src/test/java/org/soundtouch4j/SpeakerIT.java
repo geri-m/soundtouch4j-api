@@ -157,7 +157,7 @@ public class SpeakerIT {
   @Test
   public void test04_selectIncorrectSource() {
 
-    LOGGER.info("test03_nowPlaying started");
+    LOGGER.info("test04_selectIncorrectSource started");
     final XmlObjectParser parser = new XmlObjectParser(XmlParsingReferenceTest.XML_NAMESPACE_DICTIONARY);
 
 
@@ -182,11 +182,11 @@ public class SpeakerIT {
       LOGGER.error("Error Parsing XML: {}", e.getMessage());
       Assert.fail();
     } catch (final SoundTouchApiException e) {
-      LOGGER.error("Select Failed: {}", e.getMessage());
+      LOGGER.info("Select Failed: {}", e.getMessage());
       Assert.assertEquals(e.getHttpStatus(), HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
     }
 
-    LOGGER.info("test03_nowPlaying passed");
+    LOGGER.info("test04_selectIncorrectSource passed");
   }
 
 }

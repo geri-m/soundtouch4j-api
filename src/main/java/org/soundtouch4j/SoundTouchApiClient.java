@@ -23,7 +23,7 @@ public class SoundTouchApiClient {
   private static final String EMPTY_STRING = "";
   private static final String XMSNS_STRING_TO_REPLACE = "xmlns=\"\"";
   // We don't have a namespace for our Application and/or the objects. Soundtouch doesn't like it.
-  private static final XmlNamespaceDictionary DICTIONARY = new XmlNamespaceDictionary().set(EMPTY_STRING, EMPTY_STRING);
+  static final XmlNamespaceDictionary DICTIONARY = new XmlNamespaceDictionary().set(EMPTY_STRING, EMPTY_STRING);
 
   private final HttpRequestFactory factory;
 

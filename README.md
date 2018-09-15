@@ -1,9 +1,11 @@
-# soundtouch4j
+# Java API for Bose SoundTouch API - SoundTouch4J (st4j)
 
-Java API for Bose Soundtouch API
+Bose is offing a [line of speaker](https://www.bose.com/en_us/products/speakers/smart_home/soundtouch_family.html) that have 
+[REST API](https://developer.bose.com/soundtouch-control-api/apis).
 
-API Documentation
-- https://developer.bose.com/soundtouch-control-api/apis
+This project offers an API implemented in Java in to the seamlessly interact with the Speakers using Java or Android applications.
+
+The API is build and tests with and for a Bose SoundTouch 20 with Firmware Version 19.0.5.42017.2794643.
 
 ## HTTP Client Lib
 

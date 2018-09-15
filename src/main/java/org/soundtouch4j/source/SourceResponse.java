@@ -19,21 +19,18 @@ public class SourceResponse implements Response {
   public SourceResponse() {
   }
 
-
   public List<SourceItem> getSourceItems() {
     return new ArrayList<>(sourceItem);
   }
 
-
+  // TODO: Implement using Streams
   public List<SourceItem> getSourceItemByType(final SourceEnum source) {
     return getSourceItems();
   }
 
-
   public String getDeviceID() {
     return deviceID;
   }
-
 
   @Override
   public String toString() {

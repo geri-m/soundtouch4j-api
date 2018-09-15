@@ -5,12 +5,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import org.soundtouch4j.common.Error;
 import com.google.api.client.http.HttpResponseException;
-import com.google.api.client.xml.XmlNamespaceDictionary;
 import com.google.api.client.xml.XmlObjectParser;
 
 public class SoundTouchApiException extends Exception {
 
-  public static final XmlNamespaceDictionary XML_NAMESPACE_DICTIONARY = new XmlNamespaceDictionary().set("", "");
   private static final long serialVersionUID = 1L;
   private Error error;
   private int httpStatus;
@@ -19,10 +17,11 @@ public class SoundTouchApiException extends Exception {
     super(response.getStatusMessage());
     httpStatus = response.getStatusCode();
 
-    final XmlObjectParser parser = new XmlObjectParser(XML_NAMESPACE_DICTIONARY);
+    // Parse the XML from the Error
+    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     try {
       error = parser.parseAndClose(new StringReader(response.getContent()), Error.class);
-    } catch (IOException ignored) {
+    } catch (final IOException ignored) {
 
     }
   }
