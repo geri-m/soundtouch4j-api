@@ -17,6 +17,7 @@ public class SourceApi extends AbstractApi {
    * Method to get the Sources of the  the Sound Touch
    *
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
+   * @return SourceResponse Response from the Speaker with all the relevant Sources
    */
 
   public SourceResponse getSources() throws SoundTouchApiException {

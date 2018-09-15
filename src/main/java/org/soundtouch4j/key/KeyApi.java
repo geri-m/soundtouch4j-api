@@ -17,6 +17,7 @@ public class KeyApi extends AbstractApi {
    * Method to turn on/off the Sound Touch
    *
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed.
+   * @return KeyResponse Response from the Speaker for Posting a Key Request
    */
 
   public KeyResponse power() throws SoundTouchApiException {

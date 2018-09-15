@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
   <version>1.0.0-SNAPSHOT</version>
   <name>Soundtouch API Java Client</name>
-  <description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's Soundtouch</description>
+  <description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's SoundTouch</description>
   <url>https://github.com/geri-m/soundtouch4j</url>
 
   <licenses>
@@ -46,7 +46,7 @@
   </scm>
 
   <dependencies>
-    <!-- Google's HTTP CLient -->
+    <!-- Google's HTTP Client -->
     <dependency>
       <groupId>com.google.http-client</groupId>
       <artifactId>google-http-client</artifactId>
