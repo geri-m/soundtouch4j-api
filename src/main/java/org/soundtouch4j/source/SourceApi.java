@@ -6,7 +6,7 @@ import org.soundtouch4j.common.AbstractApi;
 
 public class SourceApi extends AbstractApi {
 
-  private static final String PATH_FOR_API = "source";
+  private static final String PATH_FOR_API = "sources";
 
   public SourceApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);
@@ -16,13 +16,13 @@ public class SourceApi extends AbstractApi {
   /**
    * Method to get the Sources of the  the Sound Touch
    *
-   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    * @return SourceResponse Response from the Speaker with all the relevant Sources
+   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
   public SourceResponse getSources() throws SoundTouchApiException {
-      return soundTouchApi.getSoundTouchApiClient()
-          .get(PATH_FOR_API, SourceResponse.class);
+    return soundTouchApi.getSoundTouchApiClient()
+        .get(PATH_FOR_API, SourceResponse.class);
 
   }
 }

@@ -10,7 +10,7 @@ import com.google.api.client.util.Key;
 public class KeyRequest implements Request {
 
   public static final String ELEMENT_NAME = "key";
-  private static final String SENDER = "GABBO";
+  private static final String SENDER = "Gabbo";
 
   // This value is always "Gabbo" - see documentation.
   @Key("@sender")

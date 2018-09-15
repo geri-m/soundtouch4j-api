@@ -22,11 +22,70 @@ public class SpeakerIT {
   private static final Logger LOGGER = LoggerFactory.getLogger(SpeakerIT.class);
   private static final int TIME_TO_SCAN_FOR_DEVICE_IN_MS = 3000;
 
+  @Test
+  @Ignore
+  public void test00_runThruTest() {
+    LOGGER.info("test00_runThruTest started");
+
+    final URL boseEndpoint;
+    try {
+      boseEndpoint = new URL(Const.URL);
+    } catch (final MalformedURLException e) {
+      Assert.fail();
+      return;
+    }
+
+    final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
+    try {
+
+      // If the speaker is not own, turn on
+      if (soundTouchApi.getNowPlayingApi()
+          .nowPlaying()
+          .isInStandbyMode()) {
+        soundTouchApi.getKeyApi()
+            .power();
+      }
+
+      // Wait till playing
+      while (!soundTouchApi.getNowPlayingApi()
+          .nowPlaying()
+          .isPlaying()) {
+        Thread.sleep(100);
+      }
+
+      Assert.assertEquals(soundTouchApi.getInfoApi()
+          .getInfo()
+          .getNetworkInfo()
+          .size(), 2);
+      Assert.assertEquals(soundTouchApi.getSourceApi()
+          .getSources()
+          .getSourceItems()
+          .size(), 11);
+
+      // Turn off again.
+      if (!soundTouchApi.getNowPlayingApi()
+          .nowPlaying()
+          .isInStandbyMode()) {
+        soundTouchApi.getKeyApi()
+            .power();
+      }
+
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to press the Power Button: {}", e.getMessage());
+      Assert.fail();
+      return;
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+
+    LOGGER.info("test00_runThruTest started");
+  }
 
   @Test
   @Ignore
   public void test01_basicTestWithBox() {
-    LOGGER.info("test01_basicTestWithBox started");
+    LOGGER.info("test01_basicTestWithBox passed");
 
     /*
     Not doing an Active Search for the Beginning
@@ -119,10 +178,11 @@ public class SpeakerIT {
   }
 
   @Test
+  @Ignore
   public void test04_selectAux() {
 
     LOGGER.info("test03_nowPlaying started");
-    final XmlObjectParser parser = new XmlObjectParser(XmlParsingReferenceTest.XML_NAMESPACE_DICTIONARY);
+    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
 
 
     final URL boseEndpoint;
@@ -158,7 +218,7 @@ public class SpeakerIT {
   public void test04_selectIncorrectSource() {
 
     LOGGER.info("test04_selectIncorrectSource started");
-    final XmlObjectParser parser = new XmlObjectParser(XmlParsingReferenceTest.XML_NAMESPACE_DICTIONARY);
+    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
 
 
     final URL boseEndpoint;

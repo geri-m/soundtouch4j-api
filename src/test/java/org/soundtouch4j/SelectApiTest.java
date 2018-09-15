@@ -39,7 +39,7 @@ public class SelectApiTest extends TestCase {
         };
       }
     };
-    final XmlObjectParser parser = new XmlObjectParser(XmlParsingReferenceTest.XML_NAMESPACE_DICTIONARY);
+    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     final String input = "<ContentItem source=\"AUX\" sourceAccount=\"AUX\"></ContentItem>";
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
@@ -81,7 +81,7 @@ public class SelectApiTest extends TestCase {
         };
       }
     };
-    final XmlObjectParser parser = new XmlObjectParser(XmlParsingReferenceTest.XML_NAMESPACE_DICTIONARY);
+    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     final String input = "<ContentItem source=\"INTERNET_RADIO\" sourceAccount=\"\"></ContentItem>";
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);

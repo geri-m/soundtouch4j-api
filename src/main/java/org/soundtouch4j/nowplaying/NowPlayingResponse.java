@@ -211,6 +211,28 @@ public class NowPlayingResponse implements Response {
     return connectionStatusInfo;
   }
 
+  /**
+   * Method that tells you, if the speaker is in standby mode or not.
+   *
+   * @return true, if in standby mode
+   */
+
+  public boolean isInStandbyMode() {
+    return getContentItem().getSource()
+        .equals(SourceEnum.STANDBY);
+  }
+
+  /**
+   * Method that tells you, if the speaker is planing or not.
+   *
+   * @return true, if the speaker is playing.
+   */
+
+  public boolean isPlaying() {
+    return PlayStatusEnum.valueOf(getPlayStatus())
+        .equals(PlayStatusEnum.PLAY_STATE);
+  }
+
 
   @Override
   public String toString() {

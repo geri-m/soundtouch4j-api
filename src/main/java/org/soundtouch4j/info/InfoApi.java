@@ -21,8 +21,8 @@ public class InfoApi extends AbstractApi {
    */
 
   public InfoResponse getInfo() throws SoundTouchApiException {
-      return soundTouchApi.getSoundTouchApiClient()
-          .get(PATH_FOR_API, InfoResponse.class);
+    return soundTouchApi.getSoundTouchApiClient()
+        .get(PATH_FOR_API, InfoResponse.class);
   }
 }
 

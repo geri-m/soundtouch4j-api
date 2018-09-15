@@ -20,7 +20,7 @@ public class NowPlayingApi extends AbstractApi {
    */
 
   public NowPlayingResponse nowPlaying() throws SoundTouchApiException {
-      return soundTouchApi.getSoundTouchApiClient()
-          .get(PATH_FOR_API, NowPlayingResponse.class);
+    return soundTouchApi.getSoundTouchApiClient()
+        .get(PATH_FOR_API, NowPlayingResponse.class);
   }
 }

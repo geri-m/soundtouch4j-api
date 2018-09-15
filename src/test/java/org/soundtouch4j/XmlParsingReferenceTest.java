@@ -10,19 +10,17 @@ import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.info.NetworkInfoTypeEnum;
 import com.google.api.client.http.xml.XmlHttpContent;
 import com.google.api.client.util.Key;
-import com.google.api.client.xml.XmlNamespaceDictionary;
 import com.google.api.client.xml.XmlObjectParser;
 import junit.framework.TestCase;
 
 public class XmlParsingReferenceTest extends TestCase {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(XmlParsingReferenceTest.class);
-  public static final XmlNamespaceDictionary XML_NAMESPACE_DICTIONARY = new XmlNamespaceDictionary().set("", "");
 
   public void test01_serializingXMLTest() throws IOException {
     LOGGER.info("test01_serializingXMLTest started");
 
-    final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(XML_NAMESPACE_DICTIONARY, "AnyType", new AnyType());
+    final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(SoundTouchApiClient.DICTIONARY, "AnyType", new AnyType());
 
     final OutputStream os = new ByteArrayOutputStream();
     xmlContentForPostCall.writeTo(os);
@@ -44,7 +42,7 @@ public class XmlParsingReferenceTest extends TestCase {
             "</macAddress" + "><ipAddress>192.168.178" + ".61</ipAddress></networkInfo><moduleType>sm2</moduleType><variant>spotty</variant><variantMode>normal</variantMode" +
             "><countryCode>GB" + "</countryCode><regionCode>GB" + "</regionCode></info>";
 
-    final XmlObjectParser parser = new XmlObjectParser(XML_NAMESPACE_DICTIONARY);
+    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     final InfoResponse response = parser.parseAndClose(new StringReader(input), InfoResponse.class);
     LOGGER.info(response.toString());
     assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
