@@ -1,12 +1,14 @@
-package org.soundtouch4j.nowplaying;
+package org.soundtouch4j.common;
 
 import com.google.api.client.util.Key;
 
 /**
- * Content Item of the NowPlaying Response.
+ * Content Item of the NowPlaying Response and for Selecting this Content Item.
  */
 
-public class ContentItem {
+public class ContentItem implements Request {
+
+  public static final String ELEMENT_NAME = "ContentItem";
 
   @Key("@source")
   private SourceEnum source;

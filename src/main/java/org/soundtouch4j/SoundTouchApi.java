@@ -4,6 +4,7 @@ import java.net.URL;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
 import org.soundtouch4j.nowplaying.NowPlayingApi;
+import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
 import com.google.api.client.http.HttpTransport;
 
@@ -15,6 +16,7 @@ public class SoundTouchApi implements SoundTouch {
   private InfoApi infoApi;
   private NowPlayingApi nowPlayingApi;
   private SourceApi sourceApi;
+  private SelectApi selectApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -108,6 +110,25 @@ public class SoundTouchApi implements SoundTouch {
       }
     }
     return (sourceApi);
+  }
+
+  /**
+   * Gets the KeyApi instance owned by this SoundTouchApi instance. The KeyApi is used to perform all key press/release/event related API calls.
+   *
+   * @return the KeyApi instance owned by this SoundTouchApi instance
+   */
+
+  @Override
+  public SelectApi getSelectApi() {
+
+    if (selectApi == null) {
+      synchronized (this) {
+        if (selectApi == null) {
+          selectApi = new SelectApi(this);
+        }
+      }
+    }
+    return (selectApi);
   }
 
   public SoundTouchApiClient getSoundTouchApiClient() {

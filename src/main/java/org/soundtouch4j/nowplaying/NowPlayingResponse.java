@@ -1,7 +1,9 @@
 package org.soundtouch4j.nowplaying;
 
 
+import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.common.Response;
+import org.soundtouch4j.common.SourceEnum;
 import com.google.api.client.util.Key;
 
 /**

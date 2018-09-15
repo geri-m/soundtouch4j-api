@@ -17,12 +17,12 @@ import junit.framework.TestCase;
 public class XmlParsingReferenceTest extends TestCase {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(XmlParsingReferenceTest.class);
+  public static final XmlNamespaceDictionary XML_NAMESPACE_DICTIONARY = new XmlNamespaceDictionary().set("", "");
 
   public void test01_serializingXMLTest() throws IOException {
     LOGGER.info("test01_serializingXMLTest started");
 
-    final XmlNamespaceDictionary dict = new XmlNamespaceDictionary().set("", "");
-    final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(dict, "AnyType", new AnyType());
+    final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(XML_NAMESPACE_DICTIONARY, "AnyType", new AnyType());
 
     final OutputStream os = new ByteArrayOutputStream();
     xmlContentForPostCall.writeTo(os);
@@ -33,7 +33,7 @@ public class XmlParsingReferenceTest extends TestCase {
   public void test02_deserializingXMLTest() throws IOException {
     LOGGER.info("test02_deserializingXMLTest started");
 
-    final XmlNamespaceDictionary dict = new XmlNamespaceDictionary().set("", "");
+
 
     final String input =
         "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><info deviceID=\"C8DF84AE0B6E\"><name>SoundTouch 20</name><type>SoundTouch " + "20</type><margeAccountUUID" + ">6990307" +
@@ -44,7 +44,7 @@ public class XmlParsingReferenceTest extends TestCase {
             "</macAddress" + "><ipAddress>192.168.178" + ".61</ipAddress></networkInfo><moduleType>sm2</moduleType><variant>spotty</variant><variantMode>normal</variantMode" +
             "><countryCode>GB" + "</countryCode><regionCode>GB" + "</regionCode></info>";
 
-    final XmlObjectParser parser = new XmlObjectParser(dict);
+    final XmlObjectParser parser = new XmlObjectParser(XML_NAMESPACE_DICTIONARY);
     final InfoResponse response = parser.parseAndClose(new StringReader(input), InfoResponse.class);
     LOGGER.info(response.toString());
     assertEquals(response.getDeviceID(), "C8DF84AE0B6E");

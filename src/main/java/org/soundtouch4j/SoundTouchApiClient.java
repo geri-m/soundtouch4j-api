@@ -10,6 +10,7 @@ import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpResponse;
+import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.xml.XmlHttpContent;
 import com.google.api.client.xml.XmlNamespaceDictionary;
@@ -27,10 +28,6 @@ public class SoundTouchApiClient {
   private final HttpRequestFactory factory;
 
   private final URL basePath;
-
-  private static final int STATUS_CODE_LOWER = 200;
-  private static final int STTAUS_CODE_UPPER = 399;
-
 
   public SoundTouchApiClient(final URL basePath, final HttpTransport transport) {
     // TODO: Make Sure we have "/" in the end of the URL.
@@ -50,31 +47,28 @@ public class SoundTouchApiClient {
     } catch (final IOException e) {
       throw new SoundTouchApiException(e);
     }
+
+    // Parsing the XML to the Content for the Request
     final ByteArrayContent content = ByteArrayContent.fromString(TEXT_XML_CONTENT_TYPE, os.toString()
         .replace(XMSNS_STRING_TO_REPLACE, EMPTY_STRING));
 
     final HttpResponse response;
     try {
+      // Do the Actual Request
       response = factory.buildPostRequest(url, content)
           .setParser(new XmlObjectParser(DICTIONARY))
           .execute();
+
+      // if there is an exection, the HTTP Client is going to create a {@code HttpResponseException}
+      response.getMediaType()
+          .setCharsetParameter(Charset.forName(CHAR_SET_UTF8));
+      return response.parseAs(dataclass);
+
+    } catch (final HttpResponseException e) {
+      throw new SoundTouchApiException(e);
     } catch (final IOException e) {
       throw new SoundTouchApiException(e);
     }
-
-    // In this case we have positive Response
-    if ((response.getStatusCode() >= STATUS_CODE_LOWER) && (response.getStatusCode() <= STTAUS_CODE_UPPER)) {
-      response.getMediaType()
-          .setCharsetParameter(Charset.forName(CHAR_SET_UTF8));
-      try {
-        return response.parseAs(dataclass);
-      } catch (final IOException e) {
-        throw new SoundTouchApiException(e);
-      }
-    }
-
-    // else we have an error
-    throw new SoundTouchApiException(response);
   }
 
   public <T> T get(final String path, final Class<T> dataclass) throws SoundTouchApiException {

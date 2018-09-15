@@ -1,4 +1,4 @@
-package org.soundtouch4j.nowplaying;
+package org.soundtouch4j.common;
 
 import com.google.api.client.util.Value;
 

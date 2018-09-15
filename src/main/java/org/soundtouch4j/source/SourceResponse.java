@@ -3,7 +3,7 @@ package org.soundtouch4j.source;
 import java.util.ArrayList;
 import java.util.List;
 import org.soundtouch4j.common.Response;
-import org.soundtouch4j.nowplaying.SourceEnum;
+import org.soundtouch4j.common.SourceEnum;
 import com.google.api.client.util.Key;
 
 public class SourceResponse implements Response {
