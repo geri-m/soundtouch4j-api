@@ -18,8 +18,8 @@ public class InfoApiTest extends TestCase {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(InfoApiTest.class);
 
-  public void test01_ParseAsString() {
-    LOGGER.info("test01_ParseAsString started");
+  public void test01_getInfo() {
+    LOGGER.info("test01_getInfo started");
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -67,7 +67,7 @@ public class InfoApiTest extends TestCase {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
     }
-    LOGGER.info("test01_ParseAsString started");
+    LOGGER.info("test01_getInfo started");
   }
 
 }

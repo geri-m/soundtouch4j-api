@@ -12,5 +12,14 @@ public enum SourceEnum {
 
   @Value INTERNET_RADIO,
   @Value BLUETOOTH,
-  @Value STANDBY
+  @Value STANDBY,
+  @Value AUX,
+  @Value NOTIFICATION,
+  @Value QPLAY,
+  @Value UPNP,
+  @Value SPOTIFY,
+  @Value STORED_MUSIC_MEDIA_RENDERER,
+  @Value ALEXA,
+  @Value TUNEIN;
+
 }

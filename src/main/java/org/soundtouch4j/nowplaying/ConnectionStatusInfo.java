@@ -11,7 +11,6 @@ public class ConnectionStatusInfo {
   private String deviceName;
 
   public ConnectionStatusInfo() {
-
   }
 
   public String getStatus() {
