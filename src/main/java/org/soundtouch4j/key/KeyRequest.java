@@ -1,6 +1,6 @@
 package org.soundtouch4j.key;
 
-import org.soundtouch4j.Request;
+import org.soundtouch4j.common.Request;
 import com.google.api.client.util.Key;
 
 /**

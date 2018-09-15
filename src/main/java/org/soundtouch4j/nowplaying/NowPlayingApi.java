@@ -1,9 +1,8 @@
 package org.soundtouch4j.nowplaying;
 
-import java.io.IOException;
-import org.soundtouch4j.AbstractApi;
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
+import org.soundtouch4j.common.AbstractApi;
 
 public class NowPlayingApi extends AbstractApi {
 
@@ -21,11 +20,7 @@ public class NowPlayingApi extends AbstractApi {
    */
 
   public NowPlayingResponse nowPlaying() throws SoundTouchApiException {
-    try {
       return soundTouchApi.getSoundTouchApiClient()
           .get(PATH_FOR_API, NowPlayingResponse.class);
-    } catch (final IOException e) {
-      throw new SoundTouchApiException(e);
-    }
   }
 }

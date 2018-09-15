@@ -1,9 +1,8 @@
 package org.soundtouch4j.info;
 
-import java.io.IOException;
-import org.soundtouch4j.AbstractApi;
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
+import org.soundtouch4j.common.AbstractApi;
 
 public class InfoApi extends AbstractApi {
 
@@ -22,12 +21,8 @@ public class InfoApi extends AbstractApi {
    */
 
   public InfoResponse getInfo() throws SoundTouchApiException {
-    try {
       return soundTouchApi.getSoundTouchApiClient()
           .get(PATH_FOR_API, InfoResponse.class);
-    } catch (final IOException e) {
-      throw new SoundTouchApiException(e);
-    }
   }
 }
 
