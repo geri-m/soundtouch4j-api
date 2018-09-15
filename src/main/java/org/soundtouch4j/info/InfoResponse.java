@@ -65,7 +65,7 @@ public class InfoResponse implements Response {
   private Map<String, List<Component>> components;
 
   @Key
-  private NetworkInfo networkInfo;
+  private List<NetworkInfo> networkInfo;
 
   public InfoResponse() {
 
@@ -89,8 +89,8 @@ public class InfoResponse implements Response {
   }
 
 
-  public NetworkInfo getNetworkInfo() {
-    return networkInfo;
+  public List<NetworkInfo> getNetworkInfo() {
+    return new ArrayList<>(networkInfo);
   }
 
   @Override
