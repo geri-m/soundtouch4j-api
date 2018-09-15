@@ -1,6 +1,6 @@
 package org.soundtouch4j.key;
 
-import org.soundtouch4j.Request;
+import org.soundtouch4j.common.Request;
 import com.google.api.client.util.Key;
 
 /**
@@ -10,10 +10,11 @@ import com.google.api.client.util.Key;
 public class KeyRequest implements Request {
 
   public static final String ELEMENT_NAME = "key";
+  private static final String SENDER = "Gabbo";
 
   // This value is always "Gabbo" - see documentation.
   @Key("@sender")
-  private final String sender = "Gabbo";
+  private final String sender = SENDER;
   @Key("text()")
   private final String key;
   @Key("@state")

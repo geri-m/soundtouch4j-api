@@ -16,6 +16,9 @@ import com.google.api.client.util.Key;
 
 public class NetworkInfo {
 
+  @Key("@type")
+  private NetworkInfoTypeEnum type;
+
   @Key
   private String macAddress;
 
@@ -34,8 +37,12 @@ public class NetworkInfo {
     return ipAddress;
   }
 
+  public NetworkInfoTypeEnum getType() {
+    return type;
+  }
+
   @Override
   public String toString() {
-    return "NetworkInfo{" + "macAddress='" + macAddress + '\'' + ", ipAddress='" + ipAddress + '\'' + '}';
+    return "NetworkInfo{" + "type=" + type + ", macAddress='" + macAddress + '\'' + ", ipAddress='" + ipAddress + '\'' + '}';
   }
 }

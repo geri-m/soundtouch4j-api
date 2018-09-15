@@ -7,9 +7,9 @@ import java.io.StringReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.info.InfoResponse;
+import org.soundtouch4j.info.NetworkInfoTypeEnum;
 import com.google.api.client.http.xml.XmlHttpContent;
 import com.google.api.client.util.Key;
-import com.google.api.client.xml.XmlNamespaceDictionary;
 import com.google.api.client.xml.XmlObjectParser;
 import junit.framework.TestCase;
 
@@ -20,8 +20,7 @@ public class XmlParsingReferenceTest extends TestCase {
   public void test01_serializingXMLTest() throws IOException {
     LOGGER.info("test01_serializingXMLTest started");
 
-    final XmlNamespaceDictionary dict = new XmlNamespaceDictionary().set("", "");
-    final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(dict, "AnyType", new AnyType());
+    final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(SoundTouchApiClient.DICTIONARY, "AnyType", new AnyType());
 
     final OutputStream os = new ByteArrayOutputStream();
     xmlContentForPostCall.writeTo(os);
@@ -32,7 +31,7 @@ public class XmlParsingReferenceTest extends TestCase {
   public void test02_deserializingXMLTest() throws IOException {
     LOGGER.info("test02_deserializingXMLTest started");
 
-    final XmlNamespaceDictionary dict = new XmlNamespaceDictionary().set("", "");
+
 
     final String input =
         "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><info deviceID=\"C8DF84AE0B6E\"><name>SoundTouch 20</name><type>SoundTouch " + "20</type><margeAccountUUID" + ">6990307" +
@@ -43,10 +42,9 @@ public class XmlParsingReferenceTest extends TestCase {
             "</macAddress" + "><ipAddress>192.168.178" + ".61</ipAddress></networkInfo><moduleType>sm2</moduleType><variant>spotty</variant><variantMode>normal</variantMode" +
             "><countryCode>GB" + "</countryCode><regionCode>GB" + "</regionCode></info>";
 
-    final XmlObjectParser parser = new XmlObjectParser(dict);
+    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     final InfoResponse response = parser.parseAndClose(new StringReader(input), InfoResponse.class);
     LOGGER.info(response.toString());
-
     assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
     assertEquals(response.getName(), "SoundTouch 20");
     assertEquals(response.getType(), "SoundTouch 20");
@@ -65,9 +63,25 @@ public class XmlParsingReferenceTest extends TestCase {
         .get(1)
         .getSerialNumber(), "069428P81639976AE");
     assertEquals(response.getNetworkInfo()
+        .size(), 2);
+    assertEquals(response.getNetworkInfo()
+        .get(0)
         .getIpAddress(), "192.168.178.61");
     assertEquals(response.getNetworkInfo()
+        .get(0)
+        .getMacAddress(), "C8DF84AE0B6E");
+    assertEquals(response.getNetworkInfo()
+        .get(0)
+        .getType(), NetworkInfoTypeEnum.SCM);
+    assertEquals(response.getNetworkInfo()
+        .get(1)
         .getMacAddress(), "C8DF84615084");
+    assertEquals(response.getNetworkInfo()
+        .get(1)
+        .getIpAddress(), "192.168.178.61");
+    assertEquals(response.getNetworkInfo()
+        .get(1)
+        .getType(), NetworkInfoTypeEnum.SMSC);
 
     LOGGER.info("test02_deserializingXMLTest passed");
   }

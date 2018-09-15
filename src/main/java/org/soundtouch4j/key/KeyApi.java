@@ -1,9 +1,8 @@
 package org.soundtouch4j.key;
 
-import java.io.IOException;
-import org.soundtouch4j.AbstractApi;
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
+import org.soundtouch4j.common.AbstractApi;
 
 public class KeyApi extends AbstractApi {
 
@@ -17,17 +16,14 @@ public class KeyApi extends AbstractApi {
   /**
    * Method to turn on/off the Sound Touch
    *
+   * @return KeyResponse Response from the Speaker when pressing the Power-Button
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed.
    */
 
   public KeyResponse power() throws SoundTouchApiException {
-    try {
-      soundTouchApi.getSoundTouchApiClient()
-          .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.PRESS), KeyResponse.class);
-      return soundTouchApi.getSoundTouchApiClient()
-          .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.RELEASE), KeyResponse.class);
-    } catch (final IOException e) {
-      throw new SoundTouchApiException(e);
-    }
+    soundTouchApi.getSoundTouchApiClient()
+        .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.PRESS), KeyResponse.class);
+    return soundTouchApi.getSoundTouchApiClient()
+        .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.RELEASE), KeyResponse.class);
   }
 }
