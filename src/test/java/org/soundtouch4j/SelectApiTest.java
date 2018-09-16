@@ -1,11 +1,10 @@
 package org.soundtouch4j;
 
-import java.io.IOException;
-import java.io.StringReader;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.ContentItem;
+import org.soundtouch4j.common.ErrorEnum;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.select.SelectResponse;
 import com.google.api.client.http.HttpStatusCodes;
@@ -17,7 +16,6 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
-import com.google.api.client.xml.XmlObjectParser;
 import junit.framework.TestCase;
 
 public class SelectApiTest extends TestCase {
@@ -85,6 +83,18 @@ public class SelectApiTest extends TestCase {
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.assertEquals(e.getHttpStatus(), HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
+      Assert.assertEquals(e.getError()
+          .getErrorList()
+          .get(0)
+          .getName(), ErrorEnum.SELECT_ITEM_IN_WRONG_STATE);
+      Assert.assertEquals(e.getError()
+          .getErrorList()
+          .get(0)
+          .getSeverity(), "Unknown");
+      Assert.assertEquals(e.getError()
+          .getErrorList()
+          .get(0)
+          .getValue(), 1045);
     }
     LOGGER.info("test02_withToUnkown started");
   }

@@ -4,6 +4,7 @@ import java.net.URL;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
 import org.soundtouch4j.nowplaying.NowPlayingApi;
+import org.soundtouch4j.preset.PresetApi;
 import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
 import org.soundtouch4j.volume.VolumeApi;
@@ -19,6 +20,7 @@ public class SoundTouchApi implements SoundTouch {
   private SourceApi sourceApi;
   private SelectApi selectApi;
   private VolumeApi volumeApi;
+  private PresetApi presetApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -151,6 +153,25 @@ public class SoundTouchApi implements SoundTouch {
       }
     }
     return (volumeApi);
+  }
+
+
+  /**
+   * Gets the {@link PresetApi} instance owned by this SoundTouchApi instance. The {@link PresetApi} is used to fetch the presets from the speaker.
+   *
+   * @return the {@link PresetApi} instance owned by this SoundTouchApi instance
+   */
+
+  @Override
+  public PresetApi getPresetApi() {
+    if (presetApi == null) {
+      synchronized (this) {
+        if (presetApi == null) {
+          presetApi = new PresetApi(this);
+        }
+      }
+    }
+    return (presetApi);
   }
 
   public SoundTouchApiClient getSoundTouchApiClient() {
