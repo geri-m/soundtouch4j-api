@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.Request;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
@@ -28,9 +26,6 @@ public class SoundTouchApiClient {
   private static final String XMLNS_STRING_TO_REPLACE = "xmlns=\"\"";
   private static final String URL_PATH_SEPARATOR = "/";
   private final HttpRequestFactory factory;
-
-  // TODO: For Debugging only; remove later.
-  private static final Logger LOGGER = LoggerFactory.getLogger(SoundTouchApiClient.class);
 
   private final URL basePath;
 
