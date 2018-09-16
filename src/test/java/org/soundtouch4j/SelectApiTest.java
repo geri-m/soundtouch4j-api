@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.ContentItem;
+import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.select.SelectResponse;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.HttpTransport;
@@ -39,24 +40,17 @@ public class SelectApiTest extends TestCase {
         };
       }
     };
-    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
-    final String input = "<ContentItem source=\"AUX\" sourceAccount=\"AUX\"></ContentItem>";
+
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      final ContentItem content = parser.parseAndClose(new StringReader(input), ContentItem.class);
-      final SelectResponse response = soundTouchApi.getSelectApi()
-          .select(content);
+       final SelectResponse response = soundTouchApi.getSelectApi()
+          .select(new ContentItem(SourceEnum.AUX, "AUX"));
 
       assertEquals(response.getStatus(), "/select");
-
       LOGGER.info("Response: {}", response);
-
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
-    } catch (final IOException e) {
-      LOGGER.error("Error Parsing XML: {}", e.getMessage());
       Assert.fail();
     }
     LOGGER.info("test01_withToAux started");
@@ -81,21 +75,16 @@ public class SelectApiTest extends TestCase {
         };
       }
     };
-    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
-    final String input = "<ContentItem source=\"INTERNET_RADIO\" sourceAccount=\"\"></ContentItem>";
+
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      final ContentItem content = parser.parseAndClose(new StringReader(input), ContentItem.class);
       soundTouchApi.getSelectApi()
-          .select(content);
+          .select(new ContentItem(SourceEnum.INTERNET_RADIO, ""));
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.assertEquals(e.getHttpStatus(), HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
-    } catch (final IOException e) {
-      LOGGER.error("Error Parsing XML: {}", e.getMessage());
-      Assert.fail();
     }
     LOGGER.info("test02_withToUnkown started");
   }

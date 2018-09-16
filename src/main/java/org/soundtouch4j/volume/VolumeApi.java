@@ -39,7 +39,7 @@ public class VolumeApi extends AbstractApi {
    * Method to get the Volume/Mute Setting of the Speaker
    *
    * @return VolumeGetResponse containing information on the speaker volume setting.
-   * @throws SoundTouchApiException
+   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
   public VolumeGetResponse getVolume() throws SoundTouchApiException {

@@ -1,5 +1,6 @@
 package org.soundtouch4j.common;
 
+import org.soundtouch4j.source.SourceResponse;
 import com.google.api.client.util.Key;
 
 /**
@@ -28,8 +29,12 @@ public class ContentItem implements Request {
   @Key
   private String containerArt;
 
-  public ContentItem() {
 
+  public ContentItem(){}
+
+  public ContentItem(final SourceEnum source, final String sourceAccount) {
+    this.source = source;
+    this.sourceAccount = sourceAccount;
   }
 
   public SourceEnum getSource() {
