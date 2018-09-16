@@ -73,8 +73,12 @@ public class VolumeApiTest extends TestCase {
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      final VolumeSetResponse response = soundTouchApi.getVolumeApi()
-          .setVolume(20);
+      VolumeSetResponse response = soundTouchApi.getVolumeApi()
+          .setVolume(100);
+      assertEquals(response.getVolume(), "/volume");
+
+      response = soundTouchApi.getVolumeApi()
+          .setVolume(0);
       assertEquals(response.getVolume(), "/volume");
 
     } catch (final SoundTouchApiException e) {
@@ -106,14 +110,13 @@ public class VolumeApiTest extends TestCase {
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-
       assertEquals("The Volume must be a value from 0 to 100, inclusive. '-1' is out of this range.", e.getMessage());
     }
     LOGGER.info("test03_setVolumeLessThanZero started");
   }
 
-  public void test05_setVolumeLessMoreThan100() {
-    LOGGER.info("test05_setVolumeLessMoreThan100 started");
+  public void test05_setVolumeMoreThan100() {
+    LOGGER.info("test05_setVolumeMoreThan100 started");
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -133,10 +136,9 @@ public class VolumeApiTest extends TestCase {
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-
       assertEquals("The Volume must be a value from 0 to 100, inclusive. '101' is out of this range.", e.getMessage());
     }
-    LOGGER.info("test05_setVolumeLessMoreThan100 started");
+    LOGGER.info("test05_setVolumeMoreThan100 started");
   }
 
 }

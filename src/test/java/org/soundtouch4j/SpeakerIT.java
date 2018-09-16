@@ -1,7 +1,5 @@
 package org.soundtouch4j;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.junit.Assert;
@@ -9,6 +7,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.ContentItem;
+import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.nowplaying.NowPlayingResponse;
 import org.soundtouch4j.select.SelectResponse;
@@ -23,7 +22,6 @@ public class SpeakerIT {
   private static final int TIME_TO_SCAN_FOR_DEVICE_IN_MS = 3000;
 
   @Test
-
   public void test00_runThruTest() {
     LOGGER.info("test00_runThruTest started");
 
@@ -50,7 +48,6 @@ public class SpeakerIT {
       while (!soundTouchApi.getNowPlayingApi()
           .nowPlaying()
           .isPlaying()) {
-        Thread.sleep(100);
       }
 
       Assert.assertEquals(soundTouchApi.getInfoApi()
@@ -147,10 +144,7 @@ public class SpeakerIT {
       LOGGER.error("Unable to press the Power Button: {}", e.getMessage());
       Assert.fail();
       return;
-    } catch (InterruptedException e) {
-      e.printStackTrace();
     }
-
 
     LOGGER.info("test00_runThruTest started");
   }
@@ -264,17 +258,11 @@ public class SpeakerIT {
       return;
     }
 
-    final String input = "<ContentItem source=\"AUX\" sourceAccount=\"AUX\"></ContentItem>";
-    final ContentItem content;
     try {
-      content = parser.parseAndClose(new StringReader(input), ContentItem.class);
       final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
       final SelectResponse response = soundTouchApi.getSelectApi()
-          .select(content);
+          .select(new ContentItem(SourceEnum.AUX, "AUX"));
       LOGGER.info("Select: '{}'", response);
-    } catch (final IOException e) {
-      LOGGER.error("Error Parsing XML: {}", e.getMessage());
-      Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get information on 'now Playing: {}", e.getMessage());
       Assert.fail();
@@ -300,16 +288,11 @@ public class SpeakerIT {
       return;
     }
 
-    final String input = "<ContentItem source=\"INTERNET_RADIO\" sourceAccount=\"\"></ContentItem>";
-    final ContentItem content;
+
     try {
-      content = parser.parseAndClose(new StringReader(input), ContentItem.class);
       final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
       soundTouchApi.getSelectApi()
-          .select(content);
-      Assert.fail();
-    } catch (final IOException e) {
-      LOGGER.error("Error Parsing XML: {}", e.getMessage());
+          .select(new ContentItem(SourceEnum.INTERNET_RADIO, ""));
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
