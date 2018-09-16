@@ -3,6 +3,7 @@ package org.soundtouch4j;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,8 @@ import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.xml.XmlObjectParser;
 
+// Ignore this Calls during automated builds, as this requires a physical speaker
+@Ignore
 public class SpeakerIT {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(SpeakerIT.class);
@@ -129,7 +132,6 @@ public class SpeakerIT {
         getResp = soundTouchApi.getVolumeApi()
             .getVolume();
       }
-
 
 
       // Turn off again.
