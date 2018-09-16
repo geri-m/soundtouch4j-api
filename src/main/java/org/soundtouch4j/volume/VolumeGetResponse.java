@@ -27,19 +27,35 @@ public class VolumeGetResponse implements Response {
   private String deviceID;
 
   @Key("targetvolume")
-  private int targetvolume;
+  private int targetVolume;
 
   @Key("actualvolume")
-  private int actualvolume;
+  private int actualVolume;
 
   @Key("muteenabled")
-  private boolean muteenabled;
+  private boolean muteEnabled;
 
   public VolumeGetResponse() {
   }
 
   @Override
   public String toString() {
-    return "VolumeGetResponse{" + "deviceID='" + deviceID + '\'' + ", targetvolume=" + targetvolume + ", actualvolume=" + actualvolume + ", muteenabled=" + muteenabled + '}';
+    return "VolumeGetResponse{" + "deviceID='" + deviceID + '\'' + ", targetVolume=" + targetVolume + ", actualVolume=" + actualVolume + ", muteEnabled=" + muteEnabled + '}';
+  }
+
+  public String getDeviceID() {
+    return deviceID;
+  }
+
+  public int getTargetVolume() {
+    return targetVolume;
+  }
+
+  public int getActualVolume() {
+    return actualVolume;
+  }
+
+  public boolean isMuteEnabled() {
+    return muteEnabled;
   }
 }

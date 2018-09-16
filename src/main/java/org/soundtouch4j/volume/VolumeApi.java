@@ -3,12 +3,13 @@ package org.soundtouch4j.volume;
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
 import org.soundtouch4j.common.AbstractApi;
-import org.soundtouch4j.common.ContentItem;
-import org.soundtouch4j.select.SelectResponse;
 
 public class VolumeApi extends AbstractApi {
 
-  private static final String PATH_FOR_API = "select";
+  private static final String PATH_FOR_API = "volume";
+  private static final String ERROR_MSG_VOLUME_RANGE = "The Volume must be a value from 0 to 100, inclusive. '%s' is out of this range.";
+  private static final int MIN_VOLUME = 0;
+  private static final int MAX_VOLUME = 100;
 
   public VolumeApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);
@@ -16,15 +17,33 @@ public class VolumeApi extends AbstractApi {
 
 
   /**
-   * Method to get the Sources of the  the Sound Touch
+   * Method to set the Volume of a Bose Speaker to a dedicated Volume
    *
-   * @param content The {@link ContentItem} to select on the Speaker
-   * @return SelectResponse Response from the Speaker when posting a Select Command
+   * @param volume The Volume can be set from 0 and 100, inclusive.
+   *
+   * @return VolumeSetResponse Response from the Speaker when posting a Set Volume Command
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public SelectResponse select(final ContentItem content) throws SoundTouchApiException {
+  public VolumeSetResponse setVolume(final int volume) throws SoundTouchApiException {
+
+    if ((volume < MIN_VOLUME) || (volume > MAX_VOLUME)) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_VOLUME_RANGE, volume));
+    }
+
     return soundTouchApi.getSoundTouchApiClient()
-        .post(PATH_FOR_API, ContentItem.ELEMENT_NAME, content, SelectResponse.class);
+        .post(PATH_FOR_API, VolumeSetRequest.ELEMENT_NAME, new VolumeSetRequest(volume), VolumeSetResponse.class);
+  }
+
+  /**
+   * Method to get the Volume/Mute Setting of the Speaker
+   *
+   * @return VolumeGetResponse containing information on the speaker volume setting.
+   * @throws SoundTouchApiException
+   */
+
+  public VolumeGetResponse getVolume() throws SoundTouchApiException {
+    return soundTouchApi.getSoundTouchApiClient()
+        .get(PATH_FOR_API, VolumeGetResponse.class);
   }
 }

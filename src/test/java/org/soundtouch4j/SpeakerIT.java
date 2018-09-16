@@ -13,6 +13,7 @@ import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.nowplaying.NowPlayingResponse;
 import org.soundtouch4j.select.SelectResponse;
+import org.soundtouch4j.volume.VolumeGetResponse;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.xml.XmlObjectParser;
@@ -38,7 +39,7 @@ public class SpeakerIT {
     final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
     try {
 
-      // If the speaker is not own, turn on
+      // If the speaker is not on, turn on
       if (soundTouchApi.getNowPlayingApi()
           .nowPlaying()
           .isInStandbyMode()) {
@@ -62,6 +63,79 @@ public class SpeakerIT {
           .getSourceItems()
           .size(), 11);
 
+
+      LOGGER.info("Un-Mute, if speaker is muted");
+      VolumeGetResponse getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.isMuteEnabled()) {
+        LOGGER.info("Checking Mute (to disable)");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      final int initalValue = getResp.getActualVolume();
+
+      LOGGER.info("Status: {}", getResp.toString());
+
+      // Start setting the volume to a low level.
+      soundTouchApi.getVolumeApi()
+          .setVolume(5);
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.getActualVolume() != getResp.getTargetVolume()) {
+        LOGGER.info("Checking Volume");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getVolumeApi()
+          .setVolume(25);
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.getActualVolume() != getResp.getTargetVolume()) {
+        LOGGER.info("Checking Volume");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getVolumeApi()
+          .setVolume(initalValue);
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.getActualVolume() != getResp.getTargetVolume()) {
+        LOGGER.info("Checking Volume");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getKeyApi()
+          .mute();
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (!getResp.isMuteEnabled()) {
+        LOGGER.info("Checking Mute (to disable)");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getKeyApi()
+          .mute();
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.isMuteEnabled()) {
+        LOGGER.info("Checking Mute (to enalbe again)");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+
+
       // Turn off again.
       if (!soundTouchApi.getNowPlayingApi()
           .nowPlaying()
@@ -81,6 +155,7 @@ public class SpeakerIT {
 
     LOGGER.info("test00_runThruTest started");
   }
+
 
   @Test
   @Ignore
@@ -215,6 +290,7 @@ public class SpeakerIT {
 
 
   @Test
+  @Ignore
   public void test04_selectIncorrectSource() {
 
     LOGGER.info("test04_selectIncorrectSource started");
@@ -247,6 +323,104 @@ public class SpeakerIT {
     }
 
     LOGGER.info("test04_selectIncorrectSource passed");
+  }
+
+  @Test
+  @Ignore
+  public void test05_getAndChangeVolume() {
+
+    LOGGER.info("test05_getAndChangeVolume started");
+
+    final URL boseEndpoint;
+    try {
+      boseEndpoint = new URL(Const.URL);
+    } catch (final MalformedURLException e) {
+      // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
+      Assert.fail();
+      return;
+    }
+
+    try {
+
+      final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
+      VolumeGetResponse getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      LOGGER.info("Un-Mute, if speaker is muted");
+
+      while (getResp.isMuteEnabled()) {
+        LOGGER.info("Checking Mute (to disable)");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      final int initalValue = getResp.getActualVolume();
+
+      LOGGER.info("Status: {}", getResp.toString());
+
+      // Start setting the volume to a low level.
+      soundTouchApi.getVolumeApi()
+          .setVolume(5);
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.getActualVolume() != getResp.getTargetVolume()) {
+        LOGGER.info("Checking Volume");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getVolumeApi()
+          .setVolume(25);
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.getActualVolume() != getResp.getTargetVolume()) {
+        LOGGER.info("Checking Volume");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getVolumeApi()
+          .setVolume(initalValue);
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.getActualVolume() != getResp.getTargetVolume()) {
+        LOGGER.info("Checking Volume");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getKeyApi()
+          .mute();
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (!getResp.isMuteEnabled()) {
+        LOGGER.info("Checking Mute (to disable)");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+      soundTouchApi.getKeyApi()
+          .mute();
+      getResp = soundTouchApi.getVolumeApi()
+          .getVolume();
+
+      while (getResp.isMuteEnabled()) {
+        LOGGER.info("Checking Mute (to enalbe again)");
+        getResp = soundTouchApi.getVolumeApi()
+            .getVolume();
+      }
+
+
+    } catch (final SoundTouchApiException e) {
+      LOGGER.info("Select Failed: {}", e.getMessage());
+      Assert.assertEquals(e.getHttpStatus(), HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
+    }
+
+    LOGGER.info("test05_getAndChangeVolume passed");
   }
 
 }
