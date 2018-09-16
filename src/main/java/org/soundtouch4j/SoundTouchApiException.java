@@ -18,7 +18,6 @@ public class SoundTouchApiException extends Exception {
    *
    * @param exception r the exception
    */
-
   public SoundTouchApiException(final HttpResponseException exception) {
     super(exception);
     httpStatus = exception.getStatusCode();
@@ -37,7 +36,6 @@ public class SoundTouchApiException extends Exception {
    *
    * @param message the message for the exception
    */
-
   public SoundTouchApiException(final String message) {
     super(message);
   }
@@ -45,9 +43,8 @@ public class SoundTouchApiException extends Exception {
   /**
    * Create a SoundTouchCommunicationException instance based on the exception.
    *
-   * @param e the Exception to wrap
+   * @param exception the Exception to wrap
    */
-
   public SoundTouchApiException(final Exception exception) {
     super(exception);
   }
