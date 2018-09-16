@@ -11,11 +11,11 @@ import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.nowplaying.NowPlayingResponse;
+import org.soundtouch4j.preset.PresetResponse;
 import org.soundtouch4j.select.SelectResponse;
 import org.soundtouch4j.volume.VolumeGetResponse;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.xml.XmlObjectParser;
 
 // Ignore this Calls during automated builds, as this requires a physical speaker
 @Ignore
@@ -28,15 +28,7 @@ public class SpeakerIT {
   public void test00_runThruTest() {
     LOGGER.info("test00_runThruTest started");
 
-    final URL boseEndpoint;
-    try {
-      boseEndpoint = new URL(Const.URL);
-    } catch (final MalformedURLException e) {
-      Assert.fail();
-      return;
-    }
-
-    final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     try {
 
       // If the speaker is not on, turn on
@@ -128,11 +120,14 @@ public class SpeakerIT {
           .getVolume();
 
       while (getResp.isMuteEnabled()) {
-        LOGGER.info("Checking Mute (to enalbe again)");
+        LOGGER.info("Checking Mute (to enable again)");
         getResp = soundTouchApi.getVolumeApi()
             .getVolume();
       }
 
+      // get the Presets
+      final PresetResponse reps = soundTouchApi.getPresetApi()
+          .getPresets();
 
       // Turn off again.
       if (!soundTouchApi.getNowPlayingApi()
@@ -156,28 +151,8 @@ public class SpeakerIT {
   public void test01_basicTestWithBox() {
     LOGGER.info("test01_basicTestWithBox passed");
 
-    /*
-    Not doing an Active Search for the Beginning
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
 
-    final List<SsdpService> services = SsdpScanner.synchronousBlockingDeviceScanner(TIME_TO_SCAN_FOR_DEVICE_IN_MS);
-    for (final SsdpService service : services) {
-      LOGGER.info("Service '{}' with IP '{}' found", service.getSerialNumber(), service.getRemoteIp());
-    }
-    */
-
-
-    final URL boseEndpoint;
-    try {
-      // boseEndpoint = new URL("http://"+ services.get(0).getRemoteIp().getHostAddress() + ":8090");
-      boseEndpoint = new URL(Const.URL);
-      LOGGER.info("Using urL: {}", boseEndpoint.toString());
-    } catch (final MalformedURLException e) {
-      // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
-      Assert.fail();
-      return;
-    }
-
-    final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
     try {
       soundTouchApi.getKeyApi()
           .power();
@@ -219,18 +194,7 @@ public class SpeakerIT {
   @Test
   public void test03_nowPlaying() {
     LOGGER.info("test03_nowPlaying started");
-
-
-    final URL boseEndpoint;
-    try {
-      boseEndpoint = new URL(Const.URL);
-    } catch (final MalformedURLException e) {
-      // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
-      Assert.fail();
-      return;
-    }
-
-    final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     try {
       final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
           .nowPlaying();
@@ -246,22 +210,9 @@ public class SpeakerIT {
 
   @Test
   public void test04_selectAux() {
-
     LOGGER.info("test03_nowPlaying started");
-    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
-
-
-    final URL boseEndpoint;
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     try {
-      boseEndpoint = new URL(Const.URL);
-    } catch (final MalformedURLException e) {
-      // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
-      Assert.fail();
-      return;
-    }
-
-    try {
-      final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
       final SelectResponse response = soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.AUX, "AUX"));
       LOGGER.info("Select: '{}'", response);
@@ -276,23 +227,10 @@ public class SpeakerIT {
 
   @Test
   public void test04_selectIncorrectSource() {
-
     LOGGER.info("test04_selectIncorrectSource started");
-    final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
-
-
-    final URL boseEndpoint;
-    try {
-      boseEndpoint = new URL(Const.URL);
-    } catch (final MalformedURLException e) {
-      // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
-      Assert.fail();
-      return;
-    }
-
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
 
     try {
-      final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
       soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.INTERNET_RADIO, ""));
       Assert.fail();
@@ -306,21 +244,9 @@ public class SpeakerIT {
 
   @Test
   public void test05_getAndChangeVolume() {
-
     LOGGER.info("test05_getAndChangeVolume started");
-
-    final URL boseEndpoint;
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     try {
-      boseEndpoint = new URL(Const.URL);
-    } catch (final MalformedURLException e) {
-      // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
-      Assert.fail();
-      return;
-    }
-
-    try {
-
-      final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
       VolumeGetResponse getResp = soundTouchApi.getVolumeApi()
           .getVolume();
 
@@ -387,7 +313,7 @@ public class SpeakerIT {
           .getVolume();
 
       while (getResp.isMuteEnabled()) {
-        LOGGER.info("Checking Mute (to enalbe again)");
+        LOGGER.info("Checking Mute (to enable again)");
         getResp = soundTouchApi.getVolumeApi()
             .getVolume();
       }
@@ -399,6 +325,23 @@ public class SpeakerIT {
     }
 
     LOGGER.info("test05_getAndChangeVolume passed");
+  }
+
+  @Test
+  public void test06_getPresets() {
+    LOGGER.info("test06_getPresets started");
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
+
+    try {
+      final PresetResponse reps = soundTouchApi.getPresetApi()
+          .getPresets();
+      LOGGER.info("Result: {}", reps);
+    } catch (final SoundTouchApiException e) {
+      LOGGER.info("Select Failed: {}", e.getMessage());
+      Assert.fail();
+    }
+
+    LOGGER.info("test06_getPresets passed");
   }
 
 }

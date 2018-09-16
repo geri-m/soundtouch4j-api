@@ -3,24 +3,30 @@ package org.soundtouch4j;
 
 import java.io.IOException;
 import java.io.StringReader;
-import org.soundtouch4j.common.Error;
+import org.soundtouch4j.common.ErrorResponse;
 import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.xml.XmlObjectParser;
 
 public class SoundTouchApiException extends Exception {
 
   private static final long serialVersionUID = 1L;
-  private Error error;
+  private ErrorResponse error;
   private int httpStatus;
 
-  public SoundTouchApiException(final HttpResponseException response) {
-    super(response.getStatusMessage());
-    httpStatus = response.getStatusCode();
+  /**
+   * Create a SoundTouchCommunicationException instance from the {@link HttpResponseException}
+   *
+   * @param exception r the exception
+   */
+
+  public SoundTouchApiException(final HttpResponseException exception) {
+    super(exception);
+    httpStatus = exception.getStatusCode();
 
     // Parse the XML from the Error
     final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     try {
-      error = parser.parseAndClose(new StringReader(response.getContent()), Error.class);
+      error = parser.parseAndClose(new StringReader(exception.getContent()), ErrorResponse.class);
     } catch (final IOException ignored) {
 
     }
@@ -42,8 +48,8 @@ public class SoundTouchApiException extends Exception {
    * @param e the Exception to wrap
    */
 
-  public SoundTouchApiException(final Exception e) {
-    super(e);
+  public SoundTouchApiException(final Exception exception) {
+    super(exception);
   }
 
 
@@ -51,7 +57,7 @@ public class SoundTouchApiException extends Exception {
     return serialVersionUID;
   }
 
-  public Error getError() {
+  public ErrorResponse getError() {
     return error;
   }
 
