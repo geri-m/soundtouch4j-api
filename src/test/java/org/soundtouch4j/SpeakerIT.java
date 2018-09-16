@@ -5,7 +5,6 @@ import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ public class SpeakerIT {
   private static final int TIME_TO_SCAN_FOR_DEVICE_IN_MS = 3000;
 
   @Test
-  @Ignore
+
   public void test00_runThruTest() {
     LOGGER.info("test00_runThruTest started");
 
@@ -158,7 +157,6 @@ public class SpeakerIT {
 
 
   @Test
-  @Ignore
   public void test01_basicTestWithBox() {
     LOGGER.info("test01_basicTestWithBox passed");
 
@@ -197,7 +195,6 @@ public class SpeakerIT {
   }
 
   @Test
-  @Ignore
   public void test02_fetchInfoFromSpeaker() {
     LOGGER.info("test02_fetchInfoFromSpeaker started");
 
@@ -224,7 +221,6 @@ public class SpeakerIT {
   }
 
   @Test
-  @Ignore
   public void test03_nowPlaying() {
     LOGGER.info("test03_nowPlaying started");
 
@@ -253,7 +249,6 @@ public class SpeakerIT {
   }
 
   @Test
-  @Ignore
   public void test04_selectAux() {
 
     LOGGER.info("test03_nowPlaying started");
@@ -290,7 +285,6 @@ public class SpeakerIT {
 
 
   @Test
-  @Ignore
   public void test04_selectIncorrectSource() {
 
     LOGGER.info("test04_selectIncorrectSource started");
@@ -326,7 +320,6 @@ public class SpeakerIT {
   }
 
   @Test
-  @Ignore
   public void test05_getAndChangeVolume() {
 
     LOGGER.info("test05_getAndChangeVolume started");

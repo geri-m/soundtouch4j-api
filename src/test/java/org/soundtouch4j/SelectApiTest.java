@@ -33,7 +33,7 @@ public class SelectApiTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" + "<status>/select</status>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/select</status>");
             return result;
           }
         };

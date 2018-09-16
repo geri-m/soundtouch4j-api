@@ -14,27 +14,29 @@ import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
 import junit.framework.TestCase;
 
+
 public class KeyApiTest extends TestCase {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(KeyApiTest.class);
 
+
+  private final HttpTransport transport = new MockHttpTransport() {
+    @Override
+    public LowLevelHttpRequest buildRequest(final String method, final String url) {
+      return new MockLowLevelHttpRequest() {
+        @Override
+        public LowLevelHttpResponse execute() {
+          final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
+          result.setContentType(Xml.MEDIA_TYPE);
+          result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/key</status>");
+          return result;
+        }
+      };
+    }
+  };
+
   public void test01_power() {
     LOGGER.info("test01_power started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/key</status>");
-            return result;
-          }
-        };
-      }
-    };
-
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
       final KeyResponse response = soundTouchApi.getKeyApi()
@@ -45,6 +47,20 @@ public class KeyApiTest extends TestCase {
       Assert.fail();
     }
     LOGGER.info("test01_power done");
+  }
+
+  public void test02_mute() {
+    LOGGER.info("test02_mute started");
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      final KeyResponse response = soundTouchApi.getKeyApi()
+          .mute();
+      assertEquals(response.getValue(), "/key");
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+      Assert.fail();
+    }
+    LOGGER.info("test02_mute done");
   }
 
 }
