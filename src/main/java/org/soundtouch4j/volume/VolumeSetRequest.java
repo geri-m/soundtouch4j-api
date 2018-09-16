@@ -19,10 +19,13 @@ import com.google.api.client.util.Key;
 
 public class VolumeSetRequest implements Request {
 
+  public static final String ELEMENT_NAME = "volume";
+
   @Key("text()")
   private int volume;
 
-  public VolumeSetRequest() {
+  public VolumeSetRequest(final int volume) {
+    this.volume = volume;
   }
 
   public int getVolume() {

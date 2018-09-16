@@ -6,6 +6,7 @@ import org.soundtouch4j.key.KeyApi;
 import org.soundtouch4j.nowplaying.NowPlayingApi;
 import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
+import org.soundtouch4j.volume.VolumeApi;
 import com.google.api.client.http.HttpTransport;
 
 public class SoundTouchApi implements SoundTouch {
@@ -17,6 +18,7 @@ public class SoundTouchApi implements SoundTouch {
   private NowPlayingApi nowPlayingApi;
   private SourceApi sourceApi;
   private SelectApi selectApi;
+  private VolumeApi volumeApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -54,9 +56,9 @@ public class SoundTouchApi implements SoundTouch {
 
 
   /**
-   * Gets the InfoApi instance owned by this SoundTouchApi instance. The InfoApi is used fetch the information form the BOSE Speaker.
+   * Gets the {@link InfoApi} instance owned by this SoundTouchApi instance. The {@link InfoApi} is used fetch the information form the Bose Speaker.
    *
-   * @return the InfoApi instance owned by this SoundTouchApi instance
+   * @return the {@link InfoApi} instance owned by this SoundTouchApi instance
    */
 
   @Override
@@ -74,9 +76,9 @@ public class SoundTouchApi implements SoundTouch {
 
 
   /**
-   * Gets the NowPlayingApi instance owned by this SoundTouchApi instance. The NowPlayingApi is used to perform all key press/release/event related API calls.
+   * Gets the {@link NowPlayingApi} instance owned by this SoundTouchApi instance. The {@link NowPlayingApi} is used to get the information what/if the speaker is playing
    *
-   * @return the KeyApi instance owned by this SoundTouchApi instance
+   * @return the {@link NowPlayingApi} instance owned by this SoundTouchApi instance
    */
 
   @Override
@@ -94,9 +96,9 @@ public class SoundTouchApi implements SoundTouch {
 
 
   /**
-   * Gets the KeyApi instance owned by this SoundTouchApi instance. The KeyApi is used to perform all key press/release/event related API calls.
+   * Gets the {@link SourceApi} instance owned by this SoundTouchApi instance. The {@link SourceApi} is used to get possible Sources of the speaker
    *
-   * @return the KeyApi instance owned by this SoundTouchApi instance
+   * @return the {@link SourceApi} instance owned by this SoundTouchApi instance
    */
 
   @Override
@@ -113,9 +115,9 @@ public class SoundTouchApi implements SoundTouch {
   }
 
   /**
-   * Gets the KeyApi instance owned by this SoundTouchApi instance. The KeyApi is used to perform all key press/release/event related API calls.
+   * Gets the {@link SelectApi} instance owned by this SoundTouchApi instance. The {@link SelectApi} is select sources of the speaker
    *
-   * @return the KeyApi instance owned by this SoundTouchApi instance
+   * @return the {@link SelectApi} instance owned by this SoundTouchApi instance
    */
 
   @Override
@@ -129,6 +131,26 @@ public class SoundTouchApi implements SoundTouch {
       }
     }
     return (selectApi);
+  }
+
+
+  /**
+   * Gets the {@link VolumeApi} instance owned by this SoundTouchApi instance. The {@link VolumeApi} is used to perform changes on the volume of the speaker.
+   *
+   * @return the {@link VolumeApi} instance owned by this SoundTouchApi instance
+   */
+
+  @Override
+  public VolumeApi getVolumeApi() {
+
+    if (volumeApi == null) {
+      synchronized (this) {
+        if (volumeApi == null) {
+          volumeApi = new VolumeApi(this);
+        }
+      }
+    }
+    return (volumeApi);
   }
 
   public SoundTouchApiClient getSoundTouchApiClient() {

@@ -6,12 +6,12 @@ import com.google.api.client.util.Key;
 public class VolumeSetResponse implements Response {
 
   @Key("text()")
-  private int volume;
+  private String volume;
 
   public VolumeSetResponse() {
   }
 
-  public int getVolume() {
+  public String getVolume() {
     return volume;
   }
 
