@@ -1,8 +1,11 @@
 package org.soundtouch4j;
 
+import java.util.List;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.soundtouch4j.common.SourceEnum;
+import org.soundtouch4j.source.SourceItem;
 import org.soundtouch4j.source.SourceResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
@@ -44,8 +47,18 @@ public class SourceApiTest extends TestCase {
       assertEquals(response.getSourceItems()
           .size(), 11);
 
-      LOGGER.info("Response: {}", response);
 
+      final List<SourceItem> items1 = soundTouchApi.getSourceApi()
+          .getSourcesByType(SourceEnum.AUX);
+      assertEquals(items1.size(), 1);
+
+      final List<SourceItem> items2 = soundTouchApi.getSourceApi()
+          .getSourcesByType(SourceEnum.QPLAY);
+      assertEquals(items2.size(), 2);
+
+      final List<SourceItem> items3 = soundTouchApi.getSourceApi()
+          .getSourcesByType(SourceEnum.STANDBY);
+      assertEquals(items3.size(), 0);
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
