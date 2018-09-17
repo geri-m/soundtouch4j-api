@@ -19,7 +19,7 @@ public class SourceResponse implements Response {
   }
 
   public List<SourceItem> getSourceItems() {
-    return new ArrayList<>(sourceItem);
+    return new ArrayList<SourceItem>(sourceItem);
   }
 
   public String getDeviceID() {

@@ -1,7 +1,7 @@
 package org.soundtouch4j.source;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
 import org.soundtouch4j.common.AbstractApi;
@@ -38,11 +38,14 @@ public class SourceApi extends AbstractApi {
    */
 
   public List<SourceItem> getSourcesByType(final SourceEnum type) throws SoundTouchApiException {
-    return getSources().getSourceItems()
-        .stream()
-        .filter(s -> s.getSource()
-            .equals(type))
-        .collect(Collectors.toList());
+    final List<SourceItem> result = new ArrayList<SourceItem>();
+    for (final SourceItem sourceItem : getSources().getSourceItems()) {
+      if (sourceItem.getSource()
+          .equals(type)) {
+        result.add(sourceItem);
+      }
+    }
+    return result;
   }
 
 }

@@ -85,12 +85,12 @@ public class InfoResponse implements Response {
 
 
   public List<Component> getComponents() {
-    return new ArrayList<>(components.get(COMPONENT));
+    return new ArrayList<Component>(components.get(COMPONENT));
   }
 
 
   public List<NetworkInfo> getNetworkInfo() {
-    return new ArrayList<>(networkInfo);
+    return new ArrayList<NetworkInfo>(networkInfo);
   }
 
   @Override

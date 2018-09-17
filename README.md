@@ -5,7 +5,7 @@ Bose is offering a [line of speaker](https://www.bose.com/en_us/products/speaker
 
 This project offers an API implemented in Java in to the seamlessly interact with the Speakers using Java or Android applications.
 
-The API is build and tests with and for a Bose SoundTouch 20 with Firmware Version 19.0.5.42017.2794643.
+The API is built and tested with and for a Bose SoundTouch 20 with Firmware Version 19.0.5.42017.2794643.
 
 ## HTTP Client Lib
 
