@@ -19,18 +19,18 @@ Simply add the dependency
 </dependency>
 ```
 
-This will add the [Google HTTP Client](https://developers.google.com/api-client-library/java/google-http-java-client/) and the XML Implmenetation
+This will add the [Google HTTP Client](https://developers.google.com/api-client-library/java/google-http-java-client/) and the XML Implementation
 to your project
 
 ### Usage in an Android Project
 
 Similar to the Maven Project, we include the JAR, but exclude some binaries that are shipped with the Google Client Lib.
 
-```ruby
+```groovy
 implementation ('org.soundtouch4j:soundtouch4j-api:1.0.0-SNAPSHOT') {
   exclude  module: 'httpclient'
   exclude  module: 'xpp3'
-  exclude   module: 'commons-logging'
+  exclude  module: 'commons-logging'
 }
 ```
 
@@ -71,6 +71,6 @@ For the SSDP Implementation we use [ResourcePools SSDP](https://github.com/resou
  
 or on Android
 
-```
+```groovy
 implementation 'io.resourcepool:ssdp-client:2.2.0'
 ```
