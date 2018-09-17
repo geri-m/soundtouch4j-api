@@ -28,7 +28,7 @@ public class SsdpScanner {
 
   public static synchronized List<SsdpService> synchronousBlockingDeviceScanner(final int timeToScanInMilliseconds) {
     final SsdpClient client = SsdpClient.create();
-    final List<SsdpService> servicesFound = new ArrayList<>();
+    final List<SsdpService> servicesFound = new ArrayList<SsdpService>();
 
     final DiscoveryRequest networkStorageDevice = DiscoveryRequest.builder()
         .serviceType(BOSE_URN)

@@ -47,7 +47,6 @@ public class SourceApiTest extends TestCase {
       assertEquals(response.getSourceItems()
           .size(), 11);
 
-
       final List<SourceItem> items1 = soundTouchApi.getSourceApi()
           .getSourcesByType(SourceEnum.AUX);
       assertEquals(items1.size(), 1);

@@ -13,7 +13,7 @@ public class ErrorResponse implements Response {
   }
 
   public List<Error> getErrorList() {
-    return new ArrayList<>(errorList);
+    return new ArrayList<Error>(errorList);
   }
 
   @Override
