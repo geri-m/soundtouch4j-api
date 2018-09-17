@@ -46,28 +46,14 @@
   </scm>
 
   <dependencies>
-    <!-- Google's HTTP Client -->
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client</artifactId>
-      <version>${google.http.client.version}</version>
-    </dependency>
-
-    <!-- XML Support is still Beta, but works fine for our usecases -->
+    <!-- XML Support is still Beta, but works fine for our usecase -->
     <dependency>
       <groupId>com.google.http-client</groupId>
       <artifactId>google-http-client-xml</artifactId>
       <version>${google.http.client.version}</version>
     </dependency>
 
-    <!-- Binding for Log4J -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>${log4j2.version}</version>
-      <scope>test</scope>
-    </dependency>
-
+    <!-- since 2.7 this include the logj4-api as well -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
