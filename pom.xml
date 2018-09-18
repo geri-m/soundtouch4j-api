@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>Soundtouch API Java Client</name>
-  <description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's Soundtouch</description>
+  <description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's SoundTouch</description>
   <url>https://github.com/geri-m/soundtouch4j</url>
 
   <licenses>
@@ -28,61 +27,53 @@
   </developers>
 
   <properties>
-    <java.source.version>1.8</java.source.version>
-    <java.target.version>1.8</java.target.version>
+    <java.source.version>1.6</java.source.version>
+    <java.target.version>1.6</java.target.version>
     <google.http.client.version>1.25.0</google.http.client.version>
     <junit.version>4.12</junit.version>
     <log4j2.version>2.7</log4j2.version>
     <ssdp.version>2.2.0</ssdp.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <release.plugin.version>2.5.3</release.plugin.version>
+    <deploy.plugin.version>2.8.2</deploy.plugin.version>
   </properties>
 
   <scm>
     <url>git@github.com:geri-m/soundtouch4j-api.git</url>
     <connection>scm:git:git@github.com:geri-m/soundtouch4j-api.git</connection>
     <developerConnection>scm:git:git@github.com:geri-m/soundtouch4j-api.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>soundtouch4j-api-1.0.0</tag>
   </scm>
 
   <dependencies>
-    <!-- Google's HTTP CLient -->
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client</artifactId>
-      <version>${google.http.client.version}</version>
-    </dependency>
-
-    <!-- XML Support is still Beta, but works fine for our usecases -->
+    <!-- XML Support is still Beta, but works fine for our usecase -->
     <dependency>
       <groupId>com.google.http-client</groupId>
       <artifactId>google-http-client-xml</artifactId>
       <version>${google.http.client.version}</version>
     </dependency>
 
-    <!-- Binding for Log4J -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>${log4j2.version}</version>
-    </dependency>
-
+    <!-- since 2.7 this include the logj4-api as well -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
       <version>${log4j2.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
       <version>${log4j2.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>io.resourcepool</groupId>
       <artifactId>ssdp-client</artifactId>
       <version>${ssdp.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -98,12 +89,35 @@
     <defaultGoal>package</defaultGoal>
     <plugins>
       <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>${deploy.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
+        <version>${release.plugin.version}</version>
         <configuration>
-          <goals>deploy</goals>
+          <localCheckout>true</localCheckout>
+          <pushChanges>false</pushChanges>
+          <mavenExecutorId>forked-path</mavenExecutorId>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
@@ -111,6 +125,18 @@
         <version>1.9.5</version>
         <configuration>
           <tag>${project.artifactId}-${project.version}</tag>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
 
@@ -125,11 +151,6 @@
         <executions>
           <execution>
             <id>default-compile</id>
-            <configuration>
-              <excludes>
-                <exclude>**/module-info.java</exclude>
-              </excludes>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -137,7 +158,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -151,7 +172,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -163,4 +184,54 @@
       </plugin>
     </plugins>
   </build>
+
+
+  <profiles>
+    <!-- GPG Signature on release -->
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <keyname>${gpg.keyname}</keyname>
+              <passphrase>${gpg.passphrase}</passphrase>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+      </url>
+    </repository>
+  </distributionManagement>
+
+
 </project>
