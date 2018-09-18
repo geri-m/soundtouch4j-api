@@ -1,4 +1,4 @@
-# Java API for Bose SoundTouch API - SoundTouch4J (
+# Java API for Bose SoundTouch API - SoundTouch4J
 
 Bose is offering a [line of speaker](https://www.bose.com/en_us/products/speakers/smart_home/soundtouch_family.html) that have 
 [REST API](https://developer.bose.com/soundtouch-control-api/apis).
@@ -15,7 +15,7 @@ Simply add the dependency
 <dependency>
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
@@ -27,7 +27,7 @@ to your project
 Similar to the Maven Project, we include the JAR, but exclude some binaries that are shipped with the Google Client Lib.
 
 ```groovy
-implementation ('org.soundtouch4j:soundtouch4j-api:1.0.0-SNAPSHOT') {
+implementation ('org.soundtouch4j:soundtouch4j-api:1.0.0') {
   exclude  module: 'httpclient'
   exclude  module: 'xpp3'
   exclude  module: 'commons-logging'
