@@ -1,4 +1,4 @@
-package bass;
+package org.soundtouch4j.bass;
 
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
@@ -6,7 +6,7 @@ import org.soundtouch4j.common.AbstractApi;
 
 public class BassApi extends AbstractApi {
 
-  private static final String PATH_FOR_API = "bass";
+  private static final String PATH_FOR_API = "org/soundtouch4j/bass";
 
   public BassApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);

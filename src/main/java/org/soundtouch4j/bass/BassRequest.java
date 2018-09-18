@@ -1,11 +1,11 @@
-package bass;
+package org.soundtouch4j.bass;
 
 import org.soundtouch4j.common.Request;
 import com.google.api.client.util.Key;
 
 public class BassRequest implements Request {
 
-  public static final String ELEMENT_NAME = "bass";
+  public static final String ELEMENT_NAME = "org/soundtouch4j/bass";
 
   @Key("text()")
   private int bass;
@@ -25,6 +25,6 @@ public class BassRequest implements Request {
 
   @Override
   public String toString() {
-    return "BassRequest{" + "bass=" + bass + '}';
+    return "BassRequest{" + "org.soundtouch4j.bass=" + bass + '}';
   }
 }

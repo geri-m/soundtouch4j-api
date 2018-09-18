@@ -1,4 +1,4 @@
-package name;
+package org.soundtouch4j.name;
 
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
@@ -7,7 +7,7 @@ import org.soundtouch4j.info.InfoResponse;
 
 public class NameApi extends AbstractApi {
 
-  private static final String PATH_FOR_API = "name";
+  private static final String PATH_FOR_API = "org/soundtouch4j/name";
 
   public NameApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);

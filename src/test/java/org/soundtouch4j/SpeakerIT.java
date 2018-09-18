@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.soundtouch4j.bassCapabilties.BaseCapabilitiesResponse;
 import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.info.InfoResponse;
@@ -16,7 +17,6 @@ import org.soundtouch4j.select.SelectResponse;
 import org.soundtouch4j.volume.VolumeGetResponse;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import bassCapabilties.BaseCapabilitiesResponse;
 
 // Ignore this Calls during automated builds, as this requires a physical speaker
 @Ignore

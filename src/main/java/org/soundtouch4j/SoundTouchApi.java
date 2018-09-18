@@ -1,16 +1,16 @@
 package org.soundtouch4j;
 
 import java.net.URL;
+import org.soundtouch4j.bassCapabilties.BassCapabilitiesApi;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
+import org.soundtouch4j.name.NameApi;
 import org.soundtouch4j.nowplaying.NowPlayingApi;
 import org.soundtouch4j.preset.PresetApi;
 import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
 import org.soundtouch4j.volume.VolumeApi;
 import com.google.api.client.http.HttpTransport;
-import bassCapabilties.BassCapabilitiesApi;
-import name.NameApi;
 
 public class SoundTouchApi implements SoundTouch {
 
@@ -201,6 +201,7 @@ public class SoundTouchApi implements SoundTouch {
    *
    * @return the {@link BassCapabilitiesApi} instance owned by this SoundTouchApi instance
    */
+
 
   @Override
   public BassCapabilitiesApi getBassCapabilitiesApi() {

@@ -1,11 +1,11 @@
-package name;
+package org.soundtouch4j.name;
 
 import org.soundtouch4j.common.Request;
 import com.google.api.client.util.Key;
 
 public class Name implements Request {
 
-  public static final String ELEMENT_NAME = "name";
+  public static final String ELEMENT_NAME = "org/soundtouch4j/name";
 
   @Key("text()")
   private String name;

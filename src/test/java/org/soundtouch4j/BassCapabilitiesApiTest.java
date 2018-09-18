@@ -3,6 +3,7 @@ package org.soundtouch4j;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.soundtouch4j.bassCapabilties.BaseCapabilitiesResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -11,7 +12,6 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
-import bassCapabilties.BaseCapabilitiesResponse;
 import junit.framework.TestCase;
 
 public class BassCapabilitiesApiTest extends TestCase {
