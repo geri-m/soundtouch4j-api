@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.soundtouch4j.bass.BassGetResponse;
 import org.soundtouch4j.bassCapabilties.BaseCapabilitiesResponse;
 import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.common.SourceEnum;
@@ -383,7 +384,25 @@ public class SpeakerIT {
     try {
       final BaseCapabilitiesResponse reps = soundTouchApi.getBassCapabilitiesApi()
           .getBassCapabilities();
+
       LOGGER.info("BaseCapabilitiesResponse: {}", reps);
+
+      BassGetResponse responseBass = soundTouchApi.getBassApi()
+          .getBass();
+      final int actualBass = responseBass.getActualBass();
+
+      soundTouchApi.getBassApi()
+          .setBass(-5);
+      responseBass = soundTouchApi.getBassApi()
+          .getBass();
+      Assert.assertEquals(responseBass.getActualBass(), -5);
+
+      soundTouchApi.getBassApi()
+          .setBass(actualBass);
+      responseBass = soundTouchApi.getBassApi()
+          .getBass();
+      Assert.assertEquals(responseBass.getActualBass(), actualBass);
+
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Bass Get Failed: {}", e.getMessage());

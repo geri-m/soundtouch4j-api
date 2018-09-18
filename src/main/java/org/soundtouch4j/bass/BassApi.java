@@ -6,7 +6,7 @@ import org.soundtouch4j.common.AbstractApi;
 
 public class BassApi extends AbstractApi {
 
-  private static final String PATH_FOR_API = "org/soundtouch4j/bass";
+  private static final String PATH_FOR_API = "bass";
 
   public BassApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);
@@ -19,14 +19,14 @@ public class BassApi extends AbstractApi {
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public BassGetResponse getBass(final String name) throws SoundTouchApiException {
+  public BassGetResponse getBass() throws SoundTouchApiException {
     return soundTouchApi.getSoundTouchApiClient()
         .get(PATH_FOR_API, BassGetResponse.class);
   }
 
 
-  public BassSetResponse setBass(final int base) throws SoundTouchApiException {
-    return soundTouchApi.getSoundTouchApiClient()
+  public void setBass(final int base) throws SoundTouchApiException {
+    soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, BassRequest.ELEMENT_NAME, new BassRequest(base), BassSetResponse.class);
   }
 }

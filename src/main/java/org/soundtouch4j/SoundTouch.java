@@ -1,5 +1,6 @@
 package org.soundtouch4j;
 
+import org.soundtouch4j.bass.BassApi;
 import org.soundtouch4j.bassCapabilties.BassCapabilitiesApi;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
@@ -29,5 +30,7 @@ public interface SoundTouch {
   NameApi getNameApi();
 
   BassCapabilitiesApi getBassCapabilitiesApi();
+
+  BassApi getBassApi();
 
 }

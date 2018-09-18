@@ -1,6 +1,7 @@
 package org.soundtouch4j;
 
 import java.net.URL;
+import org.soundtouch4j.bass.BassApi;
 import org.soundtouch4j.bassCapabilties.BassCapabilitiesApi;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
@@ -25,6 +26,7 @@ public class SoundTouchApi implements SoundTouch {
   private PresetApi presetApi;
   private NameApi nameApi;
   private BassCapabilitiesApi bassCapabilitiesApi;
+  private BassApi bassApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -214,6 +216,27 @@ public class SoundTouchApi implements SoundTouch {
     }
     return (bassCapabilitiesApi);
   }
+
+
+  /**
+   * Gets the {@link BassApi} instance owned by this SoundTouchApi instance. The {@link BassApi} is used to information on Bass
+   *
+   * @return the {@link BassApi} instance owned by this SoundTouchApi instance
+   */
+
+
+  @Override
+  public BassApi getBassApi() {
+    if (bassApi == null) {
+      synchronized (this) {
+        if (bassApi == null) {
+          bassApi = new BassApi(this);
+        }
+      }
+    }
+    return (bassApi);
+  }
+
 
 
   public SoundTouchApiClient getSoundTouchApiClient() {
