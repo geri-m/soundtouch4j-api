@@ -39,7 +39,7 @@ public class BaseCapabilitiesResponse implements Response {
     return bassDefault;
   }
 
-  public String isDeviceID() {
+  public String getDeviceID() {
     return deviceID;
   }
 
