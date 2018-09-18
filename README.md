@@ -36,6 +36,11 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.0-SNAPSHOT') {
 
 # Releases
 
+## Version 1.0.1 ((September 18th, 2018)
+
+Adding Endpoint
+- ```/name```
+
 ## Version 1.0.0 (September 18th, 2018)
 
 Available Endpoints
