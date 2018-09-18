@@ -16,7 +16,7 @@ public class BassCapabilitiesApi extends AbstractApi {
   /**
    * Method to set the name of the Sound Touch Device
    *
-   * @return InfoResponse Response from the Speaker with the full information.
+   * @return BaseCapabilitiesResponse Response from the Speaker with the bass information.
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 

@@ -3,8 +3,6 @@ package bass;
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
 import org.soundtouch4j.common.AbstractApi;
-import org.soundtouch4j.info.InfoResponse;
-import name.Name;
 
 public class BassApi extends AbstractApi {
 
@@ -21,8 +19,14 @@ public class BassApi extends AbstractApi {
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public InfoResponse setName(final String name) throws SoundTouchApiException {
+  public BassGetResponse getBass(final String name) throws SoundTouchApiException {
     return soundTouchApi.getSoundTouchApiClient()
-        .post(PATH_FOR_API, Name.ELEMENT_NAME, new Name(name), InfoResponse.class);
+        .get(PATH_FOR_API, BassGetResponse.class);
+  }
+
+
+  public BassSetResponse setBass(final int base) throws SoundTouchApiException {
+    return soundTouchApi.getSoundTouchApiClient()
+        .post(PATH_FOR_API, BassRequest.ELEMENT_NAME, new BassRequest(base), BassSetResponse.class);
   }
 }
