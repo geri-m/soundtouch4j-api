@@ -310,6 +310,122 @@
 				}
 			},
 			"response": []
+        },
+      {
+        "name": "Get Presets",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "body": {},
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/presets",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "presets"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Set Name",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "<name>SoundTouch 20</name>"
+          },
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/name",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "name"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get bassCapabilities",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "body": {},
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/bassCapabilities",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "bassCapabilities"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get  Bass",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "body": {},
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/bass",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "bass"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Set Bass",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "<bass>5</bass>"
+          },
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/bass",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "bass"
+            ]
+          }
+        },
+        "response": []
 		}
 	]
 }

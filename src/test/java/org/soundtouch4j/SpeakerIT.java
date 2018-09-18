@@ -16,6 +16,7 @@ import org.soundtouch4j.select.SelectResponse;
 import org.soundtouch4j.volume.VolumeGetResponse;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import bassCapabilties.BaseCapabilitiesResponse;
 
 // Ignore this Calls during automated builds, as this requires a physical speaker
 @Ignore
@@ -128,6 +129,10 @@ public class SpeakerIT {
       // get the Presets
       final PresetResponse reps = soundTouchApi.getPresetApi()
           .getPresets();
+
+      final BaseCapabilitiesResponse bassCapabilities = soundTouchApi.getBassCapabilitiesApi()
+          .getBassCapabilities();
+
 
       // Turn off again.
       if (!soundTouchApi.getNowPlayingApi()
@@ -368,8 +373,25 @@ public class SpeakerIT {
     }
 
     LOGGER.info("test07_setName passed");
-
-
   }
+
+  @Test
+  public void test08_getBassCapabilities() {
+    LOGGER.info("test08_getBassCapabilities started");
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
+
+    try {
+      final BaseCapabilitiesResponse reps = soundTouchApi.getBassCapabilitiesApi()
+          .getBassCapabilities();
+      LOGGER.info("BaseCapabilitiesResponse: {}", reps);
+
+    } catch (final SoundTouchApiException e) {
+      LOGGER.info("Bass Get Failed: {}", e.getMessage());
+      Assert.fail();
+    }
+
+    LOGGER.info("test08_getBassCapabilities passed");
+  }
+
 
 }

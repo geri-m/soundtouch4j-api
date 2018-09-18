@@ -7,6 +7,7 @@ import org.soundtouch4j.preset.PresetApi;
 import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
 import org.soundtouch4j.volume.VolumeApi;
+import bassCapabilties.BassCapabilitiesApi;
 import name.NameApi;
 
 public interface SoundTouch {
@@ -26,4 +27,7 @@ public interface SoundTouch {
   PresetApi getPresetApi();
 
   NameApi getNameApi();
+
+  BassCapabilitiesApi getBassCapabilitiesApi();
+
 }

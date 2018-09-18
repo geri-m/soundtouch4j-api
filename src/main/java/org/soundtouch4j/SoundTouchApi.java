@@ -9,6 +9,7 @@ import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
 import org.soundtouch4j.volume.VolumeApi;
 import com.google.api.client.http.HttpTransport;
+import bassCapabilties.BassCapabilitiesApi;
 import name.NameApi;
 
 public class SoundTouchApi implements SoundTouch {
@@ -23,6 +24,7 @@ public class SoundTouchApi implements SoundTouch {
   private VolumeApi volumeApi;
   private PresetApi presetApi;
   private NameApi nameApi;
+  private BassCapabilitiesApi bassCapabilitiesApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -194,6 +196,23 @@ public class SoundTouchApi implements SoundTouch {
     return (nameApi);
   }
 
+  /**
+   * Gets the {@link BassCapabilitiesApi} instance owned by this SoundTouchApi instance. The {@link BassCapabilitiesApi} is used to information on Bass Capabilities
+   *
+   * @return the {@link BassCapabilitiesApi} instance owned by this SoundTouchApi instance
+   */
+
+  @Override
+  public BassCapabilitiesApi getBassCapabilitiesApi() {
+    if (bassCapabilitiesApi == null) {
+      synchronized (this) {
+        if (bassCapabilitiesApi == null) {
+          bassCapabilitiesApi = new BassCapabilitiesApi(this);
+        }
+      }
+    }
+    return (bassCapabilitiesApi);
+  }
 
 
   public SoundTouchApiClient getSoundTouchApiClient() {
