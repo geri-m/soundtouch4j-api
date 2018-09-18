@@ -1,4 +1,4 @@
-# Java API for Bose SoundTouch API - SoundTouch4J (st4j)
+# Java API for Bose SoundTouch API - SoundTouch4J (
 
 Bose is offering a [line of speaker](https://www.bose.com/en_us/products/speakers/smart_home/soundtouch_family.html) that have 
 [REST API](https://developer.bose.com/soundtouch-control-api/apis).
@@ -34,12 +34,58 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.0-SNAPSHOT') {
 }
 ```
 
-# Tech behind the scene
+# Releases
+
+## Version 1.0.0 (September 18th, 2018)
+
+Available Endpoints
+- ```/info```
+- ```/key```
+- ```/nowplaying```
+- ```/preset```
+- ```/select```
+- ```/source```
+- ```/volume```
+
+The methods in the Implementation mirror 1:1 the behavior of the REST API of the Speaker. 
+
+Library is compiled for Java 6, so it can be used easily on Android as well.
+
+# Usage SoundTouch4J
+
+In order to use a dynamic URL for your speaker, please have look on the SsdpScanner in the Tests.
+
+## Java SE
+
+```java
+// Create a SoundTouch instance to communicate with your speaker
+final SoundTouch soundTouchApi = new SoundTouchApi("http://soudntouch.sample.net", new NetHttpTransport());
+
+ // If the speaker is not on, turn it on
+if (soundTouchApi.getNowPlayingApi().nowPlaying().isInStandbyMode()) {
+  soundTouchApi.getKeyApi().power();
+}
+```
+
+## Android
+
+```java
+// Create a SoundTouch instance to communicate with your speaker
+final SoundTouch soundTouchApi = new SoundTouchApi("http://soudntouch.sample.net",  AndroidHttp.newCompatibleTransport());
+
+ // If the speaker is not on, turn it on
+if (soundTouchApi.getNowPlayingApi().nowPlaying().isInStandbyMode()) {
+  soundTouchApi.getKeyApi().power();
+}
+```
+
+
+# About
 
 ## HTTP Client Lib
 
-For the REST Calls I'm trying the Google HTTP Client Library. I've not used this before, but I want 
-to try something new anyway. It also supports XML as Body Format (but is beta), but hey: no risk no fun.
+For the REST Calls ST4J is using the [Google HTTP Client](https://developers.google.com/api-client-library/java/google-http-java-client/).
+The XML Support on this library is beta, but it works like a charm.
 
 This is a helpful example for the XML Usage of the Lib.
 - https://github.com/google/google-http-java-client/blob/dev/google-http-client-xml/src/test/java/com/google/api/client/xml/XmlTest.java
@@ -53,7 +99,6 @@ There is an Issue with with XPP on Android and on J2SE, so there is a Hack in So
 ### Testing HTTP Client
 
 The Google HTTP Client comes with a simple mock, that allows us to test all the request in a nice fashion.
-
 - https://github.com/googleapis/google-http-java-client/blob/dev/google-http-client/src/test/java/com/google/api/client/http/HttpResponseTest.java
 - https://github.com/googleapis/google-http-java-client/blob/dev/google-http-client/src/test/java/com/google/api/client/http/HttpRequestTest.java
 
@@ -74,3 +119,22 @@ or on Android
 ```groovy
 implementation 'io.resourcepool:ssdp-client:2.2.0'
 ```
+
+# License
+
+Copyright 2018 Gerald Madlmayr
+
+Licensed under the MIT License (the "License"); you may not use this file except 
+in compliance with the License. You may obtain a copy of the License at
+
+```
+https://opensource.org/licenses/MIT
+```
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

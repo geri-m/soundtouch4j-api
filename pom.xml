@@ -36,6 +36,8 @@
     <ssdp.version>2.2.0</ssdp.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <release.plugin.version>2.5.3</release.plugin.version>
+    <deploy.plugin.version>2.8.2</deploy.plugin.version>
   </properties>
 
   <scm>
@@ -88,12 +90,35 @@
     <defaultGoal>package</defaultGoal>
     <plugins>
       <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>${deploy.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
+        <version>${release.plugin.version}</version>
         <configuration>
-          <goals>deploy</goals>
+          <localCheckout>true</localCheckout>
+          <pushChanges>false</pushChanges>
+          <mavenExecutorId>forked-path</mavenExecutorId>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
@@ -101,6 +126,18 @@
         <version>1.9.5</version>
         <configuration>
           <tag>${project.artifactId}-${project.version}</tag>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
 
@@ -122,7 +159,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -136,7 +173,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -149,18 +186,53 @@
     </plugins>
   </build>
 
+
+  <profiles>
+    <!-- GPG Signature on release -->
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <keyname>${gpg.keyname}</keyname>
+              <passphrase>${gpg.passphrase}</passphrase>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <distributionManagement>
-    <!-- Login Credentials are stored in the settings.xml in order to publish artifacts there -->
-    <repository>
-      <id>release-mirror</id>
-      <name>Releases</name>
-      <url>https://nexus.v-connect.io/repository/maven-releases</url>
-    </repository>
     <snapshotRepository>
-      <id>snapshot-mirror</id>
-      <name>Snapshot</name>
-      <url>https://nexus.v-connect.io/repository/maven-snapshots</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+      </url>
+    </repository>
   </distributionManagement>
+
 
 </project>
