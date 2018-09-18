@@ -5,7 +5,7 @@
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.1</version>
+  <version>1.0.2-SNAPSHOT</version>
   <name>Soundtouch API Java Client</name>
   <description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's SoundTouch</description>
   <url>https://github.com/geri-m/soundtouch4j</url>
