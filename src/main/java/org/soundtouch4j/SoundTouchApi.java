@@ -9,6 +9,7 @@ import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
 import org.soundtouch4j.volume.VolumeApi;
 import com.google.api.client.http.HttpTransport;
+import name.NameApi;
 
 public class SoundTouchApi implements SoundTouch {
 
@@ -21,6 +22,7 @@ public class SoundTouchApi implements SoundTouch {
   private SelectApi selectApi;
   private VolumeApi volumeApi;
   private PresetApi presetApi;
+  private NameApi nameApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -173,6 +175,26 @@ public class SoundTouchApi implements SoundTouch {
     }
     return (presetApi);
   }
+
+  /**
+   * Gets the {@link NameApi} instance owned by this SoundTouchApi instance. The {@link NameApi} is used to set the name of the speaker
+   *
+   * @return the {@link NameApi} instance owned by this SoundTouchApi instance
+   */
+
+  @Override
+  public NameApi getNameApi() {
+    if (nameApi == null) {
+      synchronized (this) {
+        if (nameApi == null) {
+          nameApi = new NameApi(this);
+        }
+      }
+    }
+    return (nameApi);
+  }
+
+
 
   public SoundTouchApiClient getSoundTouchApiClient() {
     return soundTouchApiClient;

@@ -344,4 +344,32 @@ public class SpeakerIT {
     LOGGER.info("test06_getPresets passed");
   }
 
+  @Test
+  public void test07_setName() {
+    LOGGER.info("test07_setName started");
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
+
+    try {
+      InfoResponse reps = soundTouchApi.getNameApi()
+          .setName("test");
+      Assert.assertEquals(reps.getName(), "test");
+
+      LOGGER.info("SetName: {}", reps);
+
+      reps = soundTouchApi.getNameApi()
+          .setName("SoundTouch 20");
+      Assert.assertEquals(reps.getName(), "SoundTouch 20");
+
+      LOGGER.info("SetName: {}", reps);
+
+    } catch (final SoundTouchApiException e) {
+      LOGGER.info("Select Failed: {}", e.getMessage());
+      Assert.fail();
+    }
+
+    LOGGER.info("test07_setName passed");
+
+
+  }
+
 }
