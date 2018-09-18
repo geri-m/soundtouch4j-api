@@ -13,9 +13,9 @@ public class BassApi extends AbstractApi {
   }
 
   /**
-   * Method to set the name of the Sound Touch Device
+   * Method to get the bass of the Sound Touch Device
    *
-   * @return InfoResponse Response from the Speaker with the full information.
+   * @return BassGetResponse Response from the Speaker with the bass information.
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
@@ -24,9 +24,15 @@ public class BassApi extends AbstractApi {
         .get(PATH_FOR_API, BassGetResponse.class);
   }
 
+  /**
+   * Method to set the bass of the Sound Touch Device
+   *
+   * @param bass Bass Setting for the Speaker
+   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
+   */
 
-  public void setBass(final int base) throws SoundTouchApiException {
+  public void setBass(final int bass) throws SoundTouchApiException {
     soundTouchApi.getSoundTouchApiClient()
-        .post(PATH_FOR_API, BassRequest.ELEMENT_NAME, new BassRequest(base), BassSetResponse.class);
+        .post(PATH_FOR_API, BassRequest.ELEMENT_NAME, new BassRequest(bass), BassSetResponse.class);
   }
 }

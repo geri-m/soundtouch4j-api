@@ -21,17 +21,16 @@ public class VolumeApi extends AbstractApi {
    *
    * @param volume The Volume can be set from 0 and 100, inclusive.
    *
-   * @return VolumeSetResponse Response from the Speaker when posting a Set Volume Command
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public VolumeSetResponse setVolume(final int volume) throws SoundTouchApiException {
+  public void setVolume(final int volume) throws SoundTouchApiException {
 
     if ((volume < MIN_VOLUME) || (volume > MAX_VOLUME)) {
       throw new SoundTouchApiException(String.format(ERROR_MSG_VOLUME_RANGE, volume));
     }
 
-    return soundTouchApi.getSoundTouchApiClient()
+    soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, VolumeSetRequest.ELEMENT_NAME, new VolumeSetRequest(volume), VolumeSetResponse.class);
   }
 

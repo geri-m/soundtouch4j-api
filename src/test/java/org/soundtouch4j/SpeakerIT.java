@@ -393,8 +393,11 @@ public class SpeakerIT {
 
       soundTouchApi.getBassApi()
           .setBass(-5);
-      responseBass = soundTouchApi.getBassApi()
-          .getBass();
+      while (soundTouchApi.getBassApi()
+          .getBass()
+          .getActualBass() != -5) {
+
+      }
       Assert.assertEquals(responseBass.getActualBass(), -5);
 
       soundTouchApi.getBassApi()

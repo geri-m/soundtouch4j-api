@@ -5,7 +5,7 @@ import com.google.api.client.util.Key;
 
 public class Name implements Request {
 
-  public static final String ELEMENT_NAME = "org/soundtouch4j/name";
+  public static final String ELEMENT_NAME = "name";
 
   @Key("text()")
   private String name;

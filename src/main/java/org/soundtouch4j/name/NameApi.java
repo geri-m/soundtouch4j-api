@@ -7,7 +7,7 @@ import org.soundtouch4j.info.InfoResponse;
 
 public class NameApi extends AbstractApi {
 
-  private static final String PATH_FOR_API = "org/soundtouch4j/name";
+  private static final String PATH_FOR_API = "name";
 
   public NameApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);
@@ -16,6 +16,7 @@ public class NameApi extends AbstractApi {
   /**
    * Method to set the name of the Sound Touch Device
    *
+   * @param name Name of the Speaker that should be set
    * @return InfoResponse Response from the Speaker with the full information.
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */

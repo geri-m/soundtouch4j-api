@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.volume.VolumeGetResponse;
-import org.soundtouch4j.volume.VolumeSetResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -73,13 +72,12 @@ public class VolumeApiTest extends TestCase {
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      VolumeSetResponse response = soundTouchApi.getVolumeApi()
+      soundTouchApi.getVolumeApi()
           .setVolume(100);
-      assertEquals(response.getVolume(), "/volume");
 
-      response = soundTouchApi.getVolumeApi()
+
+      soundTouchApi.getVolumeApi()
           .setVolume(0);
-      assertEquals(response.getVolume(), "/volume");
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());

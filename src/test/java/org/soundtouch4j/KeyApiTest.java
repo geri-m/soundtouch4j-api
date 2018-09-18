@@ -3,7 +3,6 @@ package org.soundtouch4j;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.soundtouch4j.key.KeyResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -39,9 +38,8 @@ public class KeyApiTest extends TestCase {
     LOGGER.info("test01_power started");
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      final KeyResponse response = soundTouchApi.getKeyApi()
+      soundTouchApi.getKeyApi()
           .power();
-      assertEquals(response.getValue(), "/key");
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
@@ -53,9 +51,8 @@ public class KeyApiTest extends TestCase {
     LOGGER.info("test02_mute started");
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      final KeyResponse response = soundTouchApi.getKeyApi()
+      soundTouchApi.getKeyApi()
           .mute();
-      assertEquals(response.getValue(), "/key");
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();

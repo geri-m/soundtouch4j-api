@@ -7,6 +7,9 @@ public class BassGetResponse implements Response {
 
   public static final String ELEMENT_NAME = "bass";
 
+  @Key("@deviceID")
+  private String deviceID;
+
   @Key("targetbass")
   private int targetBass;
 
@@ -26,8 +29,12 @@ public class BassGetResponse implements Response {
     return actualBass;
   }
 
+  public String getDeviceID() {
+    return deviceID;
+  }
+
   @Override
   public String toString() {
-    return "BassGetResponse{" + "targetBass=" + targetBass + ", actualBass=" + actualBass + '}';
+    return "BassGetResponse{" + "deviceID='" + deviceID + '\'' + ", targetBass=" + targetBass + ", actualBass=" + actualBass + '}';
   }
 }
