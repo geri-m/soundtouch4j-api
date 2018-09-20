@@ -426,6 +426,103 @@
           }
         },
         "response": []
+      },
+      {
+        "name": "Get Zone",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "body": {},
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/getZone",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "getZone"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Set Zone",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
+          },
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/setZone",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "setZone"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Add Zone Slave",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
+          },
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/addZoneSlave",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "addZoneSlave"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Remove Zone Slave",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
+          },
+          "url": {
+            "raw": "http://soundtouch-20.fritz.box:8090/removeZoneSlave",
+            "protocol": "http",
+            "host": [
+              "soundtouch-20",
+              "fritz",
+              "box"
+            ],
+            "port": "8090",
+            "path": [
+              "removeZoneSlave"
+            ]
+          }
+        },
+        "response": []
 		}
 	]
 }
