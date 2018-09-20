@@ -16,6 +16,7 @@ import org.soundtouch4j.nowplaying.NowPlayingResponse;
 import org.soundtouch4j.preset.PresetResponse;
 import org.soundtouch4j.select.SelectResponse;
 import org.soundtouch4j.volume.VolumeGetResponse;
+import org.soundtouch4j.zone.Zone;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
@@ -413,6 +414,31 @@ public class SpeakerIT {
     }
 
     LOGGER.info("test08_getBassCapabilities passed");
+  }
+
+
+  @Test
+  public void test09_setAndGetZone() {
+    LOGGER.info("test09_setAndGetZone started");
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
+
+    try {
+      Zone zone = soundTouchApi.getZoneApi()
+          .getZone();
+
+      soundTouchApi.getZoneApi()
+          .setZone(zone);
+
+      LOGGER.info("zone: {}", zone);
+
+
+    } catch (final SoundTouchApiException e) {
+      LOGGER.info("Select Failed: {}", e.getMessage());
+      Assert.fail();
+    }
+
+    LOGGER.info("test09_setAndGetZone passed");
+
   }
 
 

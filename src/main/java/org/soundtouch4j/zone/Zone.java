@@ -7,6 +7,8 @@ import com.google.api.client.util.Key;
 
 public class Zone implements Response, Request {
 
+  public static final String ELEMENT_NAME = "zone";
+
   @Key("@master")
   private String master;
 

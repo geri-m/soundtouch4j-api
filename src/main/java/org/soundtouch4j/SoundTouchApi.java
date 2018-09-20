@@ -11,6 +11,7 @@ import org.soundtouch4j.preset.PresetApi;
 import org.soundtouch4j.select.SelectApi;
 import org.soundtouch4j.source.SourceApi;
 import org.soundtouch4j.volume.VolumeApi;
+import org.soundtouch4j.zone.ZoneApi;
 import com.google.api.client.http.HttpTransport;
 
 public class SoundTouchApi implements SoundTouch {
@@ -27,6 +28,7 @@ public class SoundTouchApi implements SoundTouch {
   private NameApi nameApi;
   private BassCapabilitiesApi bassCapabilitiesApi;
   private BassApi bassApi;
+  private ZoneApi zoneApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -235,6 +237,26 @@ public class SoundTouchApi implements SoundTouch {
       }
     }
     return (bassApi);
+  }
+
+
+  /**
+   * Gets the {@link ZoneApi} instance owned by this SoundTouchApi instance. The {@link ZoneApi} is set/get Zones
+   *
+   * @return the {@link ZoneApi} instance owned by this SoundTouchApi instance
+   */
+
+
+  @Override
+  public ZoneApi getZoneApi() {
+    if (zoneApi == null) {
+      synchronized (this) {
+        if (zoneApi == null) {
+          zoneApi = new ZoneApi(this);
+        }
+      }
+    }
+    return (zoneApi);
   }
 
 

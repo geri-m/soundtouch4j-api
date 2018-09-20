@@ -3,11 +3,11 @@ package org.soundtouch4j.zone;
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
 import org.soundtouch4j.common.AbstractApi;
-import org.soundtouch4j.volume.VolumeSetRequest;
 
 public class ZoneApi extends AbstractApi {
 
-  private static final String PATH_FOR_API = "zone";
+  private static final String PATH_FOR_API_GET = "getZone";
+  private static final String PATH_FOR_API_SET = "setZone";
 
   public ZoneApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);
@@ -22,7 +22,7 @@ public class ZoneApi extends AbstractApi {
 
   public Zone getZone() throws SoundTouchApiException {
     return soundTouchApi.getSoundTouchApiClient()
-        .get(PATH_FOR_API, Zone.class);
+        .get(PATH_FOR_API_GET, Zone.class);
   }
 
   /**
@@ -35,6 +35,6 @@ public class ZoneApi extends AbstractApi {
   public void setZone(final Zone zone) throws SoundTouchApiException {
 
     soundTouchApi.getSoundTouchApiClient()
-        .post(PATH_FOR_API, VolumeSetRequest.ELEMENT_NAME, zone, ZoneSetResponse.class);
+        .post(PATH_FOR_API_SET, Zone.ELEMENT_NAME, zone, ZoneSetResponse.class);
   }
 }
