@@ -27,7 +27,7 @@ Simply add the dependency
 This will add the [Google HTTP Client](https://developers.google.com/api-client-library/java/google-http-java-client/) and the XML Implementation
 to your project
 
-### Usage in an Android Project
+## Usage in an Android Project
 
 Similar to the Maven Project, we include the JAR, but exclude some binaries that are shipped with the Google Client Lib.
 

@@ -429,11 +429,8 @@ public class SpeakerIT {
       soundTouchApi.getZoneApi()
           .setZone(zone);
 
-      LOGGER.info("zone: {}", zone);
-
-
     } catch (final SoundTouchApiException e) {
-      LOGGER.info("Select Failed: {}", e.getMessage());
+      LOGGER.info("setAndGetZone: {}", e.getMessage());
       Assert.fail();
     }
 
@@ -441,5 +438,28 @@ public class SpeakerIT {
 
   }
 
+  @Test
+  public void test10_addAndRemoveSlave() {
+    LOGGER.info("test10_addAndRemoveSlave started");
+    final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
+
+    try {
+      final Zone zone = soundTouchApi.getZoneApi()
+          .getZone();
+
+      soundTouchApi.getZoneApi()
+          .addZoneSlave(zone);
+
+      soundTouchApi.getZoneApi()
+          .removeZoneSlave(zone);
+
+    } catch (final SoundTouchApiException e) {
+      LOGGER.info("addAndRemoveSlave: {}", e.getMessage());
+      Assert.fail();
+    }
+
+    LOGGER.info("test10_addAndRemoveSlave passed");
+
+  }
 
 }
