@@ -41,4 +41,4 @@ jobs:
         -Dsonar.projectKey=geri-m_soundtouch4j-api \
         -Dsonar.organization=geri-m-github \
         -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=c0c7688e4c630963f20dbd314ea83fc248b2859a
+        -Dsonar.login=$SONAR_TOKEN
