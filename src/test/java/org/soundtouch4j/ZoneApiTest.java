@@ -58,8 +58,7 @@ public class ZoneApiTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" + "<zone master=\"C8DF84AE0B6E\">\n" + "    <member ipaddress=\"192.168.178" +
-                ".61\">C8DF84AE0B6E</member>\n" + "</zone>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" + "<zone master=\"C8DF84AE0B6E\">\n" + "    <member ipaddress=\"192.168.178" + ".61\">C8DF84AE0B6E" + "</member>\n" + "</zone>");
             return result;
           }
         };

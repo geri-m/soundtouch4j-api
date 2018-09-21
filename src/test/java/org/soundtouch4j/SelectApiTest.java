@@ -42,7 +42,7 @@ public class SelectApiTest extends TestCase {
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-       final SelectResponse response = soundTouchApi.getSelectApi()
+      final SelectResponse response = soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.AUX, "AUX"));
 
       assertEquals(response.getStatus(), "/select");
@@ -66,8 +66,8 @@ public class SelectApiTest extends TestCase {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
             result.setStatusCode(HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" + "<errors deviceID=\"C8DF84AE0B6E\">\n" + "    <error value=\"1045\" " +
-                "name=\"SELECT_ITEM_IN_WRONG_STATE\" severity=\"Unknown\">1045</error>\n" + "</errors>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" + "<errors deviceID=\"C8DF84AE0B6E\">\n" + "    <error value=\"1045\" " + "name" +
+                "=\"SELECT_ITEM_IN_WRONG_STATE\" severity=\"Unknown\">1045</error>\n" + "</errors>");
             return result;
           }
         };

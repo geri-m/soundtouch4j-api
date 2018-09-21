@@ -1,550 +1,550 @@
 {
-	"info": {
-		"_postman_id": "d385178b-335e-47bb-a97b-dbc6dbd7f00d",
-		"name": "SoundTouch",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Get INFO",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/info",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"info"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "On (Part 1 - Press)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "text/xml"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "<key state=\"press\" sender=\"Gabbo\">POWER</key>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/key",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"key"
-					]
-				},
-				"description": "For the POWER value entry, it is important that you send two /key POST messages in rapid succession. The first should set state to be \"press\", and the second should set state to be \"release\". Sending only one command (either \"press\" or \"release\") will produce inconsistent results for some SoundTouch products."
-			},
-			"response": []
-		},
-		{
-			"name": "On (Part 2 - Release)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "text/xml"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "<key state=\"release\" sender=\"Gabbo\">POWER</key>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/key",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"key"
-					]
-				},
-				"description": "For the POWER value entry, it is important that you send two /key POST messages in rapid succession. The first should set state to be \"press\", and the second should set state to be \"release\". Sending only one command (either \"press\" or \"release\") will produce inconsistent results for some SoundTouch products."
-			},
-			"response": []
-		},
-		{
-			"name": "Now Playing",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/now_playing",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"now_playing"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Sources",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/sources",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"sources"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "On (Part 1 - Press) -- Button Unknow",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "text/xml"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "<key state=\"press\" sender=\"Gabbo\">POWER!</key>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/key",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"key"
-					]
-				},
-				"description": "For the POWER value entry, it is important that you send two /key POST messages in rapid succession. The first should set state to be \"press\", and the second should set state to be \"release\". Sending only one command (either \"press\" or \"release\") will produce inconsistent results for some SoundTouch products."
-			},
-			"response": []
-		},
-		{
-			"name": "Select Radio",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "<ContentItem source=\"INTERNET_RADIO\" sourceAccount=\"\"></ContentItem>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/select",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"select"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Select BT",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "<ContentItem source=\"BLUETOOTH\" sourceAccount=\"\"></ContentItem>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/select",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"select"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Select Aux",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "<ContentItem source=\"AUX\" sourceAccount=\"AUX\"></ContentItem>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/select",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"select"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Volume",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/volume",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"volume"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Set Volume to 20",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<volume>20</volume>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/volume",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"volume"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Mute",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "<key state=\"press\" sender=\"Gabbo\">MUTE</key>"
-				},
-				"url": {
-					"raw": "http://soundtouch-20.fritz.box:8090/key",
-					"protocol": "http",
-					"host": [
-						"soundtouch-20",
-						"fritz",
-						"box"
-					],
-					"port": "8090",
-					"path": [
-						"key"
-					]
-				}
-			},
-			"response": []
-        },
-      {
-        "name": "Get Presets",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "body": {},
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/presets",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "presets"
-            ]
-          }
-        },
-        "response": []
+  "info": {
+    "_postman_id": "d385178b-335e-47bb-a97b-dbc6dbd7f00d",
+    "name": "SoundTouch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get INFO",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/info",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "info"
+          ]
+        }
       },
-      {
-        "name": "Set Name",
-        "request": {
-          "method": "POST",
-          "header": [],
-          "body": {
-            "mode": "raw",
-            "raw": "<name>SoundTouch 20</name>"
-          },
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/name",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "name"
-            ]
+      "response": []
+    },
+    {
+      "name": "On (Part 1 - Press)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml"
           }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<key state=\"press\" sender=\"Gabbo\">POWER</key>"
         },
-        "response": []
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/key",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "key"
+          ]
+        },
+        "description": "For the POWER value entry, it is important that you send two /key POST messages in rapid succession. The first should set state to be \"press\", and the second should set state to be \"release\". Sending only one command (either \"press\" or \"release\") will produce inconsistent results for some SoundTouch products."
       },
-      {
-        "name": "Get bassCapabilities",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "body": {},
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/bassCapabilities",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "bassCapabilities"
-            ]
+      "response": []
+    },
+    {
+      "name": "On (Part 2 - Release)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml"
           }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<key state=\"release\" sender=\"Gabbo\">POWER</key>"
         },
-        "response": []
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/key",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "key"
+          ]
+        },
+        "description": "For the POWER value entry, it is important that you send two /key POST messages in rapid succession. The first should set state to be \"press\", and the second should set state to be \"release\". Sending only one command (either \"press\" or \"release\") will produce inconsistent results for some SoundTouch products."
       },
-      {
-        "name": "Get  Bass",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "body": {},
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/bass",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "bass"
-            ]
-          }
-        },
-        "response": []
+      "response": []
+    },
+    {
+      "name": "Now Playing",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/now_playing",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "now_playing"
+          ]
+        }
       },
-      {
-        "name": "Set Bass",
-        "request": {
-          "method": "POST",
-          "header": [],
-          "body": {
-            "mode": "raw",
-            "raw": "<bass>5</bass>"
-          },
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/bass",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "bass"
-            ]
-          }
-        },
-        "response": []
+      "response": []
+    },
+    {
+      "name": "Get Sources",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/sources",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "sources"
+          ]
+        }
       },
-      {
-        "name": "Get Zone",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "body": {},
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/getZone",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "getZone"
-            ]
+      "response": []
+    },
+    {
+      "name": "On (Part 1 - Press) -- Button Unknow",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml"
           }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<key state=\"press\" sender=\"Gabbo\">POWER!</key>"
         },
-        "response": []
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/key",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "key"
+          ]
+        },
+        "description": "For the POWER value entry, it is important that you send two /key POST messages in rapid succession. The first should set state to be \"press\", and the second should set state to be \"release\". Sending only one command (either \"press\" or \"release\") will produce inconsistent results for some SoundTouch products."
       },
-      {
-        "name": "Set Zone",
-        "request": {
-          "method": "POST",
-          "header": [],
-          "body": {
-            "mode": "raw",
-            "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
-          },
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/setZone",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "setZone"
-            ]
-          }
+      "response": []
+    },
+    {
+      "name": "Select Radio",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<ContentItem source=\"INTERNET_RADIO\" sourceAccount=\"\"></ContentItem>"
         },
-        "response": []
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/select",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "select"
+          ]
+        }
       },
-      {
-        "name": "Add Zone Slave",
-        "request": {
-          "method": "POST",
-          "header": [],
-          "body": {
-            "mode": "raw",
-            "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
-          },
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/addZoneSlave",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "addZoneSlave"
-            ]
-          }
+      "response": []
+    },
+    {
+      "name": "Select BT",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<ContentItem source=\"BLUETOOTH\" sourceAccount=\"\"></ContentItem>"
         },
-        "response": []
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/select",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "select"
+          ]
+        }
       },
-      {
-        "name": "Remove Zone Slave",
-        "request": {
-          "method": "POST",
-          "header": [],
-          "body": {
-            "mode": "raw",
-            "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
-          },
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/removeZoneSlave",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "removeZoneSlave"
-            ]
-          }
+      "response": []
+    },
+    {
+      "name": "Select Aux",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<ContentItem source=\"AUX\" sourceAccount=\"AUX\"></ContentItem>"
         },
-        "response": []
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/select",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "select"
+          ]
+        }
       },
-      {
-        "name": "GetGroup",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "body": {},
-          "url": {
-            "raw": "http://soundtouch-20.fritz.box:8090/getGroup",
-            "protocol": "http",
-            "host": [
-              "soundtouch-20",
-              "fritz",
-              "box"
-            ],
-            "port": "8090",
-            "path": [
-              "getGroup"
-            ]
-          }
+      "response": []
+    },
+    {
+      "name": "Get Volume",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/volume",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "volume"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Set Volume to 20",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<volume>20</volume>"
         },
-        "response": []
-		}
-	]
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/volume",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "volume"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Mute",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<key state=\"press\" sender=\"Gabbo\">MUTE</key>"
+        },
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/key",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "key"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Presets",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/presets",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "presets"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Set Name",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<name>SoundTouch 20</name>"
+        },
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/name",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "name"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get bassCapabilities",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/bassCapabilities",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "bassCapabilities"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get  Bass",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/bass",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "bass"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Set Bass",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<bass>5</bass>"
+        },
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/bass",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "bass"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Zone",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/getZone",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "getZone"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Set Zone",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
+        },
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/setZone",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "setZone"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Zone Slave",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
+        },
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/addZoneSlave",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "addZoneSlave"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove Zone Slave",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<zone master=\"C8DF84AE0B6E\">\n  <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>"
+        },
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/removeZoneSlave",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "removeZoneSlave"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetGroup",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "raw": "http://soundtouch-20.fritz.box:8090/getGroup",
+          "protocol": "http",
+          "host": [
+            "soundtouch-20",
+            "fritz",
+            "box"
+          ],
+          "port": "8090",
+          "path": [
+            "getGroup"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }

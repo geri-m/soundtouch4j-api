@@ -30,7 +30,8 @@ public class NowPlayingTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"INTERNET_RADIO\"><ContentItem source=\"INTERNET_RADIO\" " + "location=\"18298\" sourceAccount=\"\" isPresetable=\"true\"><itemName>ORF Hitradio Ö3</itemName><containerArt>http://item.radio456.com/007452/logo/logo-18298" + ".jpg</containerArt></ContentItem><track></track><artist></artist><album></album><stationName>ORF Hitradio Ö3</stationName><art " + "artImageStatus=\"IMAGE_PRESENT\">http://item.radio456.com/007452/logo/logo-18298.jpg</art><playStatus>PLAY_STATE</playStatus><description>MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus den 80er- und 90er-Jahren und der Morning Show mit der lustigsten Comedy.</description><stationLocation>Vienna Austria</stationLocation></nowPlaying>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"INTERNET_RADIO\"><ContentItem source=\"INTERNET_RADIO\" "
+                + "location=\"18298\" sourceAccount=\"\" isPresetable=\"true\"><itemName>ORF Hitradio Ö3</itemName><containerArt>http://item.radio456.com/007452/logo/logo-18298" + ".jpg</containerArt></ContentItem><track></track><artist></artist><album></album><stationName>ORF Hitradio Ö3</stationName><art " + "artImageStatus=\"IMAGE_PRESENT\">http://item.radio456.com/007452/logo/logo-18298.jpg</art><playStatus>PLAY_STATE</playStatus><description>MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus den 80er- und 90er-Jahren und der Morning Show mit der lustigsten Comedy.</description><stationLocation>Vienna Austria</stationLocation></nowPlaying>");
             return result;
           }
         };
@@ -51,8 +52,9 @@ public class NowPlayingTest extends TestCase {
       assertEquals(response.getArt()
           .getValue(), "http://item.radio456.com/007452/logo/logo-18298.jpg");
       assertEquals(response.getPlayStatus(), "PLAY_STATE");
-      assertEquals(response.getDescription(), "MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus den" +
-          " 80er- und 90er-Jahren und der Morning Show mit der lustigsten Comedy.");
+      assertEquals(response.getDescription(),
+          "MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus " + "den" + " 80er- und 90er-Jahren und" +
+              " der Morning Show mit der lustigsten Comedy.");
       assertEquals(response.getStationLocation(), "Vienna Austria");
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
@@ -72,11 +74,7 @@ public class NowPlayingTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"BLUETOOTH\" sourceAccount=\"\"><ContentItem " + "source" +
-                "=\"BLUETOOTH\" location=\"\" sourceAccount=\"\" isPresetable=\"false\"><itemName>Geralds MacBook " + "Pro</itemName></ContentItem><track>Unknown</track><artist" +
-                "></artist><album></album><stationName>Geralds MacBook Pro</stationName><art " + "artImageStatus=\"SHOW_DEFAULT_IMAGE\" /><skipEnabled " +
-                "/><playStatus>STOP_STATE</playStatus><skipPreviousEnabled /><genre></genre><connectionStatusInfo " + "status=\"CONNECTED\" deviceName=\"Geralds MacBook Pro\" " +
-                "/></nowPlaying>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"BLUETOOTH\" sourceAccount=\"\"><ContentItem " + "source" + "=\"BLUETOOTH\" location=\"\" sourceAccount=\"\" isPresetable=\"false\"><itemName>Geralds MacBook " + "Pro</itemName></ContentItem><track>Unknown</track><artist" + "></artist><album></album><stationName>Geralds MacBook Pro</stationName><art " + "artImageStatus=\"SHOW_DEFAULT_IMAGE\" /><skipEnabled " + "/><playStatus>STOP_STATE</playStatus><skipPreviousEnabled /><genre></genre><connectionStatusInfo " + "status=\"CONNECTED\" deviceName=\"Geralds MacBook Pro\" " + "/></nowPlaying>");
             return result;
           }
         };

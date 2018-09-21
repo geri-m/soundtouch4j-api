@@ -3,6 +3,7 @@ package org.soundtouch4j;
 import java.net.URL;
 import org.soundtouch4j.bass.BassApi;
 import org.soundtouch4j.bassCapabilties.BassCapabilitiesApi;
+import org.soundtouch4j.group.GroupApi;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;
 import org.soundtouch4j.name.NameApi;
@@ -29,6 +30,7 @@ public class SoundTouchApi implements SoundTouch {
   private BassCapabilitiesApi bassCapabilitiesApi;
   private BassApi bassApi;
   private ZoneApi zoneApi;
+  private GroupApi groupApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -260,6 +262,17 @@ public class SoundTouchApi implements SoundTouch {
   }
 
 
+  @Override
+  public GroupApi getGroupApi() {
+    if (groupApi == null) {
+      synchronized (this) {
+        if (groupApi == null) {
+          groupApi = new GroupApi(this);
+        }
+      }
+    }
+    return (groupApi);
+  }
 
   public SoundTouchApiClient getSoundTouchApiClient() {
     return soundTouchApiClient;
