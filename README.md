@@ -1,3 +1,8 @@
+[![CircleCI](https://circleci.com/gh/geri-m/soundtouch4j-api.svg?style=svg)](https://circleci.com/gh/geri-m/soundtouch4j-api)
+[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/geri-m/soundtouch4j-api/blob/master/LICENSE)
+[![Release Version](https://img.shields.io/badge/release-1.0.2-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
+[![Platform](https://img.shields.io/badge/Platform-Java-brightgreen.svg)](https://github.com/Tencent/MMKV/wiki/home)
+
 # Java API for Bose SoundTouch API - SoundTouch4J
 
 Bose is offering a [line of speaker](https://www.bose.com/en_us/products/speakers/smart_home/soundtouch_family.html) that have 
