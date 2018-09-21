@@ -29,7 +29,9 @@ public class GroupTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><group id=\"$STRING\"><name>$STRING</name><masterDeviceId>$MACADDR</masterDeviceId><roles><groupRole>" + "<deviceId>$MACADDR</deviceId><role>LEFT</role><ipAddress>$IPADDR</ipAddress></groupRole><groupRole><deviceId>$MACADDR</deviceId><role>RIGHT</role><ipAddress>" + "IPADDR</ipAddress></groupRole></roles><senderIPAddress>IPADDR</senderIPAddress><status>$GROUP_STATUS</status></group>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><group id=\"$STRING\"><name>name</name><masterDeviceId>masterDeviceId</masterDeviceId><roles><groupRole" +
+                "><deviceId>deviceId1</deviceId><role>LEFT1</role><ipAddress>ipAddress1</ipAddress></groupRole><groupRole><deviceId>deviceId2</deviceId><role>RIGHT2</role" +
+                "><ipAddress>ipAddress2</ipAddress></groupRole></roles><senderIPAddress>senderIPAddress</senderIPAddress><status>status</status></group>");
             return result;
           }
         };
@@ -38,10 +40,35 @@ public class GroupTest extends TestCase {
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      final Group response = soundTouchApi.getGroupApi()
+      final Group group = soundTouchApi.getGroupApi()
           .getGroup();
 
-      LOGGER.info("Group: {}", response);
+      Assert.assertEquals(group.getId(), "$STRING");
+      Assert.assertEquals(group.getGroupRoles()
+          .size(), 2);
+      Assert.assertEquals(group.getMasterDeviceId(), "masterDeviceId");
+      Assert.assertEquals(group.getName(), "name");
+      Assert.assertEquals(group.getStatus(), "status");
+
+      Assert.assertEquals(group.getGroupRoles()
+          .get(0)
+          .getDeviceId(), "deviceId1");
+      Assert.assertEquals(group.getGroupRoles()
+          .get(0)
+          .getIpAddress(), "ipAddress1");
+      Assert.assertEquals(group.getGroupRoles()
+          .get(0)
+          .getRole(), "LEFT1");
+
+      Assert.assertEquals(group.getGroupRoles()
+          .get(1)
+          .getDeviceId(), "deviceId2");
+      Assert.assertEquals(group.getGroupRoles()
+          .get(1)
+          .getIpAddress(), "ipAddress2");
+      Assert.assertEquals(group.getGroupRoles()
+          .get(1)
+          .getRole(), "RIGHT2");
 
 
     } catch (final SoundTouchApiException e) {
@@ -49,5 +76,42 @@ public class GroupTest extends TestCase {
       Assert.fail();
     }
     LOGGER.info("test01_getGroup started");
+  }
+
+  public void test02_getGroupEmptyList() {
+    LOGGER.info("test02_getGroupEmptyList started");
+    final HttpTransport transport = new MockHttpTransport() {
+      @Override
+      public LowLevelHttpRequest buildRequest(final String method, final String url) {
+        return new MockLowLevelHttpRequest() {
+          @Override
+          public LowLevelHttpResponse execute() {
+            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
+            result.setContentType(Xml.MEDIA_TYPE);
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><group id=\"$STRING\"><name>name</name><masterDeviceId>masterDeviceId</masterDeviceId><roles" +
+                "/><senderIPAddress>senderIPAddress</senderIPAddress><status>status</status></group>");
+            return result;
+          }
+        };
+      }
+    };
+
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      final Group group = soundTouchApi.getGroupApi()
+          .getGroup();
+
+      Assert.assertEquals(group.getId(), "$STRING");
+      Assert.assertEquals(group.getGroupRoles()
+          .size(), 0);
+      Assert.assertEquals(group.getMasterDeviceId(), "masterDeviceId");
+      Assert.assertEquals(group.getName(), "name");
+      Assert.assertEquals(group.getStatus(), "status");
+
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+      Assert.fail();
+    }
+    LOGGER.info("test02_getGroupEmptyList started");
   }
 }

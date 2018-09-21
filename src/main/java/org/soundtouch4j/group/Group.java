@@ -37,6 +37,11 @@ public class Group implements Response {
   }
 
   public List<GroupRole> getGroupRoles() {
+    if ((roles.get(GROUP_ROLE) == null) || roles.get(GROUP_ROLE)
+        .isEmpty()) {
+      return new ArrayList<GroupRole>();
+    }
+
     return new ArrayList<GroupRole>(roles.get(GROUP_ROLE));
   }
 

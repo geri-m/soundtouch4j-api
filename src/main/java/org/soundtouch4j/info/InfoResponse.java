@@ -85,6 +85,11 @@ public class InfoResponse implements Response {
 
 
   public List<Component> getComponents() {
+    if ((components.get(COMPONENT) == null) || components.get(COMPONENT)
+        .isEmpty()) {
+      return new ArrayList<Component>();
+    }
+
     return new ArrayList<Component>(components.get(COMPONENT));
   }
 

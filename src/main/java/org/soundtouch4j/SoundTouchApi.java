@@ -261,6 +261,11 @@ public class SoundTouchApi implements SoundTouch {
     return (zoneApi);
   }
 
+  /**
+   * Gets the {@link GroupApi} instance owned by this SoundTouchApi instance. The {@link GroupApi} is get Groups
+   *
+   * @return the {@link GroupApi} instance owned by this SoundTouchApi instance
+   */
 
   @Override
   public GroupApi getGroupApi() {
