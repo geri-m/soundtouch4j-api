@@ -423,7 +423,7 @@ public class SpeakerIT {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
 
     try {
-      Zone zone = soundTouchApi.getZoneApi()
+      final Zone zone = soundTouchApi.getZoneApi()
           .getZone();
 
       soundTouchApi.getZoneApi()

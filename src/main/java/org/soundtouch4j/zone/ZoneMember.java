@@ -8,8 +8,13 @@ public class ZoneMember {
   private String ipaddress;
 
   @Key("text()")
-  private String value;
+  private String macAddress;
 
+
+  public ZoneMember(final String ipAddress, final String macAddress) {
+    this.ipaddress = ipAddress;
+    this.macAddress = macAddress;
+  }
 
   public ZoneMember() {
 
@@ -20,12 +25,12 @@ public class ZoneMember {
   }
 
 
-  public String getValue() {
-    return value;
+  public String getMacAddress() {
+    return macAddress;
   }
 
   @Override
   public String toString() {
-    return "ZoneMember{" + "ipaddress='" + ipaddress + '\'' + ", value='" + value + '\'' + '}';
+    return "ZoneMember{" + "ipaddress='" + ipaddress + '\'' + ", macAddress='" + macAddress + '\'' + '}';
   }
 }

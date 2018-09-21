@@ -14,9 +14,9 @@ public class ZoneApi extends AbstractApi {
   }
 
   /**
-   * Method to get the Volume/Mute Setting of the Speaker
+   * Method to get the Zone Settings of the Speaker
    *
-   * @return VolumeGetResponse containing information on the speaker volume setting.
+   * @return Zone containing information the Zone Information
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
@@ -26,9 +26,9 @@ public class ZoneApi extends AbstractApi {
   }
 
   /**
-   * Method to set the Volume of a Bose Speaker to a dedicated Volume
+   * Method to set the Zone Information of a speaker
    *
-   * @param zone The Volume can be set from 0 and 100, inclusive.
+   * @param zone Zone definition for the speaker
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
