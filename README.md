@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/geri-m/soundtouch4j-api.svg?style=svg)](https://circleci.com/gh/geri-m/soundtouch4j-api)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/geri-m/soundtouch4j-api/blob/master/LICENSE)
-[![Release Version](https://img.shields.io/badge/release-1.0.2-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
+[![Release Version](https://img.shields.io/badge/release-1.0.3-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
 [![Platform](https://img.shields.io/badge/Platform-Java-brightgreen.svg)](https://github.com/Tencent/MMKV/wiki/home)
 
 # Java API for Bose SoundTouch API - SoundTouch4J
@@ -20,7 +20,7 @@ Simply add the dependency
 <dependency>
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ to your project
 Similar to the Maven Project, we include the JAR, but exclude some binaries that are shipped with the Google Client Lib.
 
 ```groovy
-implementation ('org.soundtouch4j:soundtouch4j-api:1.0.2') {
+implementation ('org.soundtouch4j:soundtouch4j-api:1.0.3') {
   exclude  module: 'httpclient'
   exclude  module: 'xpp3'
   exclude  module: 'commons-logging'
@@ -40,6 +40,16 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.2') {
 ```
 
 # Releases
+
+## Version 1.0.3 (September 21st, 2018)
+
+Adding Endpoint
+- ```/getGroup```
+- ```/getZone```
+- ```/setZone```
+- ```/addZoneSlave```
+- ```/removeZoneSlave```
+
 
 ## Version 1.0.2 (September 18th, 2018)
 
@@ -134,6 +144,54 @@ or on Android
 
 ```groovy
 implementation 'io.resourcepool:ssdp-client:2.2.0'
+```
+
+### Usage
+
+Sample method for scanning for devices.
+
+```java
+public static synchronized List<SsdpService> synchronousBlockingDeviceScanner(final int timeToScanInMilliseconds) {
+  final String boseUrn = "urn:schemas-upnp-org:device:MediaRenderer:1";
+  
+  final SsdpClient client = SsdpClient.create();
+  final List<SsdpService> servicesFound = new ArrayList<SsdpService>();
+
+  final DiscoveryRequest networkStorageDevice = DiscoveryRequest.builder()
+      .serviceType(boseUrn)
+      .build();
+
+  client.discoverServices(networkStorageDevice, new DiscoveryListener() {
+    @Override
+    public void onServiceDiscovered(final SsdpService service) {
+      System.out.println("Found service at IP: " + service.getRemoteIp()
+          .toString());
+      servicesFound.add(service);
+    }
+
+    @Override
+    public void onServiceAnnouncement(final SsdpServiceAnnouncement announcement) {
+      System.out.println("Service announced something: " + announcement);
+    }
+
+    @Override
+    public void onFailed(final Exception ex) {
+      System.out.println("Service onFailed: " + ex.getMessage());
+    }
+  });
+
+  // TODO: Needs to run in a separat thread in order not to block
+  try {
+    Thread.sleep(timeToScanInMilliseconds);
+  } catch (final InterruptedException ignored) {
+    
+  }
+
+  System.out.println("Discovery Stopped and Serives Found: " + servicesFound.size());
+  client.stopDiscovery();
+
+  return servicesFound;
+}
 ```
 
 # License
