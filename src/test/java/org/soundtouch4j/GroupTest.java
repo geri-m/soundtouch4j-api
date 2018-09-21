@@ -29,9 +29,7 @@ public class GroupTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><group id=\"$STRING\"><name>$STRING</name><masterDeviceId>$MACADDR</masterDeviceId><roles>\n" + " " +
-                "<groupRole>\n" + " <deviceId>$MACADDR</deviceId><role>LEFT</role>\n" + " <ipAddress>$IPADDR</ipAddress></groupRole>\n" + " <groupRole>\n" + " <deviceId>$MACADDR"
-                + "</deviceId><role>RIGHT</role><ipAddress>IPADDR</ipAddress></groupRole>\n" + " </roles>\n" + " <senderIPAddress>IPADDR</senderIPAddress><status>$GROUP_STATUS" + "</status></group>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><group id=\"$STRING\"><name>$STRING</name><masterDeviceId>$MACADDR</masterDeviceId><roles><groupRole>" + "<deviceId>$MACADDR</deviceId><role>LEFT</role><ipAddress>$IPADDR</ipAddress></groupRole><groupRole><deviceId>$MACADDR</deviceId><role>RIGHT</role><ipAddress>" + "IPADDR</ipAddress></groupRole></roles><senderIPAddress>IPADDR</senderIPAddress><status>$GROUP_STATUS</status></group>");
             return result;
           }
         };

@@ -8,7 +8,7 @@ public class GroupRole {
   private String deviceId;
 
   @Key("role")
-  private GroupRoleEnum role;
+  private String role;
 
   @Key("ipAddress")
   private String ipAddress;
@@ -21,7 +21,7 @@ public class GroupRole {
     return deviceId;
   }
 
-  public GroupRoleEnum getRole() {
+  public String getRole() {
     return role;
   }
 

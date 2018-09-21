@@ -1,6 +1,8 @@
 package org.soundtouch4j.group;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.soundtouch4j.common.Response;
 import com.google.api.client.util.Key;
 
@@ -17,8 +19,8 @@ public class Group implements Response {
   @Key("masterDeviceId")
   private String masterDeviceId;
 
-  @Key("roles")
-  private List<GroupRole> roles;
+  @Key
+  private Map<String, List<GroupRole>> roles;
 
   @Key("status")
   private String status;
@@ -34,9 +36,9 @@ public class Group implements Response {
     return masterDeviceId;
   }
 
-  /*public List<GroupRole> getGroupRoles() {
+  public List<GroupRole> getGroupRoles() {
     return new ArrayList<GroupRole>(roles.get(GROUP_ROLE));
-  }*/
+  }
 
   public String getStatus() {
     return status;
