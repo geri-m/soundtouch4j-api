@@ -37,8 +37,4 @@ jobs:
     - run: mvn clean compile test
 
     # run SonarCloud Tests
-    - run: mvn sonar:sonar \
-        -Dsonar.projectKey=geri-m_soundtouch4j-api \
-        -Dsonar.organization=geri-m-github \
-        -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=$SONAR_TOKEN
+    - run: mvn sonar:sonar -Dsonar.projectKey=geri-m_soundtouch4j-api  -Dsonar.organization=geri-m-github -Dsonar.host.url='https://sonarcloud.io'‚ -Dsonar.login=$SONAR_TOKEN
