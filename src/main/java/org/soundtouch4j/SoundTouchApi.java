@@ -2,7 +2,7 @@ package org.soundtouch4j;
 
 import java.net.URL;
 import org.soundtouch4j.bass.BassApi;
-import org.soundtouch4j.bassCapabilties.BassCapabilitiesApi;
+import org.soundtouch4j.basscapabilities.BassCapabilitiesApi;
 import org.soundtouch4j.group.GroupApi;
 import org.soundtouch4j.info.InfoApi;
 import org.soundtouch4j.key.KeyApi;

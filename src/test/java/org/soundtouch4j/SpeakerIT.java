@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.bass.BassGetResponse;
-import org.soundtouch4j.bassCapabilties.BaseCapabilitiesResponse;
+import org.soundtouch4j.basscapabilities.BaseCapabilitiesResponse;
 import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.info.InfoResponse;
