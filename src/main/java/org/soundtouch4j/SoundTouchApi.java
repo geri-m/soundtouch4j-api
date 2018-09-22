@@ -54,14 +54,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public KeyApi getKeyApi() {
-
+  public synchronized KeyApi getKeyApi() {
     if (keyApi == null) {
-      synchronized (this) {
-        if (keyApi == null) {
-          keyApi = new KeyApi(this);
-        }
-      }
+      keyApi = new KeyApi(this);
     }
     return (keyApi);
   }
@@ -74,14 +69,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public InfoApi getInfoApi() {
-
+  public synchronized InfoApi getInfoApi() {
     if (infoApi == null) {
-      synchronized (this) {
-        if (infoApi == null) {
-          infoApi = new InfoApi(this);
-        }
-      }
+      infoApi = new InfoApi(this);
     }
     return (infoApi);
   }
@@ -94,14 +84,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public NowPlayingApi getNowPlayingApi() {
-
+  public synchronized NowPlayingApi getNowPlayingApi() {
     if (nowPlayingApi == null) {
-      synchronized (this) {
-        if (nowPlayingApi == null) {
-          nowPlayingApi = new NowPlayingApi(this);
-        }
-      }
+      nowPlayingApi = new NowPlayingApi(this);
     }
     return (nowPlayingApi);
   }
@@ -114,14 +99,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public SourceApi getSourceApi() {
-
+  public synchronized SourceApi getSourceApi() {
     if (sourceApi == null) {
-      synchronized (this) {
-        if (sourceApi == null) {
-          sourceApi = new SourceApi(this);
-        }
-      }
+      sourceApi = new SourceApi(this);
     }
     return (sourceApi);
   }
@@ -133,14 +113,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public SelectApi getSelectApi() {
-
+  public synchronized SelectApi getSelectApi() {
     if (selectApi == null) {
-      synchronized (this) {
-        if (selectApi == null) {
-          selectApi = new SelectApi(this);
-        }
-      }
+      selectApi = new SelectApi(this);
     }
     return (selectApi);
   }
@@ -153,14 +128,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public VolumeApi getVolumeApi() {
-
+  public synchronized VolumeApi getVolumeApi() {
     if (volumeApi == null) {
-      synchronized (this) {
-        if (volumeApi == null) {
-          volumeApi = new VolumeApi(this);
-        }
-      }
+      volumeApi = new VolumeApi(this);
     }
     return (volumeApi);
   }
@@ -173,13 +143,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public PresetApi getPresetApi() {
+  public synchronized PresetApi getPresetApi() {
     if (presetApi == null) {
-      synchronized (this) {
-        if (presetApi == null) {
-          presetApi = new PresetApi(this);
-        }
-      }
+      presetApi = new PresetApi(this);
     }
     return (presetApi);
   }
@@ -191,13 +157,9 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public NameApi getNameApi() {
+  public synchronized NameApi getNameApi() {
     if (nameApi == null) {
-      synchronized (this) {
-        if (nameApi == null) {
-          nameApi = new NameApi(this);
-        }
-      }
+      nameApi = new NameApi(this);
     }
     return (nameApi);
   }
@@ -210,13 +172,9 @@ public class SoundTouchApi implements SoundTouch {
 
 
   @Override
-  public BassCapabilitiesApi getBassCapabilitiesApi() {
+  public synchronized BassCapabilitiesApi getBassCapabilitiesApi() {
     if (bassCapabilitiesApi == null) {
-      synchronized (this) {
-        if (bassCapabilitiesApi == null) {
-          bassCapabilitiesApi = new BassCapabilitiesApi(this);
-        }
-      }
+      bassCapabilitiesApi = new BassCapabilitiesApi(this);
     }
     return (bassCapabilitiesApi);
   }
@@ -230,13 +188,9 @@ public class SoundTouchApi implements SoundTouch {
 
 
   @Override
-  public BassApi getBassApi() {
+  public synchronized BassApi getBassApi() {
     if (bassApi == null) {
-      synchronized (this) {
-        if (bassApi == null) {
-          bassApi = new BassApi(this);
-        }
-      }
+      bassApi = new BassApi(this);
     }
     return (bassApi);
   }
@@ -250,13 +204,9 @@ public class SoundTouchApi implements SoundTouch {
 
 
   @Override
-  public ZoneApi getZoneApi() {
+  public synchronized ZoneApi getZoneApi() {
     if (zoneApi == null) {
-      synchronized (this) {
-        if (zoneApi == null) {
-          zoneApi = new ZoneApi(this);
-        }
-      }
+      zoneApi = new ZoneApi(this);
     }
     return (zoneApi);
   }
@@ -268,13 +218,10 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public GroupApi getGroupApi() {
+  public synchronized GroupApi getGroupApi() {
     if (groupApi == null) {
-      synchronized (this) {
-        if (groupApi == null) {
-          groupApi = new GroupApi(this);
-        }
-      }
+      groupApi = new GroupApi(this);
+
     }
     return (groupApi);
   }
