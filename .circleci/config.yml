@@ -34,7 +34,11 @@ jobs:
         key: v1-dependencies-{{ checksum "pom.xml" }}
 
     # run tests!
-    - run: mvn clean compile test
+    - run:
+        name: Maven Build and Test
+        command: mvn clean compile test
 
     # run SonarCloud Tests
-    - run: mvn sonar:sonar -Dsonar.projectKey=geri-m_soundtouch4j-api  -Dsonar.organization=geri-m-github -Dsonar.host.url='https://sonarcloud.io'‚ -Dsonar.login=$SONAR_TOKEN
+    - run:
+        name: Run SonarQube Analyis
+        command: 'mvn sonar:sonar -Dsonar.projectKey=geri-m_soundtouch4j-api  -Dsonar.organization=geri-m-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN'
