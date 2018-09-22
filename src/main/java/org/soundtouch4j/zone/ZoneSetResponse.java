@@ -9,6 +9,7 @@ public class ZoneSetResponse implements Response {
   private String response;
 
   public ZoneSetResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getResponse() {

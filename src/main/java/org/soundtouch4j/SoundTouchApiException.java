@@ -27,7 +27,8 @@ public class SoundTouchApiException extends Exception {
     try {
       error = parser.parseAndClose(new StringReader(exception.getContent()), ErrorResponse.class);
     } catch (final IOException ignored) {
-
+      // If we can't parse the error, we don't block the exception process and ignore it for now.
+      error = null;
     }
   }
 
