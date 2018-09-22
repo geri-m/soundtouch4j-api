@@ -47,8 +47,40 @@ public class KeyApiTest extends TestCase {
     LOGGER.info("test01_power done");
   }
 
-  public void test02_mute() {
-    LOGGER.info("test02_mute started");
+  public void test02_powerBrokenResponse() {
+    LOGGER.info("test02_powerBrokenResponse started");
+    final HttpTransport transport = Const.getBrokenResponse();
+
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      soundTouchApi.getKeyApi()
+          .power();
+      Assert.fail();
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+
+    }
+    LOGGER.info("test02_powerBrokenResponse completed");
+  }
+
+  public void test03_powerIncorrectResponse() {
+    LOGGER.info("test03_powerIncorrectResponse started");
+    final HttpTransport transport = Const.getIncorrectStatusResponse("NOTPower");
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      soundTouchApi.getKeyApi()
+          .power();
+      Assert.fail();
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+      assertEquals("Invalid Response from Speaker. Response was '/NOTPower'", e.getMessage());
+    }
+    LOGGER.info("test03_powerIncorrectResponse completed");
+  }
+
+
+  public void test04_mute() {
+    LOGGER.info("test04_mute started");
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
       soundTouchApi.getKeyApi()
@@ -57,7 +89,39 @@ public class KeyApiTest extends TestCase {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
     }
-    LOGGER.info("test02_mute done");
+    LOGGER.info("test04_mute done");
+  }
+
+
+  public void test05_muteBrokenResponse() {
+    LOGGER.info("test05_muteBrokenResponse started");
+    final HttpTransport transport = Const.getBrokenResponse();
+
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      soundTouchApi.getKeyApi()
+          .power();
+      Assert.fail();
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+
+    }
+    LOGGER.info("test05_muteBrokenResponse completed");
+  }
+
+  public void test06_muteIncorrectResponse() {
+    LOGGER.info("test06_muteIncorrectResponse started");
+    final HttpTransport transport = Const.getIncorrectStatusResponse("NOTMute");
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      soundTouchApi.getKeyApi()
+          .power();
+      Assert.fail();
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+      assertEquals("Invalid Response from Speaker. Response was '/NOTMute'", e.getMessage());
+    }
+    LOGGER.info("test06_muteIncorrectResponse completed");
   }
 
 }

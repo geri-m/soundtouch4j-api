@@ -43,8 +43,8 @@ public class VolumeApiTest extends TestCase {
       assertEquals("C8DF84AE0B6E", response.getDeviceID());
       assertEquals(28, response.getActualVolume());
       assertEquals(18, response.getTargetVolume());
+      assertEquals("VolumeGetResponse{deviceID='C8DF84AE0B6E', targetVolume=18, actualVolume=28, muteEnabled=false}", response.toString());
       assertFalse(response.isMuteEnabled());
-
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
@@ -113,8 +113,8 @@ public class VolumeApiTest extends TestCase {
     LOGGER.info("test03_setVolumeLessThanZero started");
   }
 
-  public void test05_setVolumeMoreThan100() {
-    LOGGER.info("test05_setVolumeMoreThan100 started");
+  public void test04_setVolumeMoreThan100() {
+    LOGGER.info("test04_setVolumeMoreThan100 started");
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -136,7 +136,40 @@ public class VolumeApiTest extends TestCase {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       assertEquals("The Volume must be a value from 0 to 100, inclusive. '101' is out of this range.", e.getMessage());
     }
-    LOGGER.info("test05_setVolumeMoreThan100 started");
+    LOGGER.info("test04_setVolumeMoreThan100 started");
+  }
+
+
+  public void test05_setVolumeBrokenResponse() {
+    LOGGER.info("test05_setVolumeBrokenResponse started");
+    final HttpTransport transport = Const.getBrokenResponse();
+
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      soundTouchApi.getVolumeApi()
+          .setVolume(100);
+      Assert.fail();
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+
+    }
+    LOGGER.info("test05_setVolumeBrokenResponse completed");
+  }
+
+  public void test06_setVolumeIncorrectResponse() {
+    LOGGER.info("test06_setVolumeIncorrectResponse started");
+    final HttpTransport transport = Const.getIncorrectStatusResponse("NOTsetVolume");
+
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      soundTouchApi.getVolumeApi()
+          .setVolume(100);
+      Assert.fail();
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+      assertEquals("Invalid Response from Speaker. Response was '/NOTsetVolume'", e.getMessage());
+    }
+    LOGGER.info("test06_setVolumeIncorrectResponse completed");
   }
 
 }

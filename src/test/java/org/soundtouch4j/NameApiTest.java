@@ -43,7 +43,10 @@ public class NameApiTest extends TestCase {
           .setName("Geralds Box");
       assertEquals("C8DF84AE0B6E", response.getDeviceID());
       assertEquals("Geralds Box", response.getName());
-
+      assertEquals("InfoResponse{deviceID='C8DF84AE0B6E', name='Geralds Box', type='SoundTouch 20', components={component=[Component{softwareVersion='19.0.5.42017.2794643 " +
+          "epdbuild.trunk.cepeswbld02.2018-04-25T18:23:30', serialNumber='F8124895404720048620440'}, Component{softwareVersion='null', serialNumber='069428P81639976AE'}]}, " +
+          "networkInfo=[NetworkInfo{type=SCM, macAddress='C8DF84AE0B6E', ipAddress='192.168.178.61'}, NetworkInfo{type=SMSC, macAddress='C8DF84615084', ipAddress='192.168.178" +
+          ".61'}]}", response.toString());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();

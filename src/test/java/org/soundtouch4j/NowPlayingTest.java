@@ -147,4 +147,62 @@ public class NowPlayingTest extends TestCase {
     LOGGER.info("test03_nowStandby done");
   }
 
+
+  public void test04_sampleData() {
+    LOGGER.info("test04_sampleData started");
+    final HttpTransport transport = new MockHttpTransport() {
+      @Override
+      public LowLevelHttpRequest buildRequest(final String method, final String url) {
+        return new MockLowLevelHttpRequest() {
+          @Override
+          public LowLevelHttpResponse execute() {
+            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
+            result.setContentType(Xml.MEDIA_TYPE);
+
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"deviceID\" source=\"STANDBY\"><ContentItem source=\"UPNP\" location=\"location\"" +
+                " " + "sourceAccount=\"sourceAccount\" isPresetable=\"true\"><itemName>itemName</itemName></ContentItem><track>track</track><artist>artist</artist><album>album" +
+                "</album>" + "<stationName>stationName</stationName><art artImageStatus=\"DOWNLOADING\">url</art><playStatus>PAUSE_STATE</playStatus><description>description" +
+                "</description><stationLocation>stationLocation</stationLocation></nowPlaying>");
+
+
+            return result;
+          }
+        };
+      }
+    };
+
+    final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
+    try {
+      final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
+          .nowPlaying();
+      assertEquals("deviceID", response.getDeviceID());
+      assertEquals(SourceEnum.STANDBY, response.getSource());
+      assertEquals("album", response.getAlbum());
+      assertEquals("track", response.getTrack());
+      assertEquals(SourceEnum.UPNP, response.getContentItem()
+          .getSource());
+      assertEquals("itemName", response.getContentItem()
+          .getItemName());
+      assertEquals("sourceAccount", response.getContentItem()
+          .getSourceAccount());
+      assertEquals("location", response.getContentItem()
+          .getLocation());
+      assertEquals("artist", response.getArtist());
+      assertEquals("stationLocation", response.getStationLocation());
+      assertEquals("stationName", response.getStationName());
+      assertEquals(ArtImageStatusEnum.DOWNLOADING, response.getArt()
+          .getArtImageStatus());
+      assertEquals("url", response.getArt()
+          .getValue());
+      assertEquals(PlayStatusEnum.PAUSE_STATE, response.getPlayStatus());
+    } catch (final SoundTouchApiException e) {
+      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
+      Assert.fail();
+    }
+    LOGGER.info("test04_sampleData done");
+  }
+
+
+
+
 }

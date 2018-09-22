@@ -43,6 +43,8 @@ public class SelectApiTest extends TestCase {
     try {
       soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.AUX, "AUX"));
+
+
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       fail();
@@ -62,8 +64,8 @@ public class SelectApiTest extends TestCase {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
             result.setStatusCode(HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" + "<errors deviceID=\"C8DF84AE0B6E\">\n" + "    <error value=\"1045\" " + "name" +
-                "=\"SELECT_ITEM_IN_WRONG_STATE\" severity=\"Unknown\">1045</error>\n" + "</errors>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><errors deviceID=\"C8DF84AE0B6E\"><error value=\"1045\" name=\"SELECT_ITEM_IN_WRONG_STATE\" " +
+                "severity=\"Unknown\">1045</error></errors>");
             return result;
           }
         };
@@ -91,6 +93,13 @@ public class SelectApiTest extends TestCase {
           .getErrorList()
           .get(0)
           .getValue());
+      assertEquals("1045", e.getError()
+          .getErrorList()
+          .get(0)
+          .getText());
+
+
+
     }
     LOGGER.info("test02_withToUnkown started");
   }

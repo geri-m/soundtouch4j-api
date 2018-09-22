@@ -150,20 +150,7 @@ public class ZoneApiTest extends TestCase {
 
   public void test05_addZoneSlaveBrokenResponse() {
     LOGGER.info("test05_addZoneSlaveBrokenResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("BROKEN RESPONSE ADD ZONE SLAVE");
-            return result;
-          }
-        };
-      }
-    };
+    final HttpTransport transport = Const.getBrokenResponse();
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
@@ -181,20 +168,7 @@ public class ZoneApiTest extends TestCase {
 
   public void test06_addZoneSlaveIncorrectResponse() {
     LOGGER.info("test05_addZoneSlaveBrokenResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/NOTAaddZoneSlave</status>");
-            return result;
-          }
-        };
-      }
-    };
+    final HttpTransport transport = Const.getIncorrectStatusResponse("NOTAaddZoneSlave");
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
@@ -245,20 +219,7 @@ public class ZoneApiTest extends TestCase {
 
   public void test08_removeZoneSlaveBrokenResponse() {
     LOGGER.info("test05_addZoneSlaveBrokenResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("BROKEN RESPONSE REMOVE ZONE SLAVE");
-            return result;
-          }
-        };
-      }
-    };
+    final HttpTransport transport = Const.getBrokenResponse();
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
@@ -276,20 +237,7 @@ public class ZoneApiTest extends TestCase {
 
   public void test09_removeZoneSlaveIncorrectResponse() {
     LOGGER.info("test05_addZoneSlaveBrokenResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/NOTAremoveZoneSlave</status>");
-            return result;
-          }
-        };
-      }
-    };
+    final HttpTransport transport = Const.getIncorrectStatusResponse("NOTAremoveZoneSlave");
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
@@ -308,20 +256,7 @@ public class ZoneApiTest extends TestCase {
 
   public void test10_setZoneBrokenResponse() {
     LOGGER.info("test10_setZoneBrokenResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("BROKEN RESPONSE SET ZONE");
-            return result;
-          }
-        };
-      }
-    };
+    final HttpTransport transport = Const.getBrokenResponse();
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
@@ -339,20 +274,7 @@ public class ZoneApiTest extends TestCase {
 
   public void test11_setZoneIncorrectResponse() {
     LOGGER.info("test11_setZoneIncorrectResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/NOTAsetZone</status>");
-            return result;
-          }
-        };
-      }
-    };
+    final HttpTransport transport = Const.getIncorrectStatusResponse("NOTAsetZone");
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
