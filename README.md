@@ -2,6 +2,7 @@
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/geri-m/soundtouch4j-api/blob/master/LICENSE)
 [![Release Version](https://img.shields.io/badge/release-1.0.3-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
 [![Platform](https://img.shields.io/badge/Platform-Java-brightgreen.svg)](https://github.com/Tencent/MMKV/wiki/home)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=geri-m_soundtouch4j-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=geri-m_soundtouch4j-api)
 
 # Java API for Bose SoundTouch API - SoundTouch4J
 
