@@ -32,7 +32,11 @@ public class BassApi extends AbstractApi {
    */
 
   public void setBass(final int bass) throws SoundTouchApiException {
-    soundTouchApi.getSoundTouchApiClient()
+    final BassSetResponse response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, BassRequest.ELEMENT_NAME, new BassRequest(bass), BassSetResponse.class);
+
+    if (!("/" + PATH_FOR_API).equals(response.getValue())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getValue()));
+    }
   }
 }
