@@ -44,6 +44,7 @@ public class BassCapabilitiesApiTest extends TestCase {
       assertEquals(-9, response.getBassMin());
       assertEquals(0, response.getBassMax());
       assertEquals(0, response.getBassDefault());
+      assertTrue(response.isBassAvailable());
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());

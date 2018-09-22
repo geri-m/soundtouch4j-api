@@ -86,21 +86,7 @@ public class BassApiTest extends TestCase {
 
   public void test03_setBassBrokenResponse() {
     LOGGER.info("test03_setBassBrokenResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("BROKEN RESPONSE SET BASS");
-            return result;
-          }
-        };
-      }
-    };
-
+    final HttpTransport transport = Const.getBrokenResponse();
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
       final Zone zone = new Zone("C8DF84AE0B6E");
@@ -117,20 +103,7 @@ public class BassApiTest extends TestCase {
 
   public void test04_setBassIncorrectResponse() {
     LOGGER.info("test04_setBassIncorrectResponse started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/NOTAsetBase</status>");
-            return result;
-          }
-        };
-      }
-    };
+    final HttpTransport transport = Const.getIncorrectStatusResponse("NOTAsetBase");
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {

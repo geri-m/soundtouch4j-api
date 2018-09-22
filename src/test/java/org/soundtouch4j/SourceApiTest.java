@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.source.SourceItem;
 import org.soundtouch4j.source.SourceResponse;
+import org.soundtouch4j.source.SourceStatusEnum;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -46,6 +47,30 @@ public class SourceApiTest extends TestCase {
       assertEquals("C8DF84AE0B6E", response.getDeviceID());
       assertEquals(11, response.getSourceItems()
           .size());
+
+      assertEquals(SourceEnum.AUX, response.getSourceItems()
+          .get(0)
+          .getSource());
+
+      assertEquals("AUX", response.getSourceItems()
+          .get(0)
+          .getSourceAccount());
+
+      assertEquals(SourceStatusEnum.READY, response.getSourceItems()
+          .get(0)
+          .getStatus());
+
+      assertTrue(response.getSourceItems()
+          .get(0)
+          .isLocal());
+
+      assertTrue(response.getSourceItems()
+          .get(0)
+          .isMultiroomallowed());
+
+      assertEquals("AUX IN", response.getSourceItems()
+          .get(0)
+          .getValue());
 
       final List<SourceItem> items1 = soundTouchApi.getSourceApi()
           .getSourcesByType(SourceEnum.AUX);

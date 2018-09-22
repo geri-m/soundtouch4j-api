@@ -40,7 +40,11 @@ public class VolumeApi extends AbstractApi {
       throw new SoundTouchApiException(String.format(ERROR_MSG_VOLUME_RANGE, volume));
     }
 
-    soundTouchApi.getSoundTouchApiClient()
+    final VolumeSetResponse response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, VolumeSetRequest.ELEMENT_NAME, new VolumeSetRequest(volume), VolumeSetResponse.class);
+
+    if (!("/" + PATH_FOR_API).equals(response.getVolume())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getVolume()));
+    }
   }
 }

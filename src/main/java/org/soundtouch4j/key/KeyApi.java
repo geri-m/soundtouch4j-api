@@ -20,10 +20,19 @@ public class KeyApi extends AbstractApi {
    */
 
   public void power() throws SoundTouchApiException {
-    soundTouchApi.getSoundTouchApiClient()
+    KeyResponse response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.PRESS), KeyResponse.class);
-    soundTouchApi.getSoundTouchApiClient()
+
+    if (!("/" + PATH_FOR_API).equals(response.getValue())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getValue()));
+    }
+
+    response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.POWER, KeyStateEnum.RELEASE), KeyResponse.class);
+
+    if (!("/" + PATH_FOR_API).equals(response.getValue())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getValue()));
+    }
   }
 
   /**
@@ -33,8 +42,12 @@ public class KeyApi extends AbstractApi {
    */
 
   public void mute() throws SoundTouchApiException {
-    soundTouchApi.getSoundTouchApiClient()
+    final KeyResponse response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, KeyRequest.ELEMENT_NAME, new KeyRequest(KeyPressValueEnum.MUTE, KeyStateEnum.PRESS), KeyResponse.class);
+
+    if (!("/" + PATH_FOR_API).equals(response.getValue())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getValue()));
+    }
   }
 
 
