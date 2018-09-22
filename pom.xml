@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.4</version>
   <name>SoundTouch API Java Client</name>
   <description>API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's SoundTouch</description>
   <url>https://github.com/geri-m/soundtouch4j</url>
@@ -42,7 +41,7 @@
     <url>git@github.com:geri-m/soundtouch4j-api.git</url>
     <connection>scm:git:git@github.com:geri-m/soundtouch4j-api.git</connection>
     <developerConnection>scm:git:git@github.com:geri-m/soundtouch4j-api.git</developerConnection>
-    <tag>soundtouch4j-api-1.0.1</tag>
+    <tag>soundtouch4j-api-1.0.4</tag>
   </scm>
 
   <dependencies>
