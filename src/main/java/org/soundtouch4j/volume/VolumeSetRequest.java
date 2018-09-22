@@ -28,10 +28,6 @@ public class VolumeSetRequest implements Request {
     this.volume = volume;
   }
 
-  public int getVolume() {
-    return volume;
-  }
-
   @Override
   public String toString() {
     return "VolumeSetRequest{" + "volume=" + volume + '}';

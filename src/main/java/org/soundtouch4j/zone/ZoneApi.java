@@ -11,6 +11,7 @@ public class ZoneApi extends AbstractApi {
   private static final String PATH_FOR_API_ADD = "addZoneSlave";
   private static final String PATH_FOR_API_RM = "removeZoneSlave";
 
+
   public ZoneApi(final SoundTouchApi soundTouchApi) {
     super(soundTouchApi);
   }
@@ -25,6 +26,7 @@ public class ZoneApi extends AbstractApi {
   public Zone getZone() throws SoundTouchApiException {
     return soundTouchApi.getSoundTouchApiClient()
         .get(PATH_FOR_API_GET, Zone.class);
+
   }
 
   /**
@@ -36,8 +38,12 @@ public class ZoneApi extends AbstractApi {
 
   public void setZone(final Zone zone) throws SoundTouchApiException {
 
-    soundTouchApi.getSoundTouchApiClient()
+    final ZoneSetResponse response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API_SET, Zone.ELEMENT_NAME, zone, ZoneSetResponse.class);
+
+    if (!("/" + PATH_FOR_API_SET).equals(response.getResponse())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getResponse()));
+    }
   }
 
   /**
@@ -47,8 +53,12 @@ public class ZoneApi extends AbstractApi {
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
   public void addZoneSlave(final Zone zone) throws SoundTouchApiException {
-    soundTouchApi.getSoundTouchApiClient()
+    final ZoneSetResponse response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API_ADD, Zone.ELEMENT_NAME, zone, ZoneSetResponse.class);
+
+    if (!("/" + PATH_FOR_API_ADD).equals(response.getResponse())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getResponse()));
+    }
   }
 
   /**
@@ -59,8 +69,12 @@ public class ZoneApi extends AbstractApi {
    */
 
   public void removeZoneSlave(final Zone zone) throws SoundTouchApiException {
-    soundTouchApi.getSoundTouchApiClient()
+    final ZoneSetResponse response = soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API_RM, Zone.ELEMENT_NAME, zone, ZoneSetResponse.class);
+
+    if (!("/" + PATH_FOR_API_RM).equals(response.getResponse())) {
+      throw new SoundTouchApiException(String.format(ERROR_MSG_FROM_SPEAKER, response.getResponse()));
+    }
   }
 
 

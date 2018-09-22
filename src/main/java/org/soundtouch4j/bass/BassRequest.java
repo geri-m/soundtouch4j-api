@@ -19,11 +19,6 @@ public class BassRequest implements Request {
     // Auto Init/Reflection Requires Empty Constructor
   }
 
-  public int getBass() {
-    return bass;
-  }
-
-
   @Override
   public String toString() {
     return "BassRequest{" + "bass=" + bass + '}';

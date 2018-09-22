@@ -5,14 +5,14 @@ import com.google.api.client.util.Key;
 public class ZoneMember {
 
   @Key("@ipaddress")
-  private String ipaddress;
+  private String ipAddress;
 
   @Key("text()")
   private String macAddress;
 
 
   public ZoneMember(final String ipAddress, final String macAddress) {
-    this.ipaddress = ipAddress;
+    this.ipAddress = ipAddress;
     this.macAddress = macAddress;
   }
 
@@ -20,8 +20,8 @@ public class ZoneMember {
     // Auto Init/Reflection Requires Empty Constructor
   }
 
-  public String getIpaddress() {
-    return ipaddress;
+  public String getIpAddress() {
+    return ipAddress;
   }
 
 
@@ -31,6 +31,6 @@ public class ZoneMember {
 
   @Override
   public String toString() {
-    return "ZoneMember{" + "ipaddress='" + ipaddress + '\'' + ", macAddress='" + macAddress + '\'' + '}';
+    return "ZoneMember{" + "ipaddress='" + ipAddress + '\'' + ", macAddress='" + macAddress + '\'' + '}';
   }
 }

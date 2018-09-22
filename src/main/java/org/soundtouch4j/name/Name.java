@@ -19,16 +19,4 @@ public class Name implements Request {
     // Auto Init/Reflection Requires Empty Constructor
   }
 
-  public static String getElementName() {
-    return ELEMENT_NAME;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return "Name{" + "value='" + value + '\'' + '}';
-  }
 }
