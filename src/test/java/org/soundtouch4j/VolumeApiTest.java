@@ -40,9 +40,9 @@ public class VolumeApiTest extends TestCase {
     try {
       final VolumeGetResponse response = soundTouchApi.getVolumeApi()
           .getVolume();
-      assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(response.getActualVolume(), 28);
-      assertEquals(response.getTargetVolume(), 18);
+      assertEquals("C8DF84AE0B6E", response.getDeviceID());
+      assertEquals(28, response.getActualVolume());
+      assertEquals(18, response.getTargetVolume());
       assertFalse(response.isMuteEnabled());
 
     } catch (final SoundTouchApiException e) {

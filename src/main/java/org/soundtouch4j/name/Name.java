@@ -8,11 +8,11 @@ public class Name implements Request {
   public static final String ELEMENT_NAME = "name";
 
   @Key("text()")
-  private String name;
+  private String value;
 
 
-  public Name(final String name) {
-    this.name = name;
+  public Name(final String value) {
+    this.value = value;
   }
 
   public Name() {
@@ -23,8 +23,12 @@ public class Name implements Request {
     return ELEMENT_NAME;
   }
 
+  public String getValue() {
+    return value;
+  }
+
   @Override
   public String toString() {
-    return "Name{" + "name='" + name + '\'' + '}';
+    return "Name{" + "value='" + value + '\'' + '}';
   }
 }

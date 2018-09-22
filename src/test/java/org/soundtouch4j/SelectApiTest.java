@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.common.ErrorEnum;
 import org.soundtouch4j.common.SourceEnum;
-import org.soundtouch4j.select.SelectResponse;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
@@ -42,14 +41,11 @@ public class SelectApiTest extends TestCase {
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
-      final SelectResponse response = soundTouchApi.getSelectApi()
+      soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.AUX, "AUX"));
-
-      assertEquals(response.getStatus(), "/select");
-      LOGGER.info("Response: {}", response);
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test01_withToAux started");
   }
@@ -82,19 +78,19 @@ public class SelectApiTest extends TestCase {
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.assertEquals(e.getHttpStatus(), HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
-      Assert.assertEquals(e.getError()
+      assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
+      assertEquals(ErrorEnum.SELECT_ITEM_IN_WRONG_STATE, e.getError()
           .getErrorList()
           .get(0)
-          .getName(), ErrorEnum.SELECT_ITEM_IN_WRONG_STATE);
-      Assert.assertEquals(e.getError()
+          .getName());
+      assertEquals("Unknown", e.getError()
           .getErrorList()
           .get(0)
-          .getSeverity(), "Unknown");
-      Assert.assertEquals(e.getError()
+          .getSeverity());
+      assertEquals(1045, e.getError()
           .getErrorList()
           .get(0)
-          .getValue(), 1045);
+          .getValue());
     }
     LOGGER.info("test02_withToUnkown started");
   }

@@ -10,11 +10,11 @@ import com.google.api.client.util.Key;
 public class KeyRequest implements Request {
 
   public static final String ELEMENT_NAME = "key";
-  private static final String SENDER = "Gabbo";
+  private static final String GABBO = "Gabbo";
 
   // This value is always "Gabbo" - see documentation.
   @Key("@sender")
-  private final String sender = SENDER;
+  private final String sender = GABBO;
   @Key("text()")
   private final String key;
   @Key("@state")

@@ -40,9 +40,9 @@ public class BassApiTest extends TestCase {
       final BassGetResponse response = soundTouchApi.getBassApi()
           .getBass();
 
-      assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(response.getActualBass(), 2);
-      assertEquals(response.getTargetBass(), 1);
+      assertEquals("C8DF84AE0B6E", response.getDeviceID());
+      assertEquals(2, response.getActualBass());
+      assertEquals(1, response.getTargetBass());
 
 
     } catch (final SoundTouchApiException e) {
