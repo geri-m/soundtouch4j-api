@@ -128,7 +128,7 @@ public class NowPlayingResponse implements Response {
   private ConnectionStatusInfo connectionStatusInfo;
 
   public NowPlayingResponse() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public ContentItem getContentItem() {

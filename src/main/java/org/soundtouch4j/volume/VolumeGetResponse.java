@@ -36,6 +36,7 @@ public class VolumeGetResponse implements Response {
   private boolean muteEnabled;
 
   public VolumeGetResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   @Override

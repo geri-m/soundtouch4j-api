@@ -9,6 +9,7 @@ public class SelectResponse implements Response {
   private String status;
 
   public SelectResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getStatus() {

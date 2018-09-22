@@ -26,6 +26,7 @@ public class Group implements Response {
   private String status;
 
   public Group() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getName() {

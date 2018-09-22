@@ -11,6 +11,7 @@ public class ConnectionStatusInfo {
   private String deviceName;
 
   public ConnectionStatusInfo() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getStatus() {

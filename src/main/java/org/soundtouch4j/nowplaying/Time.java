@@ -11,7 +11,7 @@ public class Time {
   private int total;
 
   public Time() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public int getValue() {

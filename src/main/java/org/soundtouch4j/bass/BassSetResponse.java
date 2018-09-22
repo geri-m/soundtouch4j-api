@@ -10,7 +10,7 @@ public class BassSetResponse implements Response {
   private String value;
 
   public BassSetResponse() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getValue() {

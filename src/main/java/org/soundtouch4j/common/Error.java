@@ -17,6 +17,7 @@ public class Error {
   private String text;
 
   public Error() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public int getValue() {

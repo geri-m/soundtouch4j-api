@@ -11,6 +11,7 @@ public class Art {
   private ArtImageStatusEnum artImageStatus;
 
   public Art() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getValue() {

@@ -68,7 +68,7 @@ public class InfoResponse implements Response {
   private List<NetworkInfo> networkInfo;
 
   public InfoResponse() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getDeviceID() {

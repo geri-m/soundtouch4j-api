@@ -21,6 +21,7 @@ public class BaseCapabilitiesResponse implements Response {
   private int bassDefault;
 
   public BaseCapabilitiesResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public boolean isBassAvailable() {

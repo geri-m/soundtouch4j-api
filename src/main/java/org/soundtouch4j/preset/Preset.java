@@ -19,6 +19,7 @@ public class Preset {
   private ContentItem contentItem;
 
   public Preset() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public ContentItem getContentItem() {

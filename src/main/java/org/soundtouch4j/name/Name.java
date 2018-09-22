@@ -16,6 +16,7 @@ public class Name implements Request {
   }
 
   public Name() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public static String getElementName() {
