@@ -5,7 +5,7 @@ import com.google.api.client.util.Key;
 public class Art {
 
   @Key("text()")
-  private String art;
+  private String value;
 
   @Key("@artImageStatus")
   private ArtImageStatusEnum artImageStatus;
@@ -15,7 +15,7 @@ public class Art {
   }
 
   public String getValue() {
-    return art;
+    return value;
   }
 
   public ArtImageStatusEnum getArtImageStatus() {
@@ -24,6 +24,6 @@ public class Art {
 
   @Override
   public String toString() {
-    return "Art{" + "value=" + art + ", artImageStatus=" + artImageStatus + '}';
+    return "Art{" + "value=" + value + ", artImageStatus=" + artImageStatus + '}';
   }
 }

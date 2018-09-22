@@ -17,7 +17,7 @@ import junit.framework.TestCase;
 
 public class PresetsApiTest extends TestCase {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(SourceApiTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(PresetsApiTest.class);
 
   public void test01_getPresets() {
     LOGGER.info("test01_getPresets started");
@@ -41,43 +41,43 @@ public class PresetsApiTest extends TestCase {
       final PresetResponse response = soundTouchApi.getPresetApi()
           .getPresets();
 
-      assertEquals(response.getPresetList()
-          .size(), 6);
-      assertEquals(response.getPresetList()
+      assertEquals(6, response.getPresetList()
+          .size());
+      assertEquals(1, response.getPresetList()
           .get(0)
-          .getId(), 1);
-      assertEquals(response.getPresetList()
+          .getId());
+      assertEquals(1536426168 * 1000L, response.getPresetList()
           .get(0)
           .getCreatedOn()
-          .getTime(), 1536426168 * 1000L);
-      assertEquals(response.getPresetList()
+          .getTime());
+      assertEquals(1536426168 * 1000L, response.getPresetList()
           .get(0)
           .getUpdatedOn()
-          .getTime(), 1536426168 * 1000L);
-      assertEquals(response.getPresetList()
+          .getTime());
+      assertEquals(SourceEnum.INTERNET_RADIO, response.getPresetList()
           .get(0)
           .getContentItem()
-          .getSource(), SourceEnum.INTERNET_RADIO);
-      assertEquals(response.getPresetList()
+          .getSource());
+      assertEquals("ORF Hitradio Ö3", response.getPresetList()
           .get(0)
           .getContentItem()
-          .getItemName(), "ORF Hitradio Ö3");
-      assertEquals(response.getPresetList()
+          .getItemName());
+      assertEquals("http://item.radio456.com/007452/logo/logo-18298.jpg", response.getPresetList()
           .get(0)
           .getContentItem()
-          .getContainerArt(), "http://item.radio456" + ".com/007452/logo/logo-18298.jpg");
-      assertEquals(response.getPresetList()
+          .getContainerArt());
+      assertEquals("", response.getPresetList()
           .get(0)
           .getContentItem()
-          .getSourceAccount(), "");
-      assertEquals(response.getPresetList()
+          .getSourceAccount());
+      assertEquals("18298", response.getPresetList()
           .get(0)
           .getContentItem()
-          .getLocation(), "18298");
-      assertEquals(response.getPresetList()
+          .getLocation());
+      assertEquals(true, response.getPresetList()
           .get(0)
           .getContentItem()
-          .isPresetable(), true);
+          .isPresetable());
 
       LOGGER.info("Response: {}", response);
 

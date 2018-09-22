@@ -1,8 +1,11 @@
 package org.soundtouch4j.common;
 
+import java.io.Serializable;
 import com.google.api.client.util.Key;
 
-public class Error {
+public class Error implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   @Key("@value")
   private int value;

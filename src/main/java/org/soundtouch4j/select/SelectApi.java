@@ -18,12 +18,11 @@ public class SelectApi extends AbstractApi {
    * Method to get the Sources of the  the Sound Touch
    *
    * @param content The {@link ContentItem} to select on the Speaker
-   * @return SelectResponse Response from the Speaker when posting a Select Command
    * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public SelectResponse select(final ContentItem content) throws SoundTouchApiException {
-    return soundTouchApi.getSoundTouchApiClient()
+  public void select(final ContentItem content) throws SoundTouchApiException {
+    soundTouchApi.getSoundTouchApiClient()
         .post(PATH_FOR_API, ContentItem.ELEMENT_NAME, content, SelectResponse.class);
   }
 }

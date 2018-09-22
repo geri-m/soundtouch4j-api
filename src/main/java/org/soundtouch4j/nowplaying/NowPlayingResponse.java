@@ -114,12 +114,17 @@ public class NowPlayingResponse implements Response {
   @Key
   private String rateEnabled;
 
-  // TODO: Work with ENUM Type here
   @Key
   private String playStatus;
 
   @Key
-  private String description;
+  private String shuffleSetting;
+
+  @Key
+  private String repeatSettings;
+
+  @Key
+  private String streamType;
 
   @Key
   private String stationLocation;
@@ -155,12 +160,20 @@ public class NowPlayingResponse implements Response {
     return art;
   }
 
-  public String getPlayStatus() {
-    return playStatus;
+  public PlayStatusEnum getPlayStatus() {
+    return PlayStatusEnum.valueOf(playStatus);
   }
 
-  public String getDescription() {
-    return description;
+  public ShuffelStatusEnum getShuffleSetting() {
+    return ShuffelStatusEnum.valueOf(shuffleSetting);
+  }
+
+  public RepeatStatusEnum getRepeatSettings() {
+    return RepeatStatusEnum.valueOf(repeatSettings);
+  }
+
+  public StreamStatusEnum getStreamType() {
+    return StreamStatusEnum.valueOf(streamType);
   }
 
   public String getStationLocation() {
@@ -229,13 +242,12 @@ public class NowPlayingResponse implements Response {
    */
 
   public boolean isPlaying() {
-    return PlayStatusEnum.valueOf(getPlayStatus())
-        .equals(PlayStatusEnum.PLAY_STATE);
+    return getPlayStatus().equals(PlayStatusEnum.PLAY_STATE);
   }
 
 
   @Override
   public String toString() {
-    return "NowPlayingResponse{" + "source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + isSkipEnabled() + ", skipPreviousEnabled=" + isSkipPreviousEnabled() + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isIsFavorite() + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", description='" + description + '\'' + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
+    return "NowPlayingResponse{" + "source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + isSkipEnabled() + ", skipPreviousEnabled=" + isSkipPreviousEnabled() + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isIsFavorite() + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
   }
 }

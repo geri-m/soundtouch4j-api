@@ -41,8 +41,8 @@ public class NameApiTest extends TestCase {
     try {
       final InfoResponse response = soundTouchApi.getNameApi()
           .setName("Geralds Box");
-      assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(response.getName(), "Geralds Box");
+      assertEquals("C8DF84AE0B6E", response.getDeviceID());
+      assertEquals("Geralds Box", response.getName());
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());

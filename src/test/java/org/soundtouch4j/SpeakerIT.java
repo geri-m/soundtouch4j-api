@@ -14,7 +14,6 @@ import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.nowplaying.NowPlayingResponse;
 import org.soundtouch4j.preset.PresetResponse;
-import org.soundtouch4j.select.SelectResponse;
 import org.soundtouch4j.volume.VolumeGetResponse;
 import org.soundtouch4j.zone.Zone;
 import com.google.api.client.http.HttpStatusCodes;
@@ -48,14 +47,14 @@ public class SpeakerIT {
           .isPlaying()) {
       }
 
-      Assert.assertEquals(soundTouchApi.getInfoApi()
+      Assert.assertEquals(2, soundTouchApi.getInfoApi()
           .getInfo()
           .getNetworkInfo()
-          .size(), 2);
-      Assert.assertEquals(soundTouchApi.getSourceApi()
+          .size());
+      Assert.assertEquals(11, soundTouchApi.getSourceApi()
           .getSources()
           .getSourceItems()
-          .size(), 11);
+          .size());
 
 
       LOGGER.info("Un-Mute, if speaker is muted");
@@ -187,7 +186,7 @@ public class SpeakerIT {
 
     final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
     try {
-      final InfoResponse response = soundTouchApi.getInfoApi()
+      soundTouchApi.getInfoApi()
           .getInfo();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
@@ -220,9 +219,8 @@ public class SpeakerIT {
     LOGGER.info("test03_nowPlaying started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     try {
-      final SelectResponse response = soundTouchApi.getSelectApi()
+      soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.AUX, "AUX"));
-      LOGGER.info("Select: '{}'", response);
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get information on 'now Playing: {}", e.getMessage());
       Assert.fail();
@@ -243,7 +241,7 @@ public class SpeakerIT {
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
-      Assert.assertEquals(e.getHttpStatus(), HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
+      Assert.assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
     }
 
     LOGGER.info("test04_selectIncorrectSource passed");
@@ -328,7 +326,7 @@ public class SpeakerIT {
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
-      Assert.assertEquals(e.getHttpStatus(), HttpStatusCodes.STATUS_CODE_SERVER_ERROR);
+      Assert.assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
     }
 
     LOGGER.info("test05_getAndChangeVolume passed");
@@ -359,15 +357,12 @@ public class SpeakerIT {
     try {
       InfoResponse reps = soundTouchApi.getNameApi()
           .setName("test");
-      Assert.assertEquals(reps.getName(), "test");
+      Assert.assertEquals("test", reps.getName());
 
-      LOGGER.info("SetName: {}", reps);
 
       reps = soundTouchApi.getNameApi()
           .setName("SoundTouch 20");
-      Assert.assertEquals(reps.getName(), "SoundTouch 20");
-
-      LOGGER.info("SetName: {}", reps);
+      Assert.assertEquals("SoundTouch 20", reps.getName());
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
@@ -399,13 +394,20 @@ public class SpeakerIT {
           .getActualBass() != -5) {
 
       }
-      Assert.assertEquals(responseBass.getActualBass(), -5);
+      Assert.assertEquals(-5, responseBass.getActualBass());
 
       soundTouchApi.getBassApi()
           .setBass(actualBass);
       responseBass = soundTouchApi.getBassApi()
           .getBass();
-      Assert.assertEquals(responseBass.getActualBass(), actualBass);
+
+      while (soundTouchApi.getBassApi()
+          .getBass()
+          .getActualBass() != responseBass.getActualBass()) {
+
+      }
+
+      Assert.assertEquals(actualBass, responseBass.getActualBass());
 
 
     } catch (final SoundTouchApiException e) {

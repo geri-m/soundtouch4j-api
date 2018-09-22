@@ -43,21 +43,21 @@ public class SourceApiTest extends TestCase {
       final SourceResponse response = soundTouchApi.getSourceApi()
           .getSources();
 
-      assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(response.getSourceItems()
-          .size(), 11);
+      assertEquals("C8DF84AE0B6E", response.getDeviceID());
+      assertEquals(11, response.getSourceItems()
+          .size());
 
       final List<SourceItem> items1 = soundTouchApi.getSourceApi()
           .getSourcesByType(SourceEnum.AUX);
-      assertEquals(items1.size(), 1);
+      assertEquals(1, items1.size());
 
       final List<SourceItem> items2 = soundTouchApi.getSourceApi()
           .getSourcesByType(SourceEnum.QPLAY);
-      assertEquals(items2.size(), 2);
+      assertEquals(2, items2.size());
 
       final List<SourceItem> items3 = soundTouchApi.getSourceApi()
           .getSourcesByType(SourceEnum.STANDBY);
-      assertEquals(items3.size(), 0);
+      assertEquals(0, items3.size());
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());

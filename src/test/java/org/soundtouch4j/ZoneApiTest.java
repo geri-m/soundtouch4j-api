@@ -71,13 +71,13 @@ public class ZoneApiTest extends TestCase {
       final Zone zone = soundTouchApi.getZoneApi()
           .getZone();
 
-      assertEquals(zone.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(zone.getMembers()
+      assertEquals("C8DF84AE0B6E", zone.getDeviceID());
+      assertEquals("192.168.178.61", zone.getMembers()
           .get(0)
-          .getIpaddress(), "192.168.178.61");
-      assertEquals(zone.getMembers()
+          .getIpaddress());
+      assertEquals("C8DF84AE0B6E", zone.getMembers()
           .get(0)
-          .getMacAddress(), "C8DF84AE0B6E");
+          .getMacAddress());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();

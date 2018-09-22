@@ -43,32 +43,32 @@ public class GroupTest extends TestCase {
       final Group group = soundTouchApi.getGroupApi()
           .getGroup();
 
-      Assert.assertEquals(group.getId(), "$STRING");
-      Assert.assertEquals(group.getGroupRoles()
-          .size(), 2);
-      Assert.assertEquals(group.getMasterDeviceId(), "masterDeviceId");
-      Assert.assertEquals(group.getName(), "name");
-      Assert.assertEquals(group.getStatus(), "status");
+      Assert.assertEquals("$STRING", group.getId());
+      Assert.assertEquals(2, group.getGroupRoles()
+          .size());
+      Assert.assertEquals("masterDeviceId", group.getMasterDeviceId());
+      Assert.assertEquals("name", group.getName());
+      Assert.assertEquals("status", group.getStatus());
 
-      Assert.assertEquals(group.getGroupRoles()
+      Assert.assertEquals("deviceId1", group.getGroupRoles()
           .get(0)
-          .getDeviceId(), "deviceId1");
-      Assert.assertEquals(group.getGroupRoles()
+          .getDeviceId());
+      Assert.assertEquals("ipAddress1", group.getGroupRoles()
           .get(0)
-          .getIpAddress(), "ipAddress1");
-      Assert.assertEquals(group.getGroupRoles()
+          .getIpAddress());
+      Assert.assertEquals("LEFT1", group.getGroupRoles()
           .get(0)
-          .getRole(), "LEFT1");
+          .getRole());
 
-      Assert.assertEquals(group.getGroupRoles()
+      Assert.assertEquals("deviceId2", group.getGroupRoles()
           .get(1)
-          .getDeviceId(), "deviceId2");
-      Assert.assertEquals(group.getGroupRoles()
+          .getDeviceId());
+      Assert.assertEquals("ipAddress2", group.getGroupRoles()
           .get(1)
-          .getIpAddress(), "ipAddress2");
-      Assert.assertEquals(group.getGroupRoles()
+          .getIpAddress());
+      Assert.assertEquals("RIGHT2", group.getGroupRoles()
           .get(1)
-          .getRole(), "RIGHT2");
+          .getRole());
 
 
     } catch (final SoundTouchApiException e) {
@@ -101,12 +101,12 @@ public class GroupTest extends TestCase {
       final Group group = soundTouchApi.getGroupApi()
           .getGroup();
 
-      Assert.assertEquals(group.getId(), "$STRING");
-      Assert.assertEquals(group.getGroupRoles()
-          .size(), 0);
-      Assert.assertEquals(group.getMasterDeviceId(), "masterDeviceId");
-      Assert.assertEquals(group.getName(), "name");
-      Assert.assertEquals(group.getStatus(), "status");
+      Assert.assertEquals("$STRING", group.getId());
+      Assert.assertEquals(0, group.getGroupRoles()
+          .size());
+      Assert.assertEquals("masterDeviceId", group.getMasterDeviceId());
+      Assert.assertEquals("name", group.getName());
+      Assert.assertEquals("status", group.getStatus());
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());

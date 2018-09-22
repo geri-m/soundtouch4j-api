@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.nowplaying.ArtImageStatusEnum;
 import org.soundtouch4j.nowplaying.NowPlayingResponse;
+import org.soundtouch4j.nowplaying.PlayStatusEnum;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -42,20 +43,17 @@ public class NowPlayingTest extends TestCase {
     try {
       final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
           .nowPlaying();
-      assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(response.getSource(), SourceEnum.INTERNET_RADIO);
+      assertEquals("C8DF84AE0B6E", response.getDeviceID());
+      assertEquals(SourceEnum.INTERNET_RADIO, response.getSource());
       assertNull(response.getAlbum());
       assertNull(response.getTrack());
-      assertEquals(response.getStationName(), "ORF Hitradio Ö3");
-      assertEquals(response.getArt()
-          .getArtImageStatus(), ArtImageStatusEnum.IMAGE_PRESENT);
-      assertEquals(response.getArt()
-          .getValue(), "http://item.radio456.com/007452/logo/logo-18298.jpg");
-      assertEquals(response.getPlayStatus(), "PLAY_STATE");
-      assertEquals(response.getDescription(),
-          "MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus " + "den" + " 80er- und 90er-Jahren und" +
-              " der Morning Show mit der lustigsten Comedy.");
-      assertEquals(response.getStationLocation(), "Vienna Austria");
+      assertEquals("ORF Hitradio Ö3", response.getStationName());
+      assertEquals(ArtImageStatusEnum.IMAGE_PRESENT, response.getArt()
+          .getArtImageStatus());
+      assertEquals("http://item.radio456.com/007452/logo/logo-18298.jpg", response.getArt()
+          .getValue());
+      assertEquals(PlayStatusEnum.PLAY_STATE, response.getPlayStatus());
+      assertEquals("Vienna Austria", response.getStationLocation());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
@@ -85,22 +83,22 @@ public class NowPlayingTest extends TestCase {
     try {
       final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
           .nowPlaying();
-      assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(response.getSource(), SourceEnum.BLUETOOTH);
+      assertEquals("C8DF84AE0B6E", response.getDeviceID());
+      assertEquals(SourceEnum.BLUETOOTH, response.getSource());
       assertNull(response.getAlbum());
-      assertEquals(response.getTrack(), "Unknown");
-      assertEquals(response.getContentItem()
-          .getItemName(), "Geralds MacBook Pro");
-      assertEquals(response.getArt()
-          .getArtImageStatus(), ArtImageStatusEnum.SHOW_DEFAULT_IMAGE);
-      assertEquals(response.getStationName(), "Geralds MacBook Pro");
+      assertEquals("Unknown", response.getTrack());
+      assertEquals("Geralds MacBook Pro", response.getContentItem()
+          .getItemName());
+      assertEquals(ArtImageStatusEnum.SHOW_DEFAULT_IMAGE, response.getArt()
+          .getArtImageStatus());
+      assertEquals("Geralds MacBook Pro", response.getStationName());
       assertNull(response.getArt()
           .getValue());
-      assertEquals(response.getPlayStatus(), "STOP_STATE");
-      assertEquals(response.getConnectionStatusInfo()
-          .getStatus(), "CONNECTED");
-      assertEquals(response.getConnectionStatusInfo()
-          .getDeviceName(), "Geralds MacBook Pro");
+      assertEquals(PlayStatusEnum.STOP_STATE, response.getPlayStatus());
+      assertEquals("CONNECTED", response.getConnectionStatusInfo()
+          .getStatus());
+      assertEquals("Geralds MacBook Pro", response.getConnectionStatusInfo()
+          .getDeviceName());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
@@ -131,17 +129,16 @@ public class NowPlayingTest extends TestCase {
     try {
       final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
           .nowPlaying();
-      assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-      assertEquals(response.getSource(), SourceEnum.STANDBY);
+      assertEquals("C8DF84AE0B6E", response.getDeviceID());
+      assertEquals(SourceEnum.STANDBY, response.getSource());
       assertNull(response.getAlbum());
       assertNull(response.getTrack());
-      assertEquals(response.getContentItem()
-          .getSource(), SourceEnum.STANDBY);
+      assertEquals(SourceEnum.STANDBY, response.getContentItem()
+          .getSource());
       assertTrue(response.getContentItem()
           .isPresetable());
       assertNull(response.getArt());
       assertNull(response.getStationName());
-      assertNull(response.getPlayStatus());
       assertNull(response.getConnectionStatusInfo());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());

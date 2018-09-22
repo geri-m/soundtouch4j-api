@@ -39,43 +39,43 @@ public class XmlParsingReferenceTest extends TestCase {
     final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     final InfoResponse response = parser.parseAndClose(new StringReader(input), InfoResponse.class);
     LOGGER.info(response.toString());
-    assertEquals(response.getDeviceID(), "C8DF84AE0B6E");
-    assertEquals(response.getName(), "SoundTouch 20");
-    assertEquals(response.getType(), "SoundTouch 20");
+    assertEquals("C8DF84AE0B6E", response.getDeviceID());
+    assertEquals("SoundTouch 20", response.getName());
+    assertEquals("SoundTouch 20", response.getType());
     assertEquals(response.getComponents()
         .size(), 2);
-    assertEquals(response.getComponents()
+    assertEquals("19.0.5.42017.2794643 epdbuild.trunk.cepeswbld02.2018-04-25T18:23:30", response.getComponents()
         .get(0)
-        .getSoftwareVersion(), "19.0.5.42017.2794643 epdbuild.trunk.cepeswbld02.2018-04-25T18:23:30");
-    assertEquals(response.getComponents()
+        .getSoftwareVersion());
+    assertEquals("F8124895404720048620440", response.getComponents()
         .get(0)
-        .getSerialNumber(), "F8124895404720048620440");
+        .getSerialNumber());
     assertNull(response.getComponents()
         .get(1)
         .getSoftwareVersion());
-    assertEquals(response.getComponents()
+    assertEquals("069428P81639976AE", response.getComponents()
         .get(1)
-        .getSerialNumber(), "069428P81639976AE");
-    assertEquals(response.getNetworkInfo()
-        .size(), 2);
-    assertEquals(response.getNetworkInfo()
+        .getSerialNumber());
+    assertEquals(2, response.getNetworkInfo()
+        .size());
+    assertEquals("192.168.178.61", response.getNetworkInfo()
         .get(0)
-        .getIpAddress(), "192.168.178.61");
-    assertEquals(response.getNetworkInfo()
+        .getIpAddress());
+    assertEquals("C8DF84AE0B6E", response.getNetworkInfo()
         .get(0)
-        .getMacAddress(), "C8DF84AE0B6E");
-    assertEquals(response.getNetworkInfo()
+        .getMacAddress());
+    assertEquals(NetworkInfoTypeEnum.SCM, response.getNetworkInfo()
         .get(0)
-        .getType(), NetworkInfoTypeEnum.SCM);
-    assertEquals(response.getNetworkInfo()
+        .getType());
+    assertEquals("C8DF84615084", response.getNetworkInfo()
         .get(1)
-        .getMacAddress(), "C8DF84615084");
-    assertEquals(response.getNetworkInfo()
+        .getMacAddress());
+    assertEquals("192.168.178.61", response.getNetworkInfo()
         .get(1)
-        .getIpAddress(), "192.168.178.61");
-    assertEquals(response.getNetworkInfo()
+        .getIpAddress());
+    assertEquals(NetworkInfoTypeEnum.SMSC, response.getNetworkInfo()
         .get(1)
-        .getType(), NetworkInfoTypeEnum.SMSC);
+        .getType());
 
     LOGGER.info("test02_deserializingXMLTest passed");
   }
