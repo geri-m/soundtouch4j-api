@@ -72,7 +72,7 @@ public class NowPlayingTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"BLUETOOTH\" sourceAccount=\"\"><ContentItem " + "source" + "=\"BLUETOOTH\" location=\"\" sourceAccount=\"\" isPresetable=\"false\"><itemName>Geralds MacBook " + "Pro</itemName></ContentItem><track>Unknown</track><artist" + "></artist><album></album><stationName>Geralds MacBook Pro</stationName><art " + "artImageStatus=\"SHOW_DEFAULT_IMAGE\" /><skipEnabled " + "/><playStatus>STOP_STATE</playStatus><skipPreviousEnabled /><genre></genre><connectionStatusInfo " + "status=\"CONNECTED\" deviceName=\"Geralds MacBook Pro\" " + "/></nowPlaying>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"BLUETOOTH\" sourceAccount=\"\"><ContentItem " + "source" + "=\"BLUETOOTH\" location=\"\" sourceAccount=\"\" isPresetable=\"false\"><itemName>Geralds MacBook " + "Pro</itemName></ContentItem><track>Unknown</track><artist></artist><album></album><stationName>Geralds MacBook Pro</stationName><art " + "artImageStatus=\"SHOW_DEFAULT_IMAGE\" /><skipEnabled/><playStatus>STOP_STATE</playStatus><skipPreviousEnabled/><genre>genre</genre><connectionStatusInfo status=\"CONNECTED\" deviceName=\"Geralds MacBook Pro\" " + "/></nowPlaying>");
             return result;
           }
         };
@@ -99,6 +99,10 @@ public class NowPlayingTest extends TestCase {
           .getStatus());
       assertEquals("Geralds MacBook Pro", response.getConnectionStatusInfo()
           .getDeviceName());
+      assertTrue(!response.isPlaying());
+      assertFalse(response.isSkipPreviousEnabled());
+      assertFalse(response.isSkipEnabled());
+      assertEquals("genre", response.getGenre());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
@@ -140,6 +144,7 @@ public class NowPlayingTest extends TestCase {
       assertNull(response.getArt());
       assertNull(response.getStationName());
       assertNull(response.getConnectionStatusInfo());
+      assertTrue(response.isInStandbyMode());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       Assert.fail();
@@ -194,6 +199,7 @@ public class NowPlayingTest extends TestCase {
           .getArtImageStatus());
       assertEquals("url", response.getArt()
           .getValue());
+
       assertEquals(PlayStatusEnum.PAUSE_STATE, response.getPlayStatus());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());

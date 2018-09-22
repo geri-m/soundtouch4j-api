@@ -100,7 +100,7 @@ public class KeyApiTest extends TestCase {
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
       soundTouchApi.getKeyApi()
-          .power();
+          .mute();
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
@@ -115,7 +115,7 @@ public class KeyApiTest extends TestCase {
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
       soundTouchApi.getKeyApi()
-          .power();
+          .mute();
       Assert.fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
