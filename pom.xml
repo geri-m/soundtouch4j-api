@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
   <packaging>jar</packaging>
   <version>1.0.4-SNAPSHOT</version>
-  <name>Soundtouch API Java Client</name>
-  <description>0 API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's SoundTouch</description>
+  <name>SoundTouch API Java Client</name>
+  <description>API for Java (soundtouch4j-api) provides a full featured Java API for working with Bose's SoundTouch</description>
   <url>https://github.com/geri-m/soundtouch4j</url>
 
   <licenses>
@@ -35,8 +36,6 @@
     <ssdp.version>2.2.0</ssdp.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <release.plugin.version>2.5.3</release.plugin.version>
-    <deploy.plugin.version>2.8.2</deploy.plugin.version>
   </properties>
 
   <scm>
@@ -86,11 +85,15 @@
   </dependencies>
 
   <build>
-    <defaultGoal>package</defaultGoal>
+
+    <finalName>soundtouch4j-api</finalName>
     <plugins>
+
+      <!-- The deploy plugin is primarily used during the deploy phase, to add your artifact(s) to a remote repository for sharing with other
+      developers and projects. http://maven.apache.org/plugins/maven-deploy-plugin/ -->
       <plugin>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>${deploy.plugin.version}</version>
+        <version>2.8.2</version>
         <executions>
           <execution>
             <id>default-deploy</id>
@@ -102,10 +105,12 @@
         </executions>
       </plugin>
 
+      <!-- This plugin is used to release a project with Maven, saving a lot of repetitive, manual work.
+           http://maven.apache.org/maven-release/maven-release-plugin/  -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>${release.plugin.version}</version>
+        <version>2.5.3</version>
         <configuration>
           <localCheckout>true</localCheckout>
           <pushChanges>false</pushChanges>
@@ -120,18 +125,23 @@
         </dependencies>
       </plugin>
 
+      <!-- The SCM Plugin offers vendor independent access to common scm commands by offering a set of command mappings for the configured scm.
+      Requires to update the Head and interact with git -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-scm-plugin</artifactId>
-        <version>1.9.5</version>
+        <version>1.10.0</version>
         <configuration>
           <tag>${project.artifactId}-${project.version}</tag>
         </configuration>
       </plugin>
 
+      <!-- Maven Plugin to control Nexus Staging workflow
+           https://github.com/sonatype/nexus-maven-plugins/tree/master/staging/maven-plugin -->
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.7</version>
+        <version>1.6.8</version>
         <extensions>true</extensions>
         <configuration>
           <serverId>ossrh</serverId>
@@ -140,10 +150,11 @@
         </configuration>
       </plugin>
 
+      <!-- The Compiler Plugin is used to compile the sources of your project  https://maven.apache.org/plugins/maven-compiler-plugin/ -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
+        <version>3.8.0</version>
         <configuration>
           <source>${java.source.version}</source>
           <target>${java.target.version}</target>
@@ -155,6 +166,7 @@
         </executions>
       </plugin>
 
+      <!-- The Source Plugin creates a jar archive of the source files of the current project.  https://maven.apache.org/plugins/maven-source-plugin/ -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -169,6 +181,7 @@
         </executions>
       </plugin>
 
+      <!-- Generating Java Doc as Part of Build https://maven.apache.org/plugins/maven-javadoc-plugin/ -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -183,7 +196,40 @@
         </executions>
       </plugin>
 
+      <!-- Running Integration Tests and generate XML Results https://maven.apache.org/surefire/maven-failsafe-plugin/  -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.22.0</version>
+        <configuration>
+          <includes>
+            <include>**/*IT.java</include>
+          </includes>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
+      <!-- Running Unit Tests and generate XML Results https://maven.apache.org/surefire/maven-surefire-plugin/ -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+
+      <!-- Static Code Analysis https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Maven -->
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
@@ -193,6 +239,35 @@
     </plugins>
   </build>
 
+  <!-- Creating Nice HTML Output of Tests for Reporting Purpose -->
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.22.0</version>
+      </plugin>
+      <plugin>
+        <!-- https://maven.apache.org/plugins/maven-site-plugin/ -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.7.1</version>
+      </plugin>
+      <plugin>
+        <!-- maven-project-info-reports-plugin -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.0.0</version>
+        <reportSets>
+          <reportSet>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <profiles>
     <!-- GPG Signature on release -->
@@ -206,6 +281,7 @@
       </activation>
       <build>
         <plugins>
+          <!-- http://maven.apache.org/plugins/maven-gpg-plugin/ -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
