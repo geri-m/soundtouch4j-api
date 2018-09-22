@@ -3,7 +3,7 @@ package org.soundtouch4j;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.soundtouch4j.bassCapabilties.BaseCapabilitiesResponse;
+import org.soundtouch4j.basscapabilities.BaseCapabilitiesResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;

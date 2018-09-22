@@ -1,4 +1,4 @@
-package org.soundtouch4j.bassCapabilties;
+package org.soundtouch4j.basscapabilities;
 
 import org.soundtouch4j.SoundTouchApi;
 import org.soundtouch4j.SoundTouchApiException;
