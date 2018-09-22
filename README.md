@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/geri-m/soundtouch4j-api.svg?style=svg)](https://circleci.com/gh/geri-m/soundtouch4j-api)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/geri-m/soundtouch4j-api/blob/master/LICENSE)
-[![Release Version](https://img.shields.io/badge/release-1.0.3-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
+[![Release Version](https://img.shields.io/badge/release-1.0.4-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
 [![Platform](https://img.shields.io/badge/Platform-Java-brightgreen.svg)](https://github.com/Tencent/MMKV/wiki/home)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=geri-m_soundtouch4j-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=geri-m_soundtouch4j-api)
 
@@ -21,7 +21,7 @@ Simply add the dependency
 <dependency>
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
 </dependency>
 ```
 
@@ -33,7 +33,7 @@ to your project
 Similar to the Maven Project, we include the JAR, but exclude some binaries that are shipped with the Google Client Lib.
 
 ```groovy
-implementation ('org.soundtouch4j:soundtouch4j-api:1.0.3') {
+implementation ('org.soundtouch4j:soundtouch4j-api:1.0.4') {
   exclude  module: 'httpclient'
   exclude  module: 'xpp3'
   exclude  module: 'commons-logging'
@@ -41,6 +41,12 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.3') {
 ```
 
 # Releases
+
+## Version 1.0.4 (September 22nd, 2018)
+
+- Adding Checks in the Set-Endpoints on the Response that is received from the Speaker
+- Increase Test Coverage
+- Adding CI and Code Inspection via SonarCloud
 
 ## Version 1.0.3 (September 21st, 2018)
 
