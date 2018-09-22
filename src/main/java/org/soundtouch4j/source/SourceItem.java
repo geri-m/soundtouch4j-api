@@ -24,6 +24,7 @@ public class SourceItem {
   private String value;
 
   public SourceItem() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public SourceEnum getSource() {

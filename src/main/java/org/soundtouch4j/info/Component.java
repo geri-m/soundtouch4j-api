@@ -28,7 +28,7 @@ public class Component {
   private String serialNumber;
 
   public Component() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getSoftwareVersion() {

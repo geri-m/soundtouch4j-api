@@ -9,6 +9,7 @@ public class VolumeSetResponse implements Response {
   private String volume;
 
   public VolumeSetResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getVolume() {

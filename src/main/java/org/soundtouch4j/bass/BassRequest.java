@@ -16,6 +16,7 @@ public class BassRequest implements Request {
   }
 
   public BassRequest() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public int getBass() {

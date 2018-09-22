@@ -16,6 +16,7 @@ public class SourceResponse implements Response {
   private List<SourceItem> sourceItem;
 
   public SourceResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public List<SourceItem> getSourceItems() {

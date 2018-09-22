@@ -22,7 +22,7 @@ public class KeyResponse {
   private String value;
 
   public KeyResponse() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getValue() {

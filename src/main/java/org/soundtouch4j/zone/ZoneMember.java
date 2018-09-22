@@ -17,7 +17,7 @@ public class ZoneMember {
   }
 
   public ZoneMember() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getIpaddress() {

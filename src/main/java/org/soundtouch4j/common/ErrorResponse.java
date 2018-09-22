@@ -10,6 +10,7 @@ public class ErrorResponse implements Response {
   private List<Error> errorList;
 
   public ErrorResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public List<Error> getErrorList() {

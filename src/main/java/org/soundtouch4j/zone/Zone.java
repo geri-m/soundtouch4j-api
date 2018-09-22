@@ -17,6 +17,7 @@ public class Zone implements Response, Request {
   private List<ZoneMember> members;
 
   public Zone() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public Zone(final String macAddress) {

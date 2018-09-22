@@ -10,6 +10,7 @@ public class PresetResponse implements Response {
   private List<Preset> presetList;
 
   public PresetResponse() {
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public List<Preset> getPresetList() {

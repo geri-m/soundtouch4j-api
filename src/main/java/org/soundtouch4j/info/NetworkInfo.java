@@ -26,7 +26,7 @@ public class NetworkInfo {
   private String ipAddress;
 
   public NetworkInfo() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getMacAddress() {

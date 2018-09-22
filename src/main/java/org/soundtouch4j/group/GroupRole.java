@@ -14,7 +14,7 @@ public class GroupRole {
   private String ipAddress;
 
   public GroupRole() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public String getDeviceId() {

@@ -18,7 +18,7 @@ public class BassGetResponse implements Response {
   private int actualBass;
 
   public BassGetResponse() {
-
+    // Auto Init/Reflection Requires Empty Constructor
   }
 
   public int getTargetBass() {
