@@ -7,8 +7,6 @@ import com.google.api.client.util.Key;
 
 public class SourceResponse implements Response {
 
-  private static final String SOURCE_ITEM = "sourceItem";
-
   @Key("@deviceID")
   private String deviceID;
 

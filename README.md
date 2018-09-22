@@ -146,9 +146,22 @@ or on Android
 implementation 'io.resourcepool:ssdp-client:2.2.0'
 ```
 
+## Awaitility -- Async Operations easy
+
+For the Async Operations in the Tests there Awaitility is used: https://github.com/awaitility/awaitility
+
+```xml
+<dependency>
+ <groupId>org.awaitility</groupId>
+ <artifactId>awaitility</artifactId>
+ <version>3.1.2</version>
+ <scope>test</scope>
+</dependency>
+```
+
 ### Usage
 
-Sample method for scanning for devices.
+Sample method for scanning for devices. 
 
 ```java
 public static synchronized List<SsdpService> synchronousBlockingDeviceScanner(final int timeToScanInMilliseconds) {
@@ -180,16 +193,10 @@ public static synchronized List<SsdpService> synchronousBlockingDeviceScanner(fi
     }
   });
 
-  // TODO: Needs to run in a separat thread in order not to block
-  try {
-    Thread.sleep(timeToScanInMilliseconds);
-  } catch (final InterruptedException ignored) {
-    
-  }
+  // ... wait 
 
   System.out.println("Discovery Stopped and Serives Found: " + servicesFound.size());
   client.stopDiscovery();
-
   return servicesFound;
 }
 ```
