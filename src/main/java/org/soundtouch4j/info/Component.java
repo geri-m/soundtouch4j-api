@@ -1,6 +1,9 @@
 package org.soundtouch4j.info;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.soundtouch4j.SoundTouchApiException;
 import com.google.api.client.util.Key;
 
 /**
@@ -21,6 +24,9 @@ import com.google.api.client.util.Key;
 
 public class Component {
 
+  private static final String VERSION_REGEX = "(\\d{2})\\.\\d+\\.\\d+\\.\\d+\\.\\d+\\s[a-z]+.[a-z]+.[a-z]+\\d+\\.\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}";
+  private static final Pattern VERSION_PATTERN = Pattern.compile(VERSION_REGEX);
+
   @Key
   private String softwareVersion;
 
@@ -37,6 +43,14 @@ public class Component {
 
   public String getSerialNumber() {
     return serialNumber;
+  }
+
+  public int getVersion() throws SoundTouchApiException {
+    final Matcher matcher = VERSION_PATTERN.matcher(softwareVersion);
+    if (matcher.matches()) {
+      return Integer.parseInt(matcher.group(1));
+    }
+    throw new SoundTouchApiException(String.format("Unable to parse Version String '%s'", softwareVersion));
   }
 
   @Override
