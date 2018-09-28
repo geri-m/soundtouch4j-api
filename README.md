@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/geri-m/soundtouch4j-api.svg?style=svg)](https://circleci.com/gh/geri-m/soundtouch4j-api)
+[![Javadocs](http://www.javadoc.io/badge/org.soundtouch4j/soundtouch4j-api.svg)](http://www.javadoc.io/doc/org.soundtouch4j/soundtouch4j-api)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/geri-m/soundtouch4j-api/blob/master/LICENSE)
 [![Release Version](https://img.shields.io/badge/release-1.0.5-brightgreen.svg)](https://github.com/Tencent/MMKV/releases)
 [![Platform](https://img.shields.io/badge/Platform-Java-brightgreen.svg)](https://github.com/Tencent/MMKV/wiki/home)
