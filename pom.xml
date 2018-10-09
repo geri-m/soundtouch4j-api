@@ -30,7 +30,7 @@
     <java.source.version>1.6</java.source.version>
     <java.target.version>1.6</java.target.version>
     <google.http.client.version>1.25.0</google.http.client.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>5.3.1</junit.version>
     <log4j2.version>2.11.0</log4j2.version>
     <ssdp.version>2.2.0</ssdp.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,8 +75,15 @@
     </dependency>
 
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>

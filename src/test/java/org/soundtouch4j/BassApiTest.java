@@ -1,91 +1,42 @@
 package org.soundtouch4j;
 
-import org.junit.Assert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 import org.soundtouch4j.bass.BassGetResponse;
 import org.soundtouch4j.zone.Zone;
 import org.soundtouch4j.zone.ZoneMember;
 import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.LowLevelHttpRequest;
-import com.google.api.client.http.LowLevelHttpResponse;
 import com.google.api.client.testing.http.HttpTesting;
-import com.google.api.client.testing.http.MockHttpTransport;
-import com.google.api.client.testing.http.MockLowLevelHttpRequest;
-import com.google.api.client.testing.http.MockLowLevelHttpResponse;
-import com.google.api.client.xml.Xml;
-import junit.framework.TestCase;
 
-public class BassApiTest extends TestCase {
+public class BassApiTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(BassApiTest.class);
+  @Test
+  public void test01_getBass() throws SoundTouchApiException {
+    final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><bass deviceID=\"C8DF84AE0B6E\"><targetbass>1</targetbass><actualbass>2</actualbass></bass>";
 
-  public void test01_getBass() {
-    LOGGER.info("test01_getVolume started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><bass deviceID=\"C8DF84AE0B6E\"><targetbass>1</targetbass><actualbass>2</actualbass></bass>");
-            return result;
-          }
-        };
-      }
-    };
-
+    final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
-    try {
-      final BassGetResponse response = soundTouchApi.getBassApi()
-          .getBass();
 
-      assertEquals("C8DF84AE0B6E", response.getDeviceID());
-      assertEquals(2, response.getActualBass());
-      assertEquals(1, response.getTargetBass());
+    final BassGetResponse response = soundTouchApi.getBassApi()
+        .getBass();
 
-
-    } catch (final SoundTouchApiException e) {
-      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
-    }
-    LOGGER.info("test01_getVolume started");
+    assertEquals("C8DF84AE0B6E", response.getDeviceID());
+    assertEquals(2, response.getActualBass());
+    assertEquals(1, response.getTargetBass());
   }
 
-
-  public void test02_setBass() {
-    LOGGER.info("test02_setVolume started");
-    final HttpTransport transport = new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/bass</status>");
-            return result;
-          }
-        };
-      }
-    };
-
+  @Test
+  public void test02_setBass() throws SoundTouchApiException {
+    final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/bass</status>";
+    final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
-    try {
-      soundTouchApi.getBassApi()
-          .setBass(10);
-    } catch (final SoundTouchApiException e) {
-      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
-    }
-    LOGGER.info("test02_setVolume started");
+    soundTouchApi.getBassApi()
+        .setBass(10);
   }
 
-
+  @Test
   public void test03_setBassBrokenResponse() {
-    LOGGER.info("test03_setBassBrokenResponse started");
     final HttpTransport transport = Const.getBrokenResponse();
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
@@ -93,30 +44,24 @@ public class BassApiTest extends TestCase {
       zone.addMember(new ZoneMember("192.168.178.61", "C8DF84AE0B6E"));
       soundTouchApi.getBassApi()
           .setBass(10);
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
-      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-
+      // TODO: Assert Message
     }
-    LOGGER.info("test03_setBassBrokenResponse completed");
   }
 
+  @Test
   public void test04_setBassIncorrectResponse() {
-    LOGGER.info("test04_setBassIncorrectResponse started");
     final HttpTransport transport = Const.getIncorrectStatusResponse("NOTAsetBase");
-
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
       final Zone zone = new Zone("C8DF84AE0B6E");
       zone.addMember(new ZoneMember("192.168.178.61", "C8DF84AE0B6E"));
       soundTouchApi.getBassApi()
           .setBass(10);
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
-      LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       assertEquals("Invalid Response from Speaker. Response was '/NOTAsetBase'", e.getMessage());
     }
-    LOGGER.info("test04_setBassIncorrectResponse completed");
   }
-
 }

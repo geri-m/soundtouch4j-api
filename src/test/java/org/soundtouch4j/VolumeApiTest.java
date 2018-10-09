@@ -1,6 +1,9 @@
 package org.soundtouch4j;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.volume.VolumeGetResponse;
@@ -12,12 +15,13 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
-import junit.framework.TestCase;
 
-public class VolumeApiTest extends TestCase {
+
+public class VolumeApiTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(VolumeApiTest.class);
 
+  @Test
   public void test01_getVolume() {
     LOGGER.info("test01_getVolume started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -47,12 +51,12 @@ public class VolumeApiTest extends TestCase {
       assertFalse(response.isMuteEnabled());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test01_getVolume started");
   }
 
-
+  @Test
   public void test02_setVolume() {
     LOGGER.info("test02_setVolume started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -81,12 +85,12 @@ public class VolumeApiTest extends TestCase {
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test02_setVolume started");
   }
 
-
+  @Test
   public void test03_setVolumeLessThanZero() {
     LOGGER.info("test03_setVolumeLessThanZero started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -105,7 +109,7 @@ public class VolumeApiTest extends TestCase {
     try {
       soundTouchApi.getVolumeApi()
           .setVolume(-1);
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       assertEquals("The Volume must be a value from 0 to 100, inclusive. '-1' is out of this range.", e.getMessage());
@@ -113,6 +117,7 @@ public class VolumeApiTest extends TestCase {
     LOGGER.info("test03_setVolumeLessThanZero started");
   }
 
+  @Test
   public void test04_setVolumeMoreThan100() {
     LOGGER.info("test04_setVolumeMoreThan100 started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -131,7 +136,7 @@ public class VolumeApiTest extends TestCase {
     try {
       soundTouchApi.getVolumeApi()
           .setVolume(101);
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       assertEquals("The Volume must be a value from 0 to 100, inclusive. '101' is out of this range.", e.getMessage());
@@ -139,7 +144,7 @@ public class VolumeApiTest extends TestCase {
     LOGGER.info("test04_setVolumeMoreThan100 started");
   }
 
-
+  @Test
   public void test05_setVolumeBrokenResponse() {
     LOGGER.info("test05_setVolumeBrokenResponse started");
     final HttpTransport transport = Const.getBrokenResponse();
@@ -148,7 +153,7 @@ public class VolumeApiTest extends TestCase {
     try {
       soundTouchApi.getVolumeApi()
           .setVolume(100);
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
 
@@ -156,6 +161,7 @@ public class VolumeApiTest extends TestCase {
     LOGGER.info("test05_setVolumeBrokenResponse completed");
   }
 
+  @Test
   public void test06_setVolumeIncorrectResponse() {
     LOGGER.info("test06_setVolumeIncorrectResponse started");
     final HttpTransport transport = Const.getIncorrectStatusResponse("NOTsetVolume");
@@ -164,7 +170,7 @@ public class VolumeApiTest extends TestCase {
     try {
       soundTouchApi.getVolumeApi()
           .setVolume(100);
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       assertEquals("Invalid Response from Speaker. Response was '/NOTsetVolume'", e.getMessage());

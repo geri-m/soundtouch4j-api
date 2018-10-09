@@ -1,8 +1,8 @@
 package org.soundtouch4j;
 
+import static org.junit.jupiter.api.Assertions.fail;
 import java.net.MalformedURLException;
 import java.net.URL;
-import org.junit.Assert;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -19,12 +19,12 @@ public class Const {
     try {
       return new URL(Const.URL);
     } catch (final MalformedURLException e) {
-      Assert.fail();
+      fail();
       return null;
     }
   }
 
-  public static HttpTransport getBrokenResponse() {
+  public static HttpTransport getHttpTransportFromString(final String xml) {
     return new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -33,7 +33,7 @@ public class Const {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("BROKEN RESPONSE");
+            result.setContent(xml);
             return result;
           }
         };
@@ -41,22 +41,11 @@ public class Const {
     };
   }
 
+  public static HttpTransport getBrokenResponse() {
+    return getHttpTransportFromString("BROKEN RESPONSE");
+  }
 
   public static HttpTransport getIncorrectStatusResponse(final String parameter) {
-    return new MockHttpTransport() {
-      @Override
-      public LowLevelHttpRequest buildRequest(final String method, final String url) {
-        return new MockLowLevelHttpRequest() {
-          @Override
-          public LowLevelHttpResponse execute() {
-            final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
-            result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent(String.format("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/%s</status>", parameter));
-            return result;
-          }
-        };
-      }
-    };
+    return getHttpTransportFromString(String.format("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/%s</status>", parameter));
   }
-
 }

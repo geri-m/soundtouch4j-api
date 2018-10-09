@@ -1,6 +1,8 @@
 package org.soundtouch4j;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.ContentItem;
@@ -15,12 +17,12 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
-import junit.framework.TestCase;
 
-public class SelectApiTest extends TestCase {
+public class SelectApiTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(SelectApiTest.class);
 
+  @Test
   public void test01_withToAux() {
     LOGGER.info("test01_withToAux started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -52,7 +54,7 @@ public class SelectApiTest extends TestCase {
     LOGGER.info("test01_withToAux started");
   }
 
-
+  @Test
   public void test02_withToUnkown() {
     LOGGER.info("test02_withToUnkown started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -77,7 +79,7 @@ public class SelectApiTest extends TestCase {
     try {
       soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.INTERNET_RADIO, ""));
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
       assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
@@ -97,7 +99,6 @@ public class SelectApiTest extends TestCase {
           .getErrorList()
           .get(0)
           .getText());
-
 
 
     }

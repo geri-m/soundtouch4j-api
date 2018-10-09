@@ -1,10 +1,11 @@
 package org.soundtouch4j;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import java.net.MalformedURLException;
 import java.net.URL;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.bass.BassGetResponse;
@@ -19,14 +20,16 @@ import org.soundtouch4j.zone.Zone;
 import com.google.api.client.http.HttpStatusCodes;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
+
 // Ignore this Calls during automated builds, as this requires a physical speaker
-@Ignore
+@Disabled
 public class SpeakerIT {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(SpeakerIT.class);
   private static final int TIME_TO_SCAN_FOR_DEVICE_IN_MS = 3000;
 
   @Test
+  @Disabled
   public void test00_runThruTest() {
     LOGGER.info("test00_runThruTest started");
 
@@ -47,11 +50,11 @@ public class SpeakerIT {
           .isPlaying()) {
       }
 
-      Assert.assertEquals(2, soundTouchApi.getInfoApi()
+      assertEquals(2, soundTouchApi.getInfoApi()
           .getInfo()
           .getNetworkInfo()
           .size());
-      Assert.assertEquals(11, soundTouchApi.getSourceApi()
+      assertEquals(11, soundTouchApi.getSourceApi()
           .getSources()
           .getSourceItems()
           .size());
@@ -145,7 +148,7 @@ public class SpeakerIT {
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to press the Power Button: {}", e.getMessage());
-      Assert.fail();
+      fail();
       return;
     }
 
@@ -154,6 +157,7 @@ public class SpeakerIT {
 
 
   @Test
+
   public void test01_basicTestWithBox() {
     LOGGER.info("test01_basicTestWithBox passed");
 
@@ -164,7 +168,7 @@ public class SpeakerIT {
           .power();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to press the Power Button: {}", e.getMessage());
-      Assert.fail();
+      fail();
       return;
     }
 
@@ -172,6 +176,7 @@ public class SpeakerIT {
   }
 
   @Test
+
   public void test02_fetchInfoFromSpeaker() {
     LOGGER.info("test02_fetchInfoFromSpeaker started");
 
@@ -180,7 +185,7 @@ public class SpeakerIT {
       boseEndpoint = new URL(Const.URL);
     } catch (final MalformedURLException e) {
       // LOGGER.error("Failed to Create URL from IP: {}. Msg: {}", services.get(0).getRemoteIp(), e.getMessage());
-      Assert.fail();
+      fail();
       return;
     }
 
@@ -190,7 +195,7 @@ public class SpeakerIT {
           .getInfo();
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
       return;
     }
 
@@ -198,6 +203,7 @@ public class SpeakerIT {
   }
 
   @Test
+
   public void test03_nowPlaying() {
     LOGGER.info("test03_nowPlaying started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -207,7 +213,7 @@ public class SpeakerIT {
       LOGGER.info("Now Playing: '{}'", response);
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get information on 'now Playing: {}", e.getMessage());
-      Assert.fail();
+      fail();
       return;
     }
 
@@ -215,6 +221,7 @@ public class SpeakerIT {
   }
 
   @Test
+
   public void test04_selectAux() {
     LOGGER.info("test03_nowPlaying started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -223,7 +230,7 @@ public class SpeakerIT {
           .select(new ContentItem(SourceEnum.AUX, "AUX"));
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get information on 'now Playing: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
 
     LOGGER.info("test03_nowPlaying passed");
@@ -231,6 +238,7 @@ public class SpeakerIT {
 
 
   @Test
+
   public void test04_selectIncorrectSource() {
     LOGGER.info("test04_selectIncorrectSource started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -238,16 +246,17 @@ public class SpeakerIT {
     try {
       soundTouchApi.getSelectApi()
           .select(new ContentItem(SourceEnum.INTERNET_RADIO, ""));
-      Assert.fail();
+      fail();
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
-      Assert.assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
+      assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
     }
 
     LOGGER.info("test04_selectIncorrectSource passed");
   }
 
   @Test
+
   public void test05_getAndChangeVolume() {
     LOGGER.info("test05_getAndChangeVolume started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -326,13 +335,14 @@ public class SpeakerIT {
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
-      Assert.assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
+      assertEquals(HttpStatusCodes.STATUS_CODE_SERVER_ERROR, e.getHttpStatus());
     }
 
     LOGGER.info("test05_getAndChangeVolume passed");
   }
 
   @Test
+
   public void test06_getPresets() {
     LOGGER.info("test06_getPresets started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -343,13 +353,14 @@ public class SpeakerIT {
       LOGGER.info("Result: {}", reps);
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
 
     LOGGER.info("test06_getPresets passed");
   }
 
   @Test
+
   public void test07_setName() {
     LOGGER.info("test07_setName started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -357,22 +368,23 @@ public class SpeakerIT {
     try {
       InfoResponse reps = soundTouchApi.getNameApi()
           .setName("test");
-      Assert.assertEquals("test", reps.getName());
+      assertEquals("test", reps.getName());
 
 
       reps = soundTouchApi.getNameApi()
           .setName("SoundTouch 20");
-      Assert.assertEquals("SoundTouch 20", reps.getName());
+      assertEquals("SoundTouch 20", reps.getName());
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Select Failed: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
 
     LOGGER.info("test07_setName passed");
   }
 
   @Test
+
   public void test08_getBassCapabilities() {
     LOGGER.info("test08_getBassCapabilities started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -394,7 +406,7 @@ public class SpeakerIT {
           .getActualBass() != -5) {
 
       }
-      Assert.assertEquals(-5, responseBass.getActualBass());
+      assertEquals(-5, responseBass.getActualBass());
 
       soundTouchApi.getBassApi()
           .setBass(actualBass);
@@ -407,12 +419,12 @@ public class SpeakerIT {
 
       }
 
-      Assert.assertEquals(actualBass, responseBass.getActualBass());
+      assertEquals(actualBass, responseBass.getActualBass());
 
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("Bass Get Failed: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
 
     LOGGER.info("test08_getBassCapabilities passed");
@@ -420,6 +432,7 @@ public class SpeakerIT {
 
 
   @Test
+
   public void test09_setAndGetZone() {
     LOGGER.info("test09_setAndGetZone started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -433,7 +446,7 @@ public class SpeakerIT {
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("setAndGetZone: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
 
     LOGGER.info("test09_setAndGetZone passed");
@@ -441,6 +454,7 @@ public class SpeakerIT {
   }
 
   @Test
+
   public void test10_addAndRemoveSlave() {
     LOGGER.info("test10_addAndRemoveSlave started");
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
@@ -457,7 +471,7 @@ public class SpeakerIT {
 
     } catch (final SoundTouchApiException e) {
       LOGGER.info("addAndRemoveSlave: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
 
     LOGGER.info("test10_addAndRemoveSlave passed");

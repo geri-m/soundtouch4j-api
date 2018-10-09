@@ -1,6 +1,12 @@
 package org.soundtouch4j;
 
-import org.junit.Assert;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.SourceEnum;
@@ -15,12 +21,13 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
-import junit.framework.TestCase;
 
-public class NowPlayingTest extends TestCase {
+
+public class NowPlayingTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(NowPlayingTest.class);
 
+  @Test
   public void test01_nowPLayingOe3() {
     LOGGER.info("test01_nowPLayingOe3 started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -31,8 +38,7 @@ public class NowPlayingTest extends TestCase {
           public LowLevelHttpResponse execute() {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"INTERNET_RADIO\"><ContentItem source=\"INTERNET_RADIO\" "
-                + "location=\"18298\" sourceAccount=\"\" isPresetable=\"true\"><itemName>ORF Hitradio Ö3</itemName><containerArt>http://item.radio456.com/007452/logo/logo-18298" + ".jpg</containerArt></ContentItem><track></track><artist></artist><album></album><stationName>ORF Hitradio Ö3</stationName><art " + "artImageStatus=\"IMAGE_PRESENT\">http://item.radio456.com/007452/logo/logo-18298.jpg</art><playStatus>PLAY_STATE</playStatus><description>MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus den 80er- und 90er-Jahren und der Morning Show mit der lustigsten Comedy.</description><stationLocation>Vienna Austria</stationLocation></nowPlaying>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"INTERNET_RADIO\"><ContentItem source=\"INTERNET_RADIO\" " + "location=\"18298\" sourceAccount=\"\" isPresetable=\"true\"><itemName>ORF Hitradio Ö3</itemName><containerArt>http://item.radio456.com/007452/logo/logo-18298" + ".jpg</containerArt></ContentItem><track></track><artist></artist><album></album><stationName>ORF Hitradio Ö3</stationName><art " + "artImageStatus=\"IMAGE_PRESENT\">http://item.radio456.com/007452/logo/logo-18298.jpg</art><playStatus>PLAY_STATE</playStatus><description>MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus den 80er- und 90er-Jahren und der Morning Show mit der lustigsten Comedy.</description><stationLocation>Vienna Austria</stationLocation></nowPlaying>");
             return result;
           }
         };
@@ -56,12 +62,12 @@ public class NowPlayingTest extends TestCase {
       assertEquals("Vienna Austria", response.getStationLocation());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test01_nowPLayingOe3 done");
   }
 
-
+  @Test
   public void test02_nowPLayingBluetooth() {
     LOGGER.info("test02_nowPLayingBluetooth started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -105,12 +111,12 @@ public class NowPlayingTest extends TestCase {
       assertEquals("genre", response.getGenre());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test02_nowPLayingBluetooth done");
   }
 
-
+  @Test
   public void test03_nowStandby() {
     LOGGER.info("test03_nowStandby started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -147,12 +153,12 @@ public class NowPlayingTest extends TestCase {
       assertTrue(response.isInStandbyMode());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test03_nowStandby done");
   }
 
-
+  @Test
   public void test04_sampleData() {
     LOGGER.info("test04_sampleData started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -164,10 +170,10 @@ public class NowPlayingTest extends TestCase {
             final MockLowLevelHttpResponse result = new MockLowLevelHttpResponse();
             result.setContentType(Xml.MEDIA_TYPE);
 
-            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"deviceID\" source=\"STANDBY\"><ContentItem source=\"UPNP\" location=\"location\"" +
-                " " + "sourceAccount=\"sourceAccount\" isPresetable=\"true\"><itemName>itemName</itemName></ContentItem><track>track</track><artist>artist</artist><album>album" +
-                "</album>" + "<stationName>stationName</stationName><art artImageStatus=\"DOWNLOADING\">url</art><playStatus>PAUSE_STATE</playStatus><description>description" +
-                "</description><stationLocation>stationLocation</stationLocation></nowPlaying>");
+            result.setContent("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"deviceID\" source=\"STANDBY\"><ContentItem source=\"UPNP\" " + "location" +
+                "=\"location\"" + " " + "sourceAccount=\"sourceAccount\" isPresetable=\"true\"><itemName>itemName</itemName></ContentItem><track>track</track><artist" + ">artist" +
+                "</artist><album>album" + "</album>" + "<stationName>stationName</stationName><art " + "artImageStatus=\"DOWNLOADING\">url</art><playStatus>PAUSE_STATE" +
+                "</playStatus><description>description" + "</description><stationLocation>stationLocation" + "</stationLocation></nowPlaying>");
 
 
             return result;
@@ -203,12 +209,10 @@ public class NowPlayingTest extends TestCase {
       assertEquals(PlayStatusEnum.PAUSE_STATE, response.getPlayStatus());
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test04_sampleData done");
   }
-
-
 
 
 }

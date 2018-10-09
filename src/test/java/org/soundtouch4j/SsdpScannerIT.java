@@ -1,13 +1,13 @@
 package org.soundtouch4j;
 
 import static org.awaitility.Awaitility.await;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.resourcepool.ssdp.client.SsdpClient;
@@ -16,8 +16,7 @@ import io.resourcepool.ssdp.model.DiscoveryRequest;
 import io.resourcepool.ssdp.model.SsdpService;
 import io.resourcepool.ssdp.model.SsdpServiceAnnouncement;
 
-
-@Ignore
+@Disabled
 public class SsdpScannerIT {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(SsdpScannerIT.class);
@@ -50,7 +49,7 @@ public class SsdpScannerIT {
           }
         });
     client.stopDiscovery();
-    Assert.assertEquals(1, listener.getServicesFound()
+    assertEquals(1, listener.getServicesFound()
         .size());
     LOGGER.info("Discovery Stopped and {} services found", listener.getServicesFound()
         .size());

@@ -1,6 +1,8 @@
 package org.soundtouch4j;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soundtouch4j.common.SourceEnum;
@@ -13,12 +15,13 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
-import junit.framework.TestCase;
 
-public class PresetsApiTest extends TestCase {
+
+public class PresetsApiTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PresetsApiTest.class);
 
+  @Test
   public void test01_getPresets() {
     LOGGER.info("test01_getPresets started");
     final HttpTransport transport = new MockHttpTransport() {
@@ -84,7 +87,7 @@ public class PresetsApiTest extends TestCase {
 
     } catch (final SoundTouchApiException e) {
       LOGGER.error("Unable to get the basic information: {}", e.getMessage());
-      Assert.fail();
+      fail();
     }
     LOGGER.info("test01_getPresets started");
   }
