@@ -19,18 +19,6 @@ public class SoundTouchApi implements SoundTouch {
 
   // Single One Instance of the API that does the call to the Box. We want to have this single object to avoid parallel calls.
   private final SoundTouchApiClient soundTouchApiClient;
-  private KeyApi keyApi;
-  private InfoApi infoApi;
-  private NowPlayingApi nowPlayingApi;
-  private SourceApi sourceApi;
-  private SelectApi selectApi;
-  private VolumeApi volumeApi;
-  private PresetApi presetApi;
-  private NameApi nameApi;
-  private BassCapabilitiesApi bassCapabilitiesApi;
-  private BassApi bassApi;
-  private ZoneApi zoneApi;
-  private GroupApi groupApi;
 
   /**
    * This is the Entrypoint of the API. You have to create an entry point with the URL and the HTTP Transport implementation.
@@ -54,11 +42,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized KeyApi getKeyApi() {
-    if (keyApi == null) {
-      keyApi = new KeyApi(this);
-    }
-    return (keyApi);
+  public KeyApi getKeyApi() {
+    return new KeyApi(this);
   }
 
 
@@ -69,11 +54,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized InfoApi getInfoApi() {
-    if (infoApi == null) {
-      infoApi = new InfoApi(this);
-    }
-    return (infoApi);
+  public InfoApi getInfoApi() {
+    return new InfoApi(this);
   }
 
 
@@ -84,11 +66,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized NowPlayingApi getNowPlayingApi() {
-    if (nowPlayingApi == null) {
-      nowPlayingApi = new NowPlayingApi(this);
-    }
-    return (nowPlayingApi);
+  public NowPlayingApi getNowPlayingApi() {
+    return new NowPlayingApi(this);
   }
 
 
@@ -99,11 +78,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized SourceApi getSourceApi() {
-    if (sourceApi == null) {
-      sourceApi = new SourceApi(this);
-    }
-    return (sourceApi);
+  public SourceApi getSourceApi() {
+    return new SourceApi(this);
   }
 
   /**
@@ -113,11 +89,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized SelectApi getSelectApi() {
-    if (selectApi == null) {
-      selectApi = new SelectApi(this);
-    }
-    return (selectApi);
+  public SelectApi getSelectApi() {
+    return new SelectApi(this);
   }
 
 
@@ -128,11 +101,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized VolumeApi getVolumeApi() {
-    if (volumeApi == null) {
-      volumeApi = new VolumeApi(this);
-    }
-    return (volumeApi);
+  public VolumeApi getVolumeApi() {
+    return new VolumeApi(this);
   }
 
 
@@ -143,11 +113,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized PresetApi getPresetApi() {
-    if (presetApi == null) {
-      presetApi = new PresetApi(this);
-    }
-    return (presetApi);
+  public PresetApi getPresetApi() {
+    return new PresetApi(this);
   }
 
   /**
@@ -157,11 +124,8 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized NameApi getNameApi() {
-    if (nameApi == null) {
-      nameApi = new NameApi(this);
-    }
-    return (nameApi);
+  public NameApi getNameApi() {
+    return new NameApi(this);
   }
 
   /**
@@ -172,11 +136,8 @@ public class SoundTouchApi implements SoundTouch {
 
 
   @Override
-  public synchronized BassCapabilitiesApi getBassCapabilitiesApi() {
-    if (bassCapabilitiesApi == null) {
-      bassCapabilitiesApi = new BassCapabilitiesApi(this);
-    }
-    return (bassCapabilitiesApi);
+  public BassCapabilitiesApi getBassCapabilitiesApi() {
+    return new BassCapabilitiesApi(this);
   }
 
 
@@ -188,11 +149,8 @@ public class SoundTouchApi implements SoundTouch {
 
 
   @Override
-  public synchronized BassApi getBassApi() {
-    if (bassApi == null) {
-      bassApi = new BassApi(this);
-    }
-    return (bassApi);
+  public BassApi getBassApi() {
+    return new BassApi(this);
   }
 
 
@@ -204,11 +162,8 @@ public class SoundTouchApi implements SoundTouch {
 
 
   @Override
-  public synchronized ZoneApi getZoneApi() {
-    if (zoneApi == null) {
-      zoneApi = new ZoneApi(this);
-    }
-    return (zoneApi);
+  public ZoneApi getZoneApi() {
+    return new ZoneApi(this);
   }
 
   /**
@@ -218,17 +173,11 @@ public class SoundTouchApi implements SoundTouch {
    */
 
   @Override
-  public synchronized GroupApi getGroupApi() {
-    if (groupApi == null) {
-      groupApi = new GroupApi(this);
-
-    }
-    return (groupApi);
+  public GroupApi getGroupApi() {
+    return new GroupApi(this);
   }
 
   public SoundTouchApiClient getSoundTouchApiClient() {
     return soundTouchApiClient;
   }
-
-
 }

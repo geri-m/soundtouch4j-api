@@ -33,7 +33,7 @@ public class SoundTouchApiException extends Exception {
   }
 
   /**
-   * Create a SoundTouchCommunicationException instance with the specified message.
+   * Create a SoundTouchApiException instance with the specified message.
    *
    * @param message the message for the exception
    */
@@ -42,7 +42,7 @@ public class SoundTouchApiException extends Exception {
   }
 
   /**
-   * Create a SoundTouchCommunicationException instance based on the exception.
+   * Create a SoundTouchApiException instance based on the exception.
    *
    * @param exception the Exception to wrap
    */
