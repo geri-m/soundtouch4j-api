@@ -12,7 +12,7 @@ import com.google.api.client.testing.http.HttpTesting;
 public class BassApiTest {
 
   @Test
-  public void test01_getBass() throws SoundTouchApiException {
+  public void getBassSuccessful() throws SoundTouchApiException {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><bass deviceID=\"C8DF84AE0B6E\"><targetbass>1</targetbass><actualbass>2</actualbass></bass>";
 
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
@@ -27,7 +27,7 @@ public class BassApiTest {
   }
 
   @Test
-  public void test02_setBass() throws SoundTouchApiException {
+  public void setBassSuccessful() throws SoundTouchApiException {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/bass</status>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
@@ -36,7 +36,7 @@ public class BassApiTest {
   }
 
   @Test
-  public void test03_setBassBrokenResponse() {
+  public void setBassBrokenResponse() {
     final HttpTransport transport = Const.getBrokenResponse();
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {
@@ -46,12 +46,12 @@ public class BassApiTest {
           .setBass(10);
       fail();
     } catch (final SoundTouchApiException e) {
-      // TODO: Assert Message
+      assertEquals("java.io.IOException", e.getMessage());
     }
   }
 
   @Test
-  public void test04_setBassIncorrectResponse() {
+  public void setBassIncorrectResponse() {
     final HttpTransport transport = Const.getIncorrectStatusResponse("NOTAsetBase");
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     try {

@@ -15,7 +15,6 @@ import com.google.api.client.xml.Xml;
 
 public class GroupTest {
 
-
   private static final MockLowLevelHttpRequest GROUP_MOCK_OK = new MockLowLevelHttpRequest() {
     @Override
     public LowLevelHttpResponse execute() {
@@ -80,7 +79,7 @@ public class GroupTest {
   };
 
   @Test
-  public void test01_getGroup() throws SoundTouchApiException {
+  public void getGroupSuccessful() throws SoundTouchApiException {
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -127,7 +126,7 @@ public class GroupTest {
   }
 
   @Test
-  public void test02_getGroupEmptyList() throws SoundTouchApiException {
+  public void getGroupEmptyList() throws SoundTouchApiException {
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -153,7 +152,7 @@ public class GroupTest {
   }
 
   @Test
-  public void test03_getGroupFailDueToST20() {
+  public void getGroupFailDueToST20() {
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -176,7 +175,7 @@ public class GroupTest {
   }
 
   @Test
-  public void test03_getGroupFailDueToBrokenVersion() {
+  public void getGroupFailDueToBrokenVersion() {
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -199,7 +198,7 @@ public class GroupTest {
   }
 
   @Test
-  public void test04_getGroupFailDueToNoComponents() {
+  public void getGroupFailDueToNoComponents() {
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -220,5 +219,4 @@ public class GroupTest {
       assertEquals("Unable to fetch Version of SoundTouch", e.getMessage());
     }
   }
-
 }
