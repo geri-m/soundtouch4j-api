@@ -8,8 +8,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import io.resourcepool.ssdp.client.SsdpClient;
 import io.resourcepool.ssdp.model.DiscoveryListener;
 import io.resourcepool.ssdp.model.DiscoveryRequest;
@@ -19,7 +17,6 @@ import io.resourcepool.ssdp.model.SsdpServiceAnnouncement;
 @Disabled
 public class SsdpScannerIT {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(SsdpScannerIT.class);
   private static final String BOSE_URN = "urn:schemas-upnp-org:device:MediaRenderer:1";
 
   /**
@@ -27,7 +24,7 @@ public class SsdpScannerIT {
    */
 
   @Test
-  public void test01_findDevices() {
+  public void findDevices() {
     final SsdpClient client = SsdpClient.create();
 
     final BoseDiscoveryListener listener = new BoseDiscoveryListener();
@@ -51,8 +48,6 @@ public class SsdpScannerIT {
     client.stopDiscovery();
     assertEquals(1, listener.getServicesFound()
         .size());
-    LOGGER.info("Discovery Stopped and {} services found", listener.getServicesFound()
-        .size());
   }
 
 
@@ -62,19 +57,17 @@ public class SsdpScannerIT {
 
     @Override
     public void onServiceDiscovered(final SsdpService service) {
-      LOGGER.debug("Found service at IP: {}", service.getRemoteIp()
-          .toString());
       servicesFound.add(service);
     }
 
     @Override
-    public void onServiceAnnouncement(final SsdpServiceAnnouncement announcement) {
-      LOGGER.debug("Service announced something: {}", announcement);
+    public void onServiceAnnouncement(final SsdpServiceAnnouncement ssdpServiceAnnouncement) {
+
     }
 
     @Override
     public void onFailed(final Exception ex) {
-      LOGGER.debug("Service onFailed: {}", ex.getMessage());
+
     }
 
     List<SsdpService> getServicesFound() {

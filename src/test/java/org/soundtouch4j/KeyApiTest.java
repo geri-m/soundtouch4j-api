@@ -13,8 +13,8 @@ public class KeyApiTest {
   @Test
   public void powerOnSuccessful() throws SoundTouchApiException {
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
-      soundTouchApi.getKeyApi()
-          .power();
+    soundTouchApi.getKeyApi()
+        .power();
   }
 
   @Test
@@ -47,8 +47,8 @@ public class KeyApiTest {
   @Test
   public void muteSucessfully() throws SoundTouchApiException {
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
-      soundTouchApi.getKeyApi()
-          .mute();
+    soundTouchApi.getKeyApi()
+        .mute();
   }
 
   @Test

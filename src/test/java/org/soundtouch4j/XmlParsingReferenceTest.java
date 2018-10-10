@@ -7,41 +7,35 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.info.NetworkInfoTypeEnum;
 import com.google.api.client.http.xml.XmlHttpContent;
 import com.google.api.client.util.Key;
 import com.google.api.client.xml.XmlObjectParser;
 
-
 public class XmlParsingReferenceTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(XmlParsingReferenceTest.class);
 
   @Test
-  public void test01_serializingXMLTest() throws IOException {
-    LOGGER.info("test01_serializingXMLTest started");
-
+  public void serializingXMLTest() throws IOException {
     final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(SoundTouchApiClient.DICTIONARY, "AnyType", new AnyType());
-
     final OutputStream os = new ByteArrayOutputStream();
     xmlContentForPostCall.writeTo(os);
     assertEquals("<?xml version=\"1.0\"?><AnyType xmlns=\"\" />", os.toString());
-    LOGGER.info("test01_serializingXMLTest passed");
   }
 
   @Test
-  public void test02_deserializingXMLTest() throws IOException {
-    LOGGER.info("test02_deserializingXMLTest started");
-
-
-    final String input = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><info deviceID=\"C8DF84AE0B6E\"><name>SoundTouch 20</name><type>SoundTouch " + "20</type><margeAccountUUID" + ">6990307" + "</margeAccountUUID><components><component><componentCategory>SCM</componentCategory><softwareVersion>19.0.5.42017.2794643 epdbuild" + ".trunk.cepeswbld02" + ".2018" + "-04-25T18:23:30</softwareVersion><serialNumber>F8124895404720048620440</serialNumber></component><component><componentCategory>PackagedProduct" + "</componentCategory><serialNumber>069428P81639976AE</serialNumber></component></components><margeURL>https://streaming.bose.com</margeURL><networkInfo " + "type" + "=\"SCM" + "\"><macAddress>C8DF84AE0B6E</macAddress><ipAddress>192.168.178.61</ipAddress></networkInfo><networkInfo " + "type=\"SMSC\"><macAddress>C8DF84615084" + "</macAddress" + "><ipAddress>192.168.178" + ".61</ipAddress></networkInfo><moduleType>sm2</moduleType><variant>spotty</variant><variantMode>normal</variantMode" + "><countryCode>GB" + "</countryCode><regionCode>GB" + "</regionCode></info>";
+  public void deserializingXMLTest() throws IOException {
+    final String input = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><info deviceID=\"C8DF84AE0B6E\"><name>SoundTouch 20</name><type>SoundTouch " + "20</type><margeAccountUUID" +
+        ">6990307" + "</margeAccountUUID><components><component><componentCategory>SCM</componentCategory><softwareVersion>19.0.5.42017.2794643 " + "epdbuild.trunk.cepeswbld02" +
+        ".2018-04-25T18:23:30</softwareVersion><serialNumber>F8124895404720048620440</serialNumber></component><component><componentCategory" + ">PackagedProduct" +
+        "</componentCategory><serialNumber>069428P81639976AE</serialNumber></component></components><margeURL>https://streaming.bose.com</margeURL><networkInfo " + "type=\"SCM" +
+        "\"><macAddress>C8DF84AE0B6E</macAddress><ipAddress>192.168.178.61</ipAddress></networkInfo><networkInfo " + "type=\"SMSC\"><macAddress>C8DF84615084</macAddress" +
+        "><ipAddress>192.168.178" + ".61</ipAddress></networkInfo><moduleType>sm2</moduleType><variant>spotty</variant><variantMode>normal</variantMode><countryCode>GB" +
+        "</countryCode><regionCode>GB" + "</regionCode></info>";
 
     final XmlObjectParser parser = new XmlObjectParser(SoundTouchApiClient.DICTIONARY);
     final InfoResponse response = parser.parseAndClose(new StringReader(input), InfoResponse.class);
-    LOGGER.info(response.toString());
     assertEquals("C8DF84AE0B6E", response.getDeviceID());
     assertEquals("SoundTouch 20", response.getName());
     assertEquals("SoundTouch 20", response.getType());
@@ -79,8 +73,6 @@ public class XmlParsingReferenceTest {
     assertEquals(NetworkInfoTypeEnum.SMSC, response.getNetworkInfo()
         .get(1)
         .getType());
-
-    LOGGER.info("test02_deserializingXMLTest passed");
   }
 
   public static class AnyType {
