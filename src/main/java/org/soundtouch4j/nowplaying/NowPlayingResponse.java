@@ -115,16 +115,16 @@ public class NowPlayingResponse implements Response {
   private String rateEnabled;
 
   @Key
-  private String playStatus;
+  private PlayStatusEnum playStatus;
 
   @Key
-  private String shuffleSetting;
+  private ShuffelStatusEnum shuffleSetting;
 
   @Key
-  private String repeatSettings;
+  private RepeatStatusEnum repeatSettings;
 
   @Key
-  private String streamType;
+  private StreamStatusEnum streamType;
 
   @Key
   private String stationLocation;
@@ -161,19 +161,19 @@ public class NowPlayingResponse implements Response {
   }
 
   public PlayStatusEnum getPlayStatus() {
-    return PlayStatusEnum.valueOf(playStatus);
+    return playStatus;
   }
 
   public ShuffelStatusEnum getShuffleSetting() {
-    return ShuffelStatusEnum.valueOf(shuffleSetting);
+    return shuffleSetting;
   }
 
   public RepeatStatusEnum getRepeatSettings() {
-    return RepeatStatusEnum.valueOf(repeatSettings);
+    return repeatSettings;
   }
 
   public StreamStatusEnum getStreamType() {
-    return StreamStatusEnum.valueOf(streamType);
+    return streamType;
   }
 
   public String getStationLocation() {
