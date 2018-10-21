@@ -25,6 +25,11 @@ public class NowPlayingTest {
 
     final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
         .nowPlaying();
+    assertEquals("NowPlayingResponse{source=INTERNET_RADIO, deviceID='C8DF84AE0B6E', contentItem=ContentItem{source=INTERNET_RADIO, isPresetable=true, location='18298', " +
+        "sourceAccount='', itemName='ORF Hitradio Ö3', containerArt='http://item.radio456.com/007452/logo/logo-18298.jpg'}, track='null', artist='null', album='null', " +
+        "genre='null', rating='null', stationName='ORF Hitradio Ö3', art=Art{value=http://item.radio456.com/007452/logo/logo-18298.jpg, artImageStatus=IMAGE_PRESENT}, time=null," +
+        " skipEnabled=false, skipPreviousEnabled=false, favoriteEnabled=null, isFavorite=false, rateEnabled=null, playStatus=PLAY_STATE, stationLocation='Vienna Austria', " +
+        "connectionStatusInfo=null}", response.toString());
     assertEquals("C8DF84AE0B6E", response.getDeviceID());
     assertEquals(SourceEnum.INTERNET_RADIO, response.getSource());
     assertNull(response.getAlbum());
@@ -51,6 +56,10 @@ public class NowPlayingTest {
 
     final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
         .nowPlaying();
+    assertEquals("NowPlayingResponse{source=BLUETOOTH, deviceID='C8DF84AE0B6E', contentItem=ContentItem{source=BLUETOOTH, isPresetable=false, location='', sourceAccount='', " +
+        "itemName='Geralds MacBook Pro', containerArt='null'}, track='Unknown', artist='null', album='null', genre='genre', rating='null', stationName='Geralds MacBook Pro', " +
+        "art=Art{value=null, artImageStatus=SHOW_DEFAULT_IMAGE}, time=null, skipEnabled=false, skipPreviousEnabled=false, favoriteEnabled=null, isFavorite=false, " +
+        "rateEnabled=null, playStatus=STOP_STATE, stationLocation='null', connectionStatusInfo=ConnectionStatusInfo{status='CONNECTED', deviceName=Geralds MacBook Pro}}", response.toString());
     assertEquals("C8DF84AE0B6E", response.getDeviceID());
     assertEquals(SourceEnum.BLUETOOTH, response.getSource());
     assertNull(response.getAlbum());
@@ -84,6 +93,9 @@ public class NowPlayingTest {
 
     final NowPlayingResponse response = soundTouchApi.getNowPlayingApi()
         .nowPlaying();
+    assertEquals("NowPlayingResponse{source=STANDBY, deviceID='C8DF84AE0B6E', contentItem=ContentItem{source=STANDBY, isPresetable=true, location='null', sourceAccount='null', " +
+        "itemName='null', containerArt='null'}, track='null', artist='null', album='null', genre='null', rating='null', stationName='null', art=null, time=null, " +
+        "skipEnabled=false, skipPreviousEnabled=false, favoriteEnabled=null, isFavorite=false, rateEnabled=null, playStatus=null, stationLocation='null', connectionStatusInfo=null}", response.toString());
     assertEquals("C8DF84AE0B6E", response.getDeviceID());
     assertEquals(SourceEnum.STANDBY, response.getSource());
     assertNull(response.getAlbum());

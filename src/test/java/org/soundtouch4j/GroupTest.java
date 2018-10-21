@@ -108,6 +108,8 @@ public class GroupTest {
     final Group group = soundTouchApi.getGroupApi()
         .getGroup();
 
+    assertEquals("Group{id='$STRING', name='name', masterDeviceId='masterDeviceId', roles={groupRole=[GroupRole{deviceId='deviceId1', role=LEFT1, ipAddress='ipAddress1'}, " +
+        "GroupRole{deviceId='deviceId2', role=RIGHT2, ipAddress='ipAddress2'}]}, status='status'}", group.toString());
     assertEquals("$STRING", group.getId());
     assertEquals(2, group.getGroupRoles()
         .size());
@@ -154,7 +156,7 @@ public class GroupTest {
 
     final Group group = soundTouchApi.getGroupApi()
         .getGroup();
-
+    assertEquals("Group{id='$STRING', name='name', masterDeviceId='masterDeviceId', roles={}, status='status'}", group.toString());
     assertEquals("$STRING", group.getId());
     assertEquals(0, group.getGroupRoles()
         .size());

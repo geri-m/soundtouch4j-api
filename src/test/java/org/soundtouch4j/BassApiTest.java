@@ -24,6 +24,7 @@ public class BassApiTest {
     assertEquals("C8DF84AE0B6E", response.getDeviceID());
     assertEquals(2, response.getActualBass());
     assertEquals(1, response.getTargetBass());
+    assertEquals("BassGetResponse{deviceID='C8DF84AE0B6E', targetBass=1, actualBass=2}", response.toString());
   }
 
   @Test
@@ -42,6 +43,7 @@ public class BassApiTest {
     try {
       final Zone zone = new Zone("C8DF84AE0B6E");
       zone.addMember(new ZoneMember("192.168.178.61", "C8DF84AE0B6E"));
+      assertEquals("Zone{macAddress='C8DF84AE0B6E', members=[ZoneMember{ipaddress='192.168.178.61', macAddress='C8DF84AE0B6E'}]}", zone.toString());
       soundTouchApi.getBassApi()
           .setBass(10);
       fail();
@@ -57,6 +59,7 @@ public class BassApiTest {
     try {
       final Zone zone = new Zone("C8DF84AE0B6E");
       zone.addMember(new ZoneMember("192.168.178.61", "C8DF84AE0B6E"));
+      assertEquals("Zone{macAddress='C8DF84AE0B6E', members=[ZoneMember{ipaddress='192.168.178.61', macAddress='C8DF84AE0B6E'}]}", zone.toString());
       soundTouchApi.getBassApi()
           .setBass(10);
       fail();
