@@ -18,6 +18,6 @@ public class VolumeSetResponse implements Response {
 
   @Override
   public String toString() {
-    return "VolumeSetResponse{" + "volume=" + volume + '}';
+    return "VolumeSetResponse{volume=" + volume + '}';
   }
 }

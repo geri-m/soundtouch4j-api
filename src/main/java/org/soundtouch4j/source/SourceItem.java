@@ -53,6 +53,6 @@ public class SourceItem {
 
   @Override
   public String toString() {
-    return "SourceItem{" + "source=" + source + ", status=" + status + ", sourceAccount='" + sourceAccount + '\'' + ", isLocal=" + isLocal + ", multiroomallowed=" + multiroomallowed + ", value='" + value + '\'' + '}';
+    return "SourceItem{source=" + source + ", status=" + status + ", sourceAccount='" + sourceAccount + '\'' + ", isLocal=" + isLocal + ", multiroomallowed=" + multiroomallowed + ", value='" + value + '\'' + '}';
   }
 }

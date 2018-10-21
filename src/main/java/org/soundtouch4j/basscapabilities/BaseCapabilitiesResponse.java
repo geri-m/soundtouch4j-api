@@ -46,6 +46,6 @@ public class BaseCapabilitiesResponse implements Response {
 
   @Override
   public String toString() {
-    return "BaseCapabilitiesResponse{" + "deviceID=" + deviceID + ", bassAvailable=" + bassAvailable + ", bassMin=" + bassMin + ", bassMax=" + bassMax + ", bassDefault=" + bassDefault + '}';
+    return "BaseCapabilitiesResponse{deviceID=" + deviceID + ", bassAvailable=" + bassAvailable + ", bassMin=" + bassMin + ", bassMax=" + bassMax + ", bassDefault=" + bassDefault + '}';
   }
 }

@@ -63,6 +63,6 @@ public class ContentItem implements Request {
 
   @Override
   public String toString() {
-    return "ContentItem{" + "source=" + source + ", isPresetable=" + isPresetable + ", location='" + location + '\'' + ", sourceAccount='" + sourceAccount + '\'' + ", itemName" + "='" + itemName + '\'' + ", containerArt='" + containerArt + '\'' + '}';
+    return "ContentItem{source=" + source + ", isPresetable=" + isPresetable + ", location='" + location + '\'' + ", sourceAccount='" + sourceAccount + '\'' + ", itemName='" + itemName + '\'' + ", containerArt='" + containerArt + '\'' + '}';
   }
 }

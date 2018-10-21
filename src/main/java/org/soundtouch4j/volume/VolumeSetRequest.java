@@ -30,6 +30,6 @@ public class VolumeSetRequest implements Request {
 
   @Override
   public String toString() {
-    return "VolumeSetRequest{" + "volume=" + volume + '}';
+    return "VolumeSetRequest{volume=" + volume + '}';
   }
 }

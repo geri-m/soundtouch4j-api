@@ -41,7 +41,7 @@ public class Error implements Serializable {
 
   @Override
   public String toString() {
-    return "Error{" + "value=" + value + ", name=" + name + ", severity='" + severity + '\'' + ", text='" + text + '\'' + '}';
+    return "Error{value=" + value + ", name=" + name + ", severity='" + severity + '\'' + ", text='" + text + '\'' + '}';
   }
 }
 

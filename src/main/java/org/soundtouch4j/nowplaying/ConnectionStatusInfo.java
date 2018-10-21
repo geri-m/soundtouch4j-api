@@ -24,6 +24,6 @@ public class ConnectionStatusInfo {
 
   @Override
   public String toString() {
-    return "ConnectionStatusInfo{" + "status='" + status + '\'' + ", deviceName=" + deviceName + '}';
+    return "ConnectionStatusInfo{status='" + status + '\'' + ", deviceName=" + deviceName + '}';
   }
 }

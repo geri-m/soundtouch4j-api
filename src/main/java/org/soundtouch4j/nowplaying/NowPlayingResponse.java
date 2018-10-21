@@ -248,6 +248,6 @@ public class NowPlayingResponse implements Response {
 
   @Override
   public String toString() {
-    return "NowPlayingResponse{" + "source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + isSkipEnabled() + ", skipPreviousEnabled=" + isSkipPreviousEnabled() + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isIsFavorite() + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
+    return "NowPlayingResponse{source=" + source + ", deviceID='" + deviceID + '\'' + ", contentItem=" + contentItem + ", track='" + track + '\'' + ", artist='" + artist + '\'' + ", album='" + album + '\'' + ", genre='" + genre + '\'' + ", rating='" + rating + '\'' + ", stationName='" + stationName + '\'' + ", art=" + art + ", time=" + time + ", skipEnabled=" + isSkipEnabled() + ", skipPreviousEnabled=" + isSkipPreviousEnabled() + ", favoriteEnabled=" + favoriteEnabled + ", isFavorite=" + isIsFavorite() + ", rateEnabled=" + rateEnabled + ", playStatus=" + playStatus + ", stationLocation='" + stationLocation + '\'' + ", connectionStatusInfo=" + connectionStatusInfo + '}';
   }
 }

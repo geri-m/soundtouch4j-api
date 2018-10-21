@@ -100,6 +100,6 @@ public class InfoResponse implements Response {
 
   @Override
   public String toString() {
-    return "InfoResponse{" + "deviceID='" + deviceID + '\'' + ", name='" + name + '\'' + ", type='" + type + '\'' + ", components=" + components + ", networkInfo=" + networkInfo + '}';
+    return "InfoResponse{deviceID='" + deviceID + '\'' + ", name='" + name + '\'' + ", type='" + type + '\'' + ", components=" + components + ", networkInfo=" + networkInfo + '}';
   }
 }

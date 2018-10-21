@@ -31,6 +31,6 @@ public class ZoneMember {
 
   @Override
   public String toString() {
-    return "ZoneMember{" + "ipaddress='" + ipAddress + '\'' + ", macAddress='" + macAddress + '\'' + '}';
+    return "ZoneMember{ipaddress='" + ipAddress + '\'' + ", macAddress='" + macAddress + '\'' + '}';
   }
 }

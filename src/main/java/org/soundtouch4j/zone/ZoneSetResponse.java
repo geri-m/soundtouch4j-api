@@ -18,6 +18,6 @@ public class ZoneSetResponse implements Response {
 
   @Override
   public String toString() {
-    return "ZoneSetResponse{" + "response='" + response + '\'' + '}';
+    return "ZoneSetResponse{response='" + response + '\'' + '}';
   }
 }

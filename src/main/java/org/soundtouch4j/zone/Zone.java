@@ -41,6 +41,6 @@ public class Zone implements Response, Request {
 
   @Override
   public String toString() {
-    return "Zone{" + "macAddress='" + macAddress + '\'' + ", members=" + members + '}';
+    return "Zone{macAddress='" + macAddress + '\'' + ", members=" + members + '}';
   }
 }

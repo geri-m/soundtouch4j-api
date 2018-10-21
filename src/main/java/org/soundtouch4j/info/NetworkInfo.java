@@ -43,6 +43,6 @@ public class NetworkInfo {
 
   @Override
   public String toString() {
-    return "NetworkInfo{" + "type=" + type + ", macAddress='" + macAddress + '\'' + ", ipAddress='" + ipAddress + '\'' + '}';
+    return "NetworkInfo{type=" + type + ", macAddress='" + macAddress + '\'' + ", ipAddress='" + ipAddress + '\'' + '}';
   }
 }

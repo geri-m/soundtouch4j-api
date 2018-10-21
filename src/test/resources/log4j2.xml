@@ -3,7 +3,8 @@
 
   <Appenders>
     <Console name="stdout" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}:%L - %m %X{device.id} %X{session.id}%n"/>
+      <PatternLayout
+          pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}:%L - %m %X{device.id} %X{session.id}%n"/>
     </Console>
   </Appenders>
 

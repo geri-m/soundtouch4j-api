@@ -56,6 +56,6 @@ public class Group implements Response {
 
   @Override
   public String toString() {
-    return "Group{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", masterDeviceId='" + masterDeviceId + '\'' + ", roles=" + roles + ", status='" + status + '\'' + '}';
+    return "Group{id='" + id + '\'' + ", name='" + name + '\'' + ", masterDeviceId='" + masterDeviceId + '\'' + ", roles=" + roles + ", status='" + status + '\'' + '}';
   }
 }

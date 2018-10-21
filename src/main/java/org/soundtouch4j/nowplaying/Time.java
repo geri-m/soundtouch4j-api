@@ -24,6 +24,6 @@ public class Time {
 
   @Override
   public String toString() {
-    return "Time{" + "value=" + value + ", total=" + total + '}';
+    return "Time{value=" + value + ", total=" + total + '}';
   }
 }

@@ -13,8 +13,8 @@ public class BassCapabilitiesApiTest {
 
   @Test
   public void getBassCapabilities() throws SoundTouchApiException {
-    final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><bassCapabilities " + "deviceID=\"C8DF84AE0B6E\"><bassAvailable>true</bassAvailable><bassMin>-9</bassMin" +
-        "><bassMax>0" + "</bassMax><bassDefault>0</bassDefault></bassCapabilities>";
+    final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><bassCapabilities deviceID=\"C8DF84AE0B6E\"><bassAvailable>true</bassAvailable><bassMin>-9</bassMin" +
+        "><bassMax>0</bassMax><bassDefault>0</bassDefault></bassCapabilities>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);

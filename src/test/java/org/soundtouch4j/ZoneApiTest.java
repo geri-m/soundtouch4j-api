@@ -7,6 +7,7 @@ import org.soundtouch4j.zone.Zone;
 import org.soundtouch4j.zone.ZoneMember;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.testing.http.HttpTesting;
+import com.google.api.client.util.Preconditions;
 
 
 public class ZoneApiTest {
@@ -23,7 +24,7 @@ public class ZoneApiTest {
 
   @Test
   public void getZoneList() throws SoundTouchApiException {
-    final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<zone master=\"C8DF84AE0B6E\">\n    <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E" + "</member>\n</zone>";
+    final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<zone master=\"C8DF84AE0B6E\">\n    <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     final Zone zone = soundTouchApi.getZoneApi()
@@ -164,6 +165,12 @@ public class ZoneApiTest {
     } catch (final SoundTouchApiException e) {
       assertEquals("Invalid Response from Speaker. Response was '/NOTAsetZone'", e.getMessage());
     }
+  }
+
+  // Test added when switching from 1.25.0 to 1.26.0 as this was broken without guava.
+  @Test
+  public void testPrecondition() {
+    Preconditions.checkState(true);
   }
 
 

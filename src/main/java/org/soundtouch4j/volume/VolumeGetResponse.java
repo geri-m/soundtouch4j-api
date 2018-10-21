@@ -41,7 +41,7 @@ public class VolumeGetResponse implements Response {
 
   @Override
   public String toString() {
-    return "VolumeGetResponse{" + "deviceID='" + deviceID + '\'' + ", targetVolume=" + targetVolume + ", actualVolume=" + actualVolume + ", muteEnabled=" + muteEnabled + '}';
+    return "VolumeGetResponse{deviceID='" + deviceID + '\'' + ", targetVolume=" + targetVolume + ", actualVolume=" + actualVolume + ", muteEnabled=" + muteEnabled + '}';
   }
 
   public String getDeviceID() {

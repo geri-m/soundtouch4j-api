@@ -40,6 +40,6 @@ public class Preset {
 
   @Override
   public String toString() {
-    return "Preset{" + "id=" + id + ", createdOn=" + getCreatedOn() + ", updatedOn=" + getUpdatedOn() + ", contentItem=" + contentItem + '}';
+    return "Preset{id=" + id + ", createdOn=" + getCreatedOn() + ", updatedOn=" + getUpdatedOn() + ", contentItem=" + contentItem + '}';
   }
 }

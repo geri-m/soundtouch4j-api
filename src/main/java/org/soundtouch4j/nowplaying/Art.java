@@ -24,6 +24,6 @@ public class Art {
 
   @Override
   public String toString() {
-    return "Art{" + "value=" + value + ", artImageStatus=" + artImageStatus + '}';
+    return "Art{value=" + value + ", artImageStatus=" + artImageStatus + '}';
   }
 }

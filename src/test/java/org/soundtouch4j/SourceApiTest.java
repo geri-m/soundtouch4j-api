@@ -23,9 +23,7 @@ public class SourceApiTest {
         "multiroomallowed=\"true\">QPlay1UserName</sourceItem><sourceItem source=\"QPLAY\" sourceAccount=\"QPlay2UserName\" status=\"UNAVAILABLE\" isLocal=\"true\" " +
         "multiroomallowed=\"true\">QPlay2UserName</sourceItem><sourceItem source=\"UPNP\" sourceAccount=\"UPnPUserName\" status=\"UNAVAILABLE\" isLocal=\"false\" " +
         "multiroomallowed=\"true\">UPnPUserName</sourceItem><sourceItem source=\"SPOTIFY\" status=\"UNAVAILABLE\" isLocal=\"false\" multiroomallowed=\"true\" /><sourceItem " +
-        "source=\"STORED_MUSIC_MEDIA_RENDERER\" sourceAccount=\"StoredMusicUserName\" status=\"UNAVAILABLE\" isLocal=\"false\" " + "multiroomallowed=\"true\">StoredMusicUserName"
-        + "</sourceItem><sourceItem source=\"ALEXA\" status=\"READY\" isLocal=\"false\" multiroomallowed=\"true\" /><sourceItem " + "source=\"TUNEIN\" status=\"READY\" " +
-        "isLocal=\"false\" multiroomallowed=\"true\" /></sources>";
+        "source=\"STORED_MUSIC_MEDIA_RENDERER\" sourceAccount=\"StoredMusicUserName\" status=\"UNAVAILABLE\" isLocal=\"false\" multiroomallowed=\"true\">StoredMusicUserName" + "</sourceItem><sourceItem source=\"ALEXA\" status=\"READY\" isLocal=\"false\" multiroomallowed=\"true\" /><sourceItem source=\"TUNEIN\" status=\"READY\" isLocal" + "=\"false\" multiroomallowed=\"true\" /></sources>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
 
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);

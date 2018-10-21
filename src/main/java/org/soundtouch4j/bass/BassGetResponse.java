@@ -35,6 +35,6 @@ public class BassGetResponse implements Response {
 
   @Override
   public String toString() {
-    return "BassGetResponse{" + "deviceID='" + deviceID + '\'' + ", targetBass=" + targetBass + ", actualBass=" + actualBass + '}';
+    return "BassGetResponse{deviceID='" + deviceID + '\'' + ", targetBass=" + targetBass + ", actualBass=" + actualBass + '}';
   }
 }

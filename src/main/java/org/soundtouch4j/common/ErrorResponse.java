@@ -22,6 +22,6 @@ public class ErrorResponse implements Response, Serializable {
 
   @Override
   public String toString() {
-    return "ErrorResponse{" + "error=" + errorList + '}';
+    return "ErrorResponse{error=" + errorList + '}';
   }
 }

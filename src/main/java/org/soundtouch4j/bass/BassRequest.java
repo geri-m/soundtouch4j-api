@@ -21,6 +21,6 @@ public class BassRequest implements Request {
 
   @Override
   public String toString() {
-    return "BassRequest{" + "bass=" + bass + '}';
+    return "BassRequest{bass=" + bass + '}';
   }
 }

@@ -55,6 +55,6 @@ public class Component {
 
   @Override
   public String toString() {
-    return "Component{" + "softwareVersion='" + softwareVersion + '\'' + ", serialNumber='" + serialNumber + '\'' + '}';
+    return "Component{softwareVersion='" + softwareVersion + '\'' + ", serialNumber='" + serialNumber + '\'' + '}';
   }
 }

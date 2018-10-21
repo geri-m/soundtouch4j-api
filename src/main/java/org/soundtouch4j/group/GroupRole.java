@@ -31,6 +31,6 @@ public class GroupRole {
 
   @Override
   public String toString() {
-    return "GroupRole{" + "deviceId='" + deviceId + '\'' + ", role=" + role + ", ipAddress='" + ipAddress + '\'' + '}';
+    return "GroupRole{deviceId='" + deviceId + '\'' + ", role=" + role + ", ipAddress='" + ipAddress + '\'' + '}';
   }
 }

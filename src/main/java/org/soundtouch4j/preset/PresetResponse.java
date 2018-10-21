@@ -19,6 +19,6 @@ public class PresetResponse implements Response {
 
   @Override
   public String toString() {
-    return "PresetResponse{" + "presetList=" + presetList + '}';
+    return "PresetResponse{presetList=" + presetList + '}';
   }
 }

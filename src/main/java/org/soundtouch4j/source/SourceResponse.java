@@ -27,6 +27,6 @@ public class SourceResponse implements Response {
 
   @Override
   public String toString() {
-    return "SourceResponse{" + "deviceID='" + deviceID + '\'' + ", sourceItems=" + sourceItem + '}';
+    return "SourceResponse{deviceID='" + deviceID + '\'' + ", sourceItems=" + sourceItem + '}';
   }
 }
