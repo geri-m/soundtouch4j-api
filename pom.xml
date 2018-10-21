@@ -29,10 +29,12 @@
   <properties>
     <java.source.version>1.6</java.source.version>
     <java.target.version>1.6</java.target.version>
-    <google.http.client.version>1.25.0</google.http.client.version>
+    <google.http.client.version>1.26.0</google.http.client.version>
     <junit.version>5.3.1</junit.version>
-    <log4j2.version>2.11.0</log4j2.version>
+    <log4j2.version>2.11.1</log4j2.version>
     <ssdp.version>2.2.0</ssdp.version>
+    <awaitility.version>3.1.2</awaitility.version>
+    <guava.version>20.0</guava.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -92,10 +94,18 @@
     <dependency>
       <groupId>org.awaitility</groupId>
       <artifactId>awaitility</artifactId>
-      <version>3.1.2</version>
+      <version>${awaitility.version}</version>
       <scope>test</scope>
     </dependency>
 
+    <!--
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+      <scope>test</scope>
+    </dependency>
+    -->
   </dependencies>
 
   <build>

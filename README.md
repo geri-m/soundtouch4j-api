@@ -43,6 +43,10 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.5') {
 
 # Releases
 
+## Version 1.0.6 (October 20th, 2018)
+
+- Update to Junit 5
+
 ## Version 1.0.5 (September 27th, 2018)
 
 - Update ```/group``` endpoint and add check for Version and Product Type
