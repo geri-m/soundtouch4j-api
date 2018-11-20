@@ -250,7 +250,6 @@
           <includes>
             <include>**/*Test.java</include>
           </includes>
-          <useSystemClassLoader>false</useSystemClassLoader>
         </configuration>
       </plugin>
 
