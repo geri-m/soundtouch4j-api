@@ -37,7 +37,7 @@ jobs:
     - run:
         name: Maven Build and Test/JaCoDo (for Code Coverage)
         # https://stackoverflow.com/questions/53010200/maven-surefire-could-not-find-forkedbooter-class/53012553#53012553
-        command: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false -Djdk.net.URLClassPath.disableClassPathURLCheck=true
+        command: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false
 
     # run SonarCloud Tests
     - run:
