@@ -45,7 +45,7 @@ public class SpeakerIT {
         .getInfo()
         .getNetworkInfo()
         .size());
-    assertEquals(11, soundTouchApi.getSourceApi()
+    assertEquals(10, soundTouchApi.getSourceApi()
         .getSources()
         .getSourceItems()
         .size());

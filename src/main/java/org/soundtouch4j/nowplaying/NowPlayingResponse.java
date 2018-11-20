@@ -231,8 +231,12 @@ public class NowPlayingResponse implements Response {
    */
 
   public boolean isInStandbyMode() {
-    return getContentItem().getSource()
-        .equals(SourceEnum.STANDBY);
+    if (getContentItem().getSource() != null) {
+      return getContentItem().getSource()
+          .equals(SourceEnum.STANDBY);
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -240,9 +244,12 @@ public class NowPlayingResponse implements Response {
    *
    * @return true, if the speaker is playing.
    */
-
   public boolean isPlaying() {
-    return getPlayStatus().equals(PlayStatusEnum.PLAY_STATE);
+    if (getPlayStatus() != null) {
+      return getPlayStatus().equals(PlayStatusEnum.PLAY_STATE);
+    } else {
+      return false;
+    }
   }
 
 

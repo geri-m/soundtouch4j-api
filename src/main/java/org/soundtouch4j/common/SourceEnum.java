@@ -20,6 +20,7 @@ public enum SourceEnum {
   @Value SPOTIFY,
   @Value STORED_MUSIC_MEDIA_RENDERER,
   @Value ALEXA,
-  @Value TUNEIN;
+  @Value TUNEIN,
+  @Value INVALID_SOURCE;
 
 }
