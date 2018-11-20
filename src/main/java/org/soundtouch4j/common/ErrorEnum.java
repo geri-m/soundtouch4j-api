@@ -4,6 +4,7 @@ import com.google.api.client.util.Value;
 
 public enum ErrorEnum {
 
-  @Value SELECT_ITEM_IN_WRONG_STATE
+  @Value SELECT_ITEM_IN_WRONG_STATE,
+  @Value UNKNOWN_SOURCE_ERROR;
 
 }
