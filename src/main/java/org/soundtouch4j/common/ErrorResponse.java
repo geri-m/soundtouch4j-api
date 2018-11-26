@@ -20,8 +20,4 @@ public class ErrorResponse implements Response, Serializable {
     return new ArrayList<Error>(errorList);
   }
 
-  @Override
-  public String toString() {
-    return "ErrorResponse{error=" + errorList + '}';
-  }
 }

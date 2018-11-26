@@ -10,17 +10,8 @@ public class BassRequest implements Request {
   @Key("text()")
   private int bass;
 
-
   public BassRequest(final int bass) {
     this.bass = bass;
   }
 
-  public BassRequest() {
-    // Auto Init/Reflection Requires Empty Constructor
-  }
-
-  @Override
-  public String toString() {
-    return "BassRequest{bass=" + bass + '}';
-  }
 }
