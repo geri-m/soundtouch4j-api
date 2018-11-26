@@ -75,6 +75,9 @@ public class NowPlayingResponse implements Response {
   @Key("ContentItem")
   private ContentItem contentItem;
 
+  @Key("@sourceAccount")
+  private String sourceAccount;
+
   @Key
   private String track;
 
@@ -124,7 +127,7 @@ public class NowPlayingResponse implements Response {
   private RepeatStatusEnum repeatSettings;
 
   @Key
-  private StreamStatusEnum streamType;
+  private StreamTypeEnum streamType;
 
   @Key
   private String stationLocation;
@@ -134,6 +137,10 @@ public class NowPlayingResponse implements Response {
 
   public NowPlayingResponse() {
     // Auto Init/Reflection Requires Empty Constructor
+  }
+
+  public String getSourceAccount() {
+    return sourceAccount;
   }
 
   public ContentItem getContentItem() {
@@ -172,7 +179,7 @@ public class NowPlayingResponse implements Response {
     return repeatSettings;
   }
 
-  public StreamStatusEnum getStreamType() {
+  public StreamTypeEnum getStreamType() {
     return streamType;
   }
 
@@ -231,12 +238,8 @@ public class NowPlayingResponse implements Response {
    */
 
   public boolean isInStandbyMode() {
-    if (getContentItem().getSource() != null) {
       return getContentItem().getSource()
           .equals(SourceEnum.STANDBY);
-    } else {
-      return false;
-    }
   }
 
   /**

@@ -22,6 +22,9 @@ public class ContentItem implements Request {
   @Key("@sourceAccount")
   private String sourceAccount;
 
+  @Key("@type")
+  private String type;
+
   @Key
   private String itemName;
 
@@ -59,6 +62,10 @@ public class ContentItem implements Request {
 
   public String getContainerArt() {
     return containerArt;
+  }
+
+  public String getType() {
+    return type;
   }
 
   @Override
