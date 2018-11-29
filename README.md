@@ -43,6 +43,10 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.6') {
 
 # Releases
 
+## Version 1.0.7 (November 26th, 2018)
+
+- Update to Firmware Version 20.x of Bose Soundtouch Speaker
+
 ## Version 1.0.6 (October 20th, 2018)
 
 - Update to Junit 5
@@ -163,7 +167,7 @@ or on Android
 implementation 'io.resourcepool:ssdp-client:2.2.0'
 ```
 
-## Awaitility -- Async Operations easy
+## Awaitility - Async Operations easy
 
 For the Async Operations in the Tests there Awaitility is used: https://github.com/awaitility/awaitility
 
