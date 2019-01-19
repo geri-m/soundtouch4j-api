@@ -7,7 +7,7 @@
 
 # Java API for Bose SoundTouch API - SoundTouch4J
 
-Bose is offering a [line of speaker](https://www.bose.com/en_us/products/speakers/smart_home/soundtouch_family.html) that have 
+Bose is offering a [line of speakers](https://www.bose.com/en_us/products/speakers/smart_home/soundtouch_family.html) that have 
 [REST API](https://developer.bose.com/soundtouch-control-api/apis).
 
 This project offers an API implemented in Java in to the seamlessly interact with the Speakers using Java or Android applications.
