@@ -43,9 +43,9 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.6') {
 
 # Releases
 
-## Version 1.0.7 (January 13th, 2019)
+## Version 1.0.7 (January 19th, 2019)
 
-- Update to Firmware Version 20.x of Bose Soundtouch Speaker
+- Update to [Firmware Version 20.x](https://community.bose.com/t5/SoundTouch-Speakers/SoundTouch-App-and-Speaker-Firmware-Update-Available-Nov-19th/m-p/159020#M71049) of Bose Soundtouch Speaker
 - Update to Google HTTP Lib 1.27.0 (and therefore be able to remove guava again)
 
 ## Version 1.0.6 (October 20th, 2018)
