@@ -22,7 +22,7 @@ Simply add the dependency
 <dependency>
   <groupId>org.soundtouch4j</groupId>
   <artifactId>soundtouch4j-api</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.8-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -43,9 +43,12 @@ implementation ('org.soundtouch4j:soundtouch4j-api:1.0.7') {
 
 # Releases
 
+## Version 1.0.8 (June, xx 2019)
+- Update to [Firmware Version 21.x](https://community.bose.com/t5/SoundTouch-Speakers/SoundTouch-update-starting-May-29-2019/m-p/208808) of Bose SoundTouch Speaker
+
 ## Version 1.0.7 (January 19th, 2019)
 
-- Update to [Firmware Version 20.x](https://community.bose.com/t5/SoundTouch-Speakers/SoundTouch-App-and-Speaker-Firmware-Update-Available-Nov-19th/m-p/159020#M71049) of Bose Soundtouch Speaker
+- Update to [Firmware Version 20.x](https://community.bose.com/t5/SoundTouch-Speakers/SoundTouch-App-and-Speaker-Firmware-Update-Available-Nov-19th/m-p/159020#M71049) of Bose SoundTouch Speaker
 - Update to Google HTTP Lib 1.27.0 (and therefore be able to remove guava again)
 
 ## Version 1.0.6 (October 20th, 2018)
