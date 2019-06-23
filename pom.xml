@@ -328,6 +328,7 @@
     </profile>
 
     <profile>
+        <!-- we can get rid of this, as soon as we change to Surefire 3.0.0-Mx, see https://issues.apache.org/jira/browse/SUREFIRE-1588 -->
       <id>SUREFIRE-1588</id>
       <activation>
         <activeByDefault>true</activeByDefault>
