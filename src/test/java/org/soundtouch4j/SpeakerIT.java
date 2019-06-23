@@ -1,9 +1,7 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.google.api.client.http.HttpStatusCodes;
+import com.google.api.client.http.javanet.NetHttpTransport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.soundtouch4j.bass.BassGetResponse;
@@ -13,8 +11,12 @@ import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.volume.VolumeGetResponse;
 import org.soundtouch4j.zone.Zone;
-import com.google.api.client.http.HttpStatusCodes;
-import com.google.api.client.http.javanet.NetHttpTransport;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 // Ignore this Calls during automated builds, as this requires a physical speaker
@@ -45,7 +47,7 @@ public class SpeakerIT {
         .getInfo()
         .getNetworkInfo()
         .size());
-    assertEquals(10, soundTouchApi.getSourceApi()
+    assertEquals(11, soundTouchApi.getSourceApi()
         .getSources()
         .getSourceItems()
         .size());

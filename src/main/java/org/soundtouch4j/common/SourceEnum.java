@@ -21,6 +21,7 @@ public enum SourceEnum {
   @Value STORED_MUSIC_MEDIA_RENDERER,
   @Value ALEXA,
   @Value TUNEIN,
-  @Value INVALID_SOURCE;
+    @Value INVALID_SOURCE,
+    @Value LOCAL_INTERNET_RADIO;
 
 }
