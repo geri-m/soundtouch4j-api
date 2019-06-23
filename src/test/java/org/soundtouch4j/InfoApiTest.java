@@ -1,18 +1,17 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.testing.http.HttpTesting;
 import org.junit.jupiter.api.Test;
 import org.soundtouch4j.info.InfoResponse;
 import org.soundtouch4j.info.NetworkInfoTypeEnum;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.testing.http.HttpTesting;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InfoApiTest {
 
   @Test
-  public void getInfo() throws SoundTouchApiException {
+  public void getInfo() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><info deviceID=\"C8DF84AE0B6E\"><name>SoundTouch 20</name><type>SoundTouch 20</type><margeAccountUUID" +
         ">6990307</margeAccountUUID><components><component><componentCategory>SCM</componentCategory><softwareVersion>19.0.5.42017.2794643 epdbuild.trunk.cepeswbld02.2018" +
         "-04-25T18:23:30</softwareVersion><serialNumber>F8124895404720048620440</serialNumber></component><component><componentCategory>PackagedProduct</componentCategory" +
@@ -71,7 +70,7 @@ public class InfoApiTest {
   }
 
   @Test
-  public void getInfoBrokenVersion() throws SoundTouchApiException {
+  public void getInfoBrokenVersion() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><info deviceID=\"C8DF84AE0B6E\"><name>SoundTouch 20</name><type>SoundTouch 20</type><margeAccountUUID" +
         ">6990307</margeAccountUUID><components><component><componentCategory>SCM</componentCategory><softwareVersion>1x.0.5.42017.2794643 epdbuild.trunk.cepeswbld02.2018" +
         "-04-25T18:23:30</softwareVersion><serialNumber>F8124895404720048620440</serialNumber></component><component><componentCategory>PackagedProduct</componentCategory" +

@@ -1,9 +1,5 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
-import org.soundtouch4j.group.Group;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -12,6 +8,11 @@ import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
 import com.google.api.client.xml.Xml;
+import org.junit.jupiter.api.Test;
+import org.soundtouch4j.group.Group;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class GroupTest {
 
@@ -91,7 +92,7 @@ public class GroupTest {
   };
 
   @Test
-  public void getGroupSuccessful() throws SoundTouchApiException {
+  public void getGroupSuccessful() {
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {
@@ -140,7 +141,7 @@ public class GroupTest {
   }
 
   @Test
-  public void getGroupEmptyList() throws SoundTouchApiException {
+  public void getGroupEmptyList() {
     final HttpTransport transport = new MockHttpTransport() {
       @Override
       public LowLevelHttpRequest buildRequest(final String method, final String url) {

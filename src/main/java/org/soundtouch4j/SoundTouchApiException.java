@@ -1,13 +1,14 @@
 package org.soundtouch4j;
 
 
-import java.io.IOException;
-import java.io.StringReader;
-import org.soundtouch4j.common.ErrorResponse;
 import com.google.api.client.http.HttpResponseException;
 import com.google.api.client.xml.XmlObjectParser;
+import org.soundtouch4j.common.ErrorResponse;
 
-public class SoundTouchApiException extends Exception {
+import java.io.IOException;
+import java.io.StringReader;
+
+public class SoundTouchApiException extends RuntimeException {
 
   private static final long serialVersionUID = 1L;
   private ErrorResponse error;

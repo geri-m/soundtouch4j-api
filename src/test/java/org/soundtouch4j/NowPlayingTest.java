@@ -1,22 +1,20 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.testing.http.HttpTesting;
 import org.junit.jupiter.api.Test;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.nowplaying.ArtImageStatusEnum;
 import org.soundtouch4j.nowplaying.NowPlayingResponse;
 import org.soundtouch4j.nowplaying.PlayStatusEnum;
 import org.soundtouch4j.nowplaying.StreamTypeEnum;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.testing.http.HttpTesting;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NowPlayingTest {
 
   @Test
-  public void nowPLayingSuccessfulVersion19() throws SoundTouchApiException {
+  public void nowPLayingSuccessfulVersion19() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"INTERNET_RADIO\"><ContentItem source=\"INTERNET_RADIO\" " +
         "location=\"18298\" sourceAccount=\"\" isPresetable=\"true\"><itemName>ORF Hitradio Ö3</itemName><containerArt>http://item.radio456.com/007452/logo/logo-18298.jpg" + "</containerArt></ContentItem><track></track><artist></artist><album></album><stationName>ORF Hitradio Ö3</stationName><art artImageStatus=\"IMAGE_PRESENT\">http" + "://item.radio456.com/007452/logo/logo-18298.jpg</art><playStatus>PLAY_STATE</playStatus><description>MP3  128 kbps  Vienna Austria,  Hitradio Ö3, das meistgehörte " + "Radio Österreichs, mit den aktuellen Charthits, Pop und Rock aus den 80er- und 90er-Jahren und der Morning Show mit der lustigsten Comedy.</description" +
         "><stationLocation>Vienna Austria</stationLocation></nowPlaying>";
@@ -51,7 +49,7 @@ public class NowPlayingTest {
   }
 
   @Test
-  public void nowPlayingSuccessfulVersion20() throws SoundTouchApiException {
+  public void nowPlayingSuccessfulVersion20() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying " +
         "deviceID=\"C8DF84AE0B6E\" source=\"TUNEIN\" sourceAccount=\"\"><ContentItem " +
         "source=\"TUNEIN\" type=\"stationurl\" location=\"/v1/playback/station/s8007\" " +
@@ -103,7 +101,7 @@ public class NowPlayingTest {
 
 
   @Test
-  public void nowPLayingBluetooth() throws SoundTouchApiException {
+  public void nowPLayingBluetooth() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"BLUETOOTH\" sourceAccount=\"\"><ContentItem source" +
         "=\"BLUETOOTH\" location=\"\" sourceAccount=\"\" isPresetable=\"false\"><itemName>Geralds MacBook Pro</itemName></ContentItem><track>Unknown</track><artist></artist" +
         "><album></album><stationName>Geralds MacBook Pro</stationName><art artImageStatus=\"SHOW_DEFAULT_IMAGE\" /><skipEnabled/><playStatus>STOP_STATE</playStatus" +
@@ -142,7 +140,7 @@ public class NowPlayingTest {
   }
 
   @Test
-  public void nowStandby() throws SoundTouchApiException {
+  public void nowStandby() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"C8DF84AE0B6E\" source=\"STANDBY\"><ContentItem source=\"STANDBY\" isPresetable" +
         "=\"true\" /></nowPlaying>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
@@ -170,7 +168,7 @@ public class NowPlayingTest {
   }
 
   @Test
-  public void nowPlayingSampleDataInAllElements() throws SoundTouchApiException {
+  public void nowPlayingSampleDataInAllElements() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><nowPlaying deviceID=\"deviceID\" source=\"STANDBY\"><ContentItem source=\"UPNP\" location=\"location\" " +
         "sourceAccount=\"sourceAccount\" isPresetable=\"true\"><itemName>itemName</itemName></ContentItem><track>track</track><artist>artist</artist><album>album</album" +
         "><stationName>stationName</stationName><art artImageStatus=\"DOWNLOADING\">url</art><playStatus>PAUSE_STATE</playStatus><description>description</description" +

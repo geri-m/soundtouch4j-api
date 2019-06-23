@@ -1,19 +1,20 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import com.google.api.client.http.HttpStatusCodes;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.testing.http.HttpTesting;
 import org.junit.jupiter.api.Test;
 import org.soundtouch4j.common.ContentItem;
 import org.soundtouch4j.common.ErrorEnum;
 import org.soundtouch4j.common.SourceEnum;
-import com.google.api.client.http.HttpStatusCodes;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.testing.http.HttpTesting;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class SelectApiTest {
 
   @Test
-  public void selectWithSwitchToAuxSuccessful() throws SoundTouchApiException {
+  public void selectWithSwitchToAuxSuccessful() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/select</status>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);

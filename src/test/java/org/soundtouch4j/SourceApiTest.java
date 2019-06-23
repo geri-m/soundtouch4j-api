@@ -1,21 +1,23 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.util.List;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.testing.http.HttpTesting;
 import org.junit.jupiter.api.Test;
 import org.soundtouch4j.common.SourceEnum;
 import org.soundtouch4j.source.SourceItem;
 import org.soundtouch4j.source.SourceResponse;
 import org.soundtouch4j.source.SourceStatusEnum;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.testing.http.HttpTesting;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class SourceApiTest {
 
   @Test
-  public void getSources() throws SoundTouchApiException {
+  public void getSources() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><sources deviceID=\"C8DF84AE0B6E\"><sourceItem source=\"AUX\" sourceAccount=\"AUX\" status=\"READY\" " +
         "isLocal=\"true\" multiroomallowed=\"true\">AUX IN</sourceItem><sourceItem source=\"INTERNET_RADIO\" status=\"READY\" isLocal=\"false\" multiroomallowed=\"true\" " +
         "/><sourceItem source=\"BLUETOOTH\" status=\"UNAVAILABLE\" isLocal=\"true\" multiroomallowed=\"true\" /><sourceItem source=\"NOTIFICATION\" status=\"UNAVAILABLE\" " +

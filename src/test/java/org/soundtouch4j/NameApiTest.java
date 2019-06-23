@@ -1,17 +1,18 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
-import org.soundtouch4j.info.InfoResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.testing.http.HttpTesting;
+import org.junit.jupiter.api.Test;
+import org.soundtouch4j.info.InfoResponse;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class NameApiTest {
 
 
   @Test
-  public void setName() throws SoundTouchApiException {
+  public void setName() {
 
     final String xml =
         "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><info deviceID=\"C8DF84AE0B6E\"><name>Geralds Box</name><type>SoundTouch 20</type><margeAccountUUID>6990307" +

@@ -25,7 +25,7 @@ public class SpeakerIT {
 
 
   @Test
-  public void runThruTest() throws SoundTouchApiException {
+  public void runThruTest() {
 
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
 
@@ -133,7 +133,7 @@ public class SpeakerIT {
 
 
   @Test
-  public void basicTestWithBox() throws SoundTouchApiException {
+  public void basicTestWithBox() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     soundTouchApi.getKeyApi()
         .power();
@@ -141,7 +141,7 @@ public class SpeakerIT {
 
   @Test
 
-  public void fetchInfoFromSpeaker() throws MalformedURLException, SoundTouchApiException {
+  public void fetchInfoFromSpeaker() throws MalformedURLException {
     final URL boseEndpoint = new URL(Const.URL);
     final SoundTouch soundTouchApi = new SoundTouchApi(boseEndpoint, new NetHttpTransport());
     soundTouchApi.getInfoApi()
@@ -149,7 +149,7 @@ public class SpeakerIT {
   }
 
   @Test
-  public void nowPlaying() throws SoundTouchApiException {
+  public void nowPlaying() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     soundTouchApi.getNowPlayingApi()
         .nowPlaying();
@@ -157,7 +157,7 @@ public class SpeakerIT {
   }
 
   @Test
-  public void selectAux() throws SoundTouchApiException {
+  public void selectAux() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     soundTouchApi.getSelectApi()
         .select(new ContentItem(SourceEnum.AUX, "AUX"));
@@ -245,14 +245,14 @@ public class SpeakerIT {
   }
 
   @Test
-  public void getPresets() throws SoundTouchApiException {
+  public void getPresets() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     soundTouchApi.getPresetApi()
         .getPresets();
   }
 
   @Test
-  public void setName() throws SoundTouchApiException {
+  public void setName() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     InfoResponse reps = soundTouchApi.getNameApi()
         .setName("test");
@@ -265,7 +265,7 @@ public class SpeakerIT {
   }
 
   @Test
-  public void getBassCapabilities() throws SoundTouchApiException {
+  public void getBassCapabilities() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
 
     final BaseCapabilitiesResponse reps = soundTouchApi.getBassCapabilitiesApi()
@@ -298,7 +298,7 @@ public class SpeakerIT {
   }
 
   @Test
-  public void setAndGetZone() throws SoundTouchApiException {
+  public void setAndGetZone() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     final Zone zone = soundTouchApi.getZoneApi()
         .getZone();
@@ -307,7 +307,7 @@ public class SpeakerIT {
   }
 
   @Test
-  public void addAndRemoveSlave() throws SoundTouchApiException {
+  public void addAndRemoveSlave() {
     final SoundTouch soundTouchApi = new SoundTouchApi(Const.getUrl(), new NetHttpTransport());
     final Zone zone = soundTouchApi.getZoneApi()
         .getZone();

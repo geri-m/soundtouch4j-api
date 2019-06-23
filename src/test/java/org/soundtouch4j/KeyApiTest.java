@@ -1,17 +1,18 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.testing.http.HttpTesting;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class KeyApiTest {
 
   private final HttpTransport transport = Const.getHttpTransportFromString("<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/key</status>");
 
   @Test
-  public void powerOnSuccessful() throws SoundTouchApiException {
+  public void powerOnSuccessful() {
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     soundTouchApi.getKeyApi()
         .power();
@@ -45,7 +46,7 @@ public class KeyApiTest {
 
 
   @Test
-  public void muteSucessfully() throws SoundTouchApiException {
+  public void muteSucessfully() {
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
     soundTouchApi.getKeyApi()
         .mute();

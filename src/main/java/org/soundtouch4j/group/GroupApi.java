@@ -21,10 +21,9 @@ public class GroupApi extends AbstractApi {
    * supports stereo pair groups.
    *
    * @return Group Response from the Speaker with the Group information.
-   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public Group getGroup() throws SoundTouchApiException {
+  public Group getGroup() {
 
     final InfoResponse infoResponse = soundTouchApi.getSoundTouchApiClient()
         .get(PATH_FOR_INFO, InfoResponse.class);

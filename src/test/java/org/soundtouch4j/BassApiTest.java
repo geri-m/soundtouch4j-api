@@ -1,18 +1,19 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.testing.http.HttpTesting;
 import org.junit.jupiter.api.Test;
 import org.soundtouch4j.bass.BassGetResponse;
 import org.soundtouch4j.zone.Zone;
 import org.soundtouch4j.zone.ZoneMember;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.testing.http.HttpTesting;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class BassApiTest {
 
   @Test
-  public void getBassSuccessful() throws SoundTouchApiException {
+  public void getBassSuccessful() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><bass deviceID=\"C8DF84AE0B6E\"><targetbass>1</targetbass><actualbass>2</actualbass></bass>";
 
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
@@ -28,7 +29,7 @@ public class BassApiTest {
   }
 
   @Test
-  public void setBassSuccessful() throws SoundTouchApiException {
+  public void setBassSuccessful() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><status>/bass</status>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);

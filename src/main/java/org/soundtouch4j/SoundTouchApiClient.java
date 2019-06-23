@@ -1,20 +1,16 @@
 package org.soundtouch4j;
 
+import com.google.api.client.http.*;
+import com.google.api.client.http.xml.XmlHttpContent;
+import com.google.api.client.xml.XmlNamespaceDictionary;
+import com.google.api.client.xml.XmlObjectParser;
+import org.soundtouch4j.common.Request;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
-import org.soundtouch4j.common.Request;
-import com.google.api.client.http.ByteArrayContent;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpRequestFactory;
-import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.HttpResponseException;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.xml.XmlHttpContent;
-import com.google.api.client.xml.XmlNamespaceDictionary;
-import com.google.api.client.xml.XmlObjectParser;
 
 public class SoundTouchApiClient {
 
@@ -50,10 +46,9 @@ public class SoundTouchApiClient {
    * @param dataclass      The Object that the XML parser should map the XML to
    * @param <T>            The Class type of the Object for the Template. Must be of type {@link Request}
    * @return Returns an implementation of the Template if the Call was successful
-   * @throws SoundTouchApiException An error is thrown if the calls was not successful (either communication not possible or 4xx, 5xx status Codes)
    */
 
-  public <T> T post(final String path, final String xmlElementName, final Request request, final Class<T> dataclass) throws SoundTouchApiException {
+  public <T> T post(final String path, final String xmlElementName, final Request request, final Class<T> dataclass) {
     final GenericUrl url = new GenericUrl(basePath.toString() + URL_PATH_SEPARATOR + path);
     final XmlHttpContent xmlContentForPostCall = new XmlHttpContent(DICTIONARY, xmlElementName, request);
 
@@ -98,11 +93,10 @@ public class SoundTouchApiClient {
    * @param dataclass The Object that the XML parser should map the XML to
    * @param <T>       The Class type of the Object for the Template. Must be of type {@link Request}
    * @return Returns an implementation of the Template if the Call was successful
-   * @throws SoundTouchApiException An error is thrown if the calls was not successful (either communication not possible or 4xx, 5xx status Codes)
    */
 
 
-  public <T> T get(final String path, final Class<T> dataclass) throws SoundTouchApiException {
+  public <T> T get(final String path, final Class<T> dataclass) {
     final GenericUrl url = new GenericUrl(basePath.toString() + URL_PATH_SEPARATOR + path);
     try {
       // the {@link HttpResponseException} is thrown is response.isSuccessStatusCode() is false.

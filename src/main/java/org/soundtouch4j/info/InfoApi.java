@@ -1,7 +1,6 @@
 package org.soundtouch4j.info;
 
 import org.soundtouch4j.SoundTouchApi;
-import org.soundtouch4j.SoundTouchApiException;
 import org.soundtouch4j.common.AbstractApi;
 
 public class InfoApi extends AbstractApi {
@@ -17,10 +16,9 @@ public class InfoApi extends AbstractApi {
    * Method to turn on/off the Sound Touch
    *
    * @return InfoResponse Element that was received from the speaker
-   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed.
    */
 
-  public InfoResponse getInfo() throws SoundTouchApiException {
+  public InfoResponse getInfo() {
     return soundTouchApi.getSoundTouchApiClient()
         .get(PATH_FOR_API, InfoResponse.class);
   }

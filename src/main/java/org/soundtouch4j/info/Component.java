@@ -1,10 +1,11 @@
 package org.soundtouch4j.info;
 
 
+import com.google.api.client.util.Key;
+import org.soundtouch4j.SoundTouchApiException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.soundtouch4j.SoundTouchApiException;
-import com.google.api.client.util.Key;
 
 /**
  * <pre>
@@ -45,7 +46,7 @@ public class Component {
     return serialNumber;
   }
 
-  public int getVersion() throws SoundTouchApiException {
+  public int getVersion() {
     final Matcher matcher = VERSION_PATTERN.matcher(softwareVersion);
     if (matcher.matches()) {
       return Integer.parseInt(matcher.group(1));

@@ -1,10 +1,5 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
-import org.soundtouch4j.volume.VolumeGetResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.LowLevelHttpResponse;
@@ -12,11 +7,15 @@ import com.google.api.client.testing.http.HttpTesting;
 import com.google.api.client.testing.http.MockHttpTransport;
 import com.google.api.client.testing.http.MockLowLevelHttpRequest;
 import com.google.api.client.testing.http.MockLowLevelHttpResponse;
+import org.junit.jupiter.api.Test;
+import org.soundtouch4j.volume.VolumeGetResponse;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class VolumeApiTest {
 
   @Test
-  public void getVolume() throws SoundTouchApiException {
+  public void getVolume() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><volume deviceID=\"C8DF84AE0B6E\"><targetvolume>18</targetvolume><actualvolume>28</actualvolume" +
         "><muteenabled>false</muteenabled></volume>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
@@ -33,7 +32,7 @@ public class VolumeApiTest {
   }
 
   @Test
-  public void setVolume() throws SoundTouchApiException {
+  public void setVolume() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/volume</status>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
 

@@ -1,19 +1,20 @@
 package org.soundtouch4j;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
-import org.soundtouch4j.zone.Zone;
-import org.soundtouch4j.zone.ZoneMember;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.testing.http.HttpTesting;
 import com.google.api.client.util.Preconditions;
+import org.junit.jupiter.api.Test;
+import org.soundtouch4j.zone.Zone;
+import org.soundtouch4j.zone.ZoneMember;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class ZoneApiTest {
 
   @Test
-  public void getZoneEmpty() throws SoundTouchApiException {
+  public void getZoneEmpty() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<zone />";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
 
@@ -23,7 +24,7 @@ public class ZoneApiTest {
   }
 
   @Test
-  public void getZoneList() throws SoundTouchApiException {
+  public void getZoneList() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<zone master=\"C8DF84AE0B6E\">\n    <member ipaddress=\"192.168.178.61\">C8DF84AE0B6E</member>\n</zone>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
@@ -41,7 +42,7 @@ public class ZoneApiTest {
   }
 
   @Test
-  public void setZone() throws SoundTouchApiException {
+  public void setZone() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/setZone</status>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
@@ -53,7 +54,7 @@ public class ZoneApiTest {
   }
 
   @Test
-  public void addZoneSlave() throws SoundTouchApiException {
+  public void addZoneSlave() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/addZoneSlave</status>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);
@@ -96,7 +97,7 @@ public class ZoneApiTest {
   }
 
   @Test
-  public void removeZoneSlave() throws SoundTouchApiException {
+  public void removeZoneSlave() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<status>/removeZoneSlave</status>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);
     final SoundTouch soundTouchApi = new SoundTouchApi(HttpTesting.SIMPLE_GENERIC_URL.toURL(), transport);

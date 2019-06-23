@@ -1,18 +1,19 @@
 package org.soundtouch4j;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-import org.soundtouch4j.basscapabilities.BaseCapabilitiesResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.testing.http.HttpTesting;
+import org.junit.jupiter.api.Test;
+import org.soundtouch4j.basscapabilities.BaseCapabilitiesResponse;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class BassCapabilitiesApiTest {
 
   @Test
-  public void getBassCapabilities() throws SoundTouchApiException {
+  public void getBassCapabilities() {
     final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><bassCapabilities deviceID=\"C8DF84AE0B6E\"><bassAvailable>true</bassAvailable><bassMin>-9</bassMin" +
         "><bassMax>0</bassMax><bassDefault>0</bassDefault></bassCapabilities>";
     final HttpTransport transport = Const.getHttpTransportFromString(xml);

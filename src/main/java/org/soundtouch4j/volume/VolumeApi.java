@@ -19,10 +19,9 @@ public class VolumeApi extends AbstractApi {
    * Method to get the Volume/Mute Setting of the Speaker
    *
    * @return VolumeGetResponse containing information on the speaker volume setting.
-   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public VolumeGetResponse getVolume() throws SoundTouchApiException {
+  public VolumeGetResponse getVolume() {
     return soundTouchApi.getSoundTouchApiClient()
         .get(PATH_FOR_API, VolumeGetResponse.class);
   }
@@ -31,10 +30,9 @@ public class VolumeApi extends AbstractApi {
    * Method to set the Volume of a Bose Speaker to a dedicated Volume
    *
    * @param volume The Volume can be set from 0 and 100, inclusive.
-   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed or the Speaker did response
    */
 
-  public void setVolume(final int volume) throws SoundTouchApiException {
+  public void setVolume(final int volume) {
 
     if ((volume < MIN_VOLUME) || (volume > MAX_VOLUME)) {
       throw new SoundTouchApiException(String.format(ERROR_MSG_VOLUME_RANGE, volume));

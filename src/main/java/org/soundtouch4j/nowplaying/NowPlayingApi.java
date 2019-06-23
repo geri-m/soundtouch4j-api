@@ -1,7 +1,6 @@
 package org.soundtouch4j.nowplaying;
 
 import org.soundtouch4j.SoundTouchApi;
-import org.soundtouch4j.SoundTouchApiException;
 import org.soundtouch4j.common.AbstractApi;
 
 public class NowPlayingApi extends AbstractApi {
@@ -16,10 +15,9 @@ public class NowPlayingApi extends AbstractApi {
    * Method to turn on/off the Sound Touch
    *
    * @return NowPlayingResponse Element that was received from the speaker
-   * @throws SoundTouchApiException is thrown in case the communication to the speaker failed.
    */
 
-  public NowPlayingResponse nowPlaying() throws SoundTouchApiException {
+  public NowPlayingResponse nowPlaying() {
     return soundTouchApi.getSoundTouchApiClient()
         .get(PATH_FOR_API, NowPlayingResponse.class);
   }
