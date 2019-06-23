@@ -283,6 +283,12 @@
           </reportSet>
         </reportSets>
       </plugin>
+        <!-- Creating links within JavaDoc https://stackoverflow.com/questions/12038238/unable-to-locate-source-xref-to-link-to -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>3.0.0</version>
+        </plugin>
     </plugins>
   </reporting>
 
